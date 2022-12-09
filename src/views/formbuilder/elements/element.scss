@@ -1,0 +1,94 @@
+.inputwarrper {
+    display: flex;
+    width: 100%;
+    margin: 1em;
+    margin-top: 2em;
+
+    .inputlablewarrper {
+        display: flex;
+        justify-content: start !important;
+        align-items: center !important;
+        width: 120px;
+        color: #828282 !important;
+        word-break: break-all;
+    }
+
+    .inputstyle {
+        width: 250px !important;
+        height: 42px !important;
+
+        .ant-input {
+            width: 200 !important;
+            height: 42px !important;
+        }
+
+    }
+
+    button.inputstyle {
+      background: #3BAF7C;
+      color: white;
+      font-weight: bold;
+    }
+}
+
+.inputlablewarrper {
+    display: flex;
+    justify-content: start !important;
+    align-items: center !important;
+    width: 120px;
+    color: #828282 !important;
+    word-break: break-all;
+}
+
+.sliderinputwarrper {
+    display: flex;
+    justify-content: space-between !important;
+    align-items: center !important;
+    width: 90% !important;
+    margin: 1em !important;
+
+    .inputlablewarrper {
+        display: flex;
+        justify-content: start !important;
+        align-items: center !important;
+        width: 120px;
+        word-break: break-all;
+
+    }
+
+    .colorinput {
+        .ant-input[type='color'] {
+            width: 200px !important;
+            height: 40px !important;
+            padding: 0;
+        }
+    }
+}
+
+.countinputwrapper {
+    display: flex;
+    align-items: center;
+    width: 40px !important;
+    height: 20px !important;
+
+    .countinput {
+        width: 40px !important;
+        height: 20px !important;
+        margin-left: 1em !important;
+        border: 1px solid #C4C4C4;
+        padding: 0;
+    }
+
+}
+
+.ant-select-selection-item {
+  text-align: left;
+}
+.ant-select-item-option-content {
+  text-align: left;
+}
+
+.ant-select-selector {
+  height: 100% !important;
+  padding: 4px 11px !important;
+}

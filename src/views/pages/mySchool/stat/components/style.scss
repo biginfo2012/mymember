@@ -1,0 +1,19 @@
+.tooltip-container {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.custom-tooltip {
+  background-color: white;
+  padding: 10px;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+[dir] p {
+  margin-bottom: 0;
+}

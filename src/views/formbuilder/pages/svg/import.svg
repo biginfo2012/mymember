@@ -1,0 +1,11 @@
+<svg width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="400" height="400" fill="#A7A7A7" fill-opacity="0.8"/>
+<rect x="50" y="50" width="300" height="300" fill="white"/>
+<rect x="60" y="58" width="280" height="98" rx="5" fill="#A7A7A7" fill-opacity="0.8"/>
+<rect x="60" y="176" width="114" height="20" rx="9" fill="#D9D9D9"/>
+<rect x="60" y="247" width="114" height="20" rx="9" fill="#D9D9D9"/>
+<rect x="60" y="207" width="280" height="20" rx="9" fill="#A7A7A7" fill-opacity="0.8"/>
+<rect x="60" y="287" width="114" height="20" rx="9" fill="#A7A7A7" fill-opacity="0.8"/>
+<ellipse cx="291.5" cy="285.5" rx="48.5" ry="47.5" fill="#1C73F5"/>
+<path opacity="0.8" d="M290.086 303.42C290.867 304.202 292.133 304.202 292.914 303.42L305.642 290.693C306.423 289.912 306.423 288.645 305.642 287.864C304.861 287.083 303.595 287.083 302.814 287.864L291.5 299.178L280.186 287.864C279.405 287.083 278.139 287.083 277.358 287.864C276.577 288.645 276.577 289.912 277.358 290.693L290.086 303.42ZM289.5 261.994V302.006H293.5V261.994H289.5Z" fill="white"/>
+</svg>

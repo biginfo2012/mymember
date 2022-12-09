@@ -1,0 +1,32 @@
+#dragDrop_inner_image .MuiGrid-grid-xs-4 {
+    flex-grow: 0;
+    max-width: 100% !important;
+    flex-basis: auto !important;
+    margin:auto !important
+}
+
+.upload-div_border{
+    border-style: dashed;
+    border-color: #b9b5b5;
+    height:120px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.upload_input{
+    position: absolute;
+    height: 113px;
+    cursor: pointer;
+    opacity: 0;
+}
+
+.formTable td{
+    margin-top: 10px;
+    padding: 5px;
+}
+
+.employeeForm{
+    height: 50% !important;
+}

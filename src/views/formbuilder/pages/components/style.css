@@ -1,0 +1,25 @@
+table {
+    /* collapsed, because the bottom shadow on thead tr is hidden otherwise */
+    border-spacing: 0 1em;
+    border-collapse: separate;
+}
+
+th {
+    margin: 1em;
+}
+
+tr.even td {
+    background-color: yellow;
+}
+
+/* I would like spacing between thead tr and tr.first-row */
+
+tr.first-row {
+    background-color: #ffff;
+    margin: 1em;
+    border-radius: 8px;
+}
+
+.gjs-cv-canvas {
+    background: rgb(205, 207, 216) !important;
+}

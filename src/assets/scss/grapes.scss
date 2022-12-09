@@ -1,0 +1,20 @@
+.section-full-width {
+  padding: 20px 20px;
+  position: relative
+}
+
+
+.gjs-toolbar .gjs-toolbar-item {
+  display: none;
+}
+
+.gjs-toolbar .gjs-toolbar-item ~ .gjs-toolbar-item {
+  display: inline-block;
+}
+
+.gjs-badge__name {
+  display: none !important;
+}
+
+
+

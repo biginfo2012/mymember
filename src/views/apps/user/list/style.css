@@ -1,0 +1,152 @@
+.MuiBackdrop-root {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  z-index: -1;
+  position: fixed;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(0 0 0 / 0%);
+  -webkit-tap-highlight-color: transparent;
+}
+.candidateBox {
+  border-radius: 14px !important;
+}
+.candidateTable {
+  height: 190px !important;
+  width: 280px !important;
+}
+
+.tss-oeo5eo-MUIDataTableToolbar-filterPaper {
+  width: 300px !important;
+  right: 50px !important;
+}
+.css-ubpweo-MuiPaper-root-MuiPopover-paper {
+  padding: 10px !important;
+}
+.tss-1cdcmys-MUIDataTable-responsiveBase {
+  z-index: 10;
+}
+
+.tableImg {
+  text-align: center !important;
+  height: 35px;
+  border-radius: 50%;
+  margin-left: 10px;
+  width: 35px;
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+}
+
+.css-1ex1afd-MuiTableCell-root {
+  padding: 0px;
+}
+
+.tss-14rrrq1-MUIDataTableResize-resizer {
+  border: none;
+}
+
+.css-1w1rijm-MuiButtonBase-root-MuiButton-root {
+  padding: 0px;
+  max-width: 60px;
+}
+
+.tss-14rrrq1-MUIDataTableResize-resizer:hover {
+  border: 0.1px solid rgba(224, 224, 224, 1);
+}
+.css-1ygcj2i-MuiTableCell-root {
+  padding: 10px;
+}
+.tss-1h9t3sl-MUIDataTableHeadCell-sortAction {
+  font-weight: bold;
+  text-transform: capitalize;
+}
+.css-i4bv87-MuiSvgIcon-root {
+  color: #565656;
+  margin: 12px;
+  /* position: absolute;
+    right: 30px; */
+}
+
+.studentLink:hover {
+  color: rgb(72, 167, 205);
+}
+.studentLink {
+  color: #000;
+}
+.tss-1ufdzki-MUIDataTableSearch-main {
+  width: 50% !important;
+}
+.css-11mde6h-MuiPaper-root {
+  box-shadow: none;
+}
+.tss-1dqj55d-MUIDataTableToolbarSelect-root {
+  display: none !important;
+}
+.login-input {
+  border: 1px solid #656a6d;
+  background: none;
+  padding: 10px;
+  margin-top: 15px;
+  height: 30px;
+  padding-left: 24px;
+  font-weight: 500;
+  color: #5d5d5d;
+  width: 100%;
+  border-radius: 5px;
+}
+
+.tss-1q014d6-MUIDataTableHeadCell-dragCursor {
+  width: 80px;
+}
+.tss-qbo1l6-MUIDataTableToolbar-actions:hover {
+    background-color: transparent;
+  }
+.css-hyum1k-MuiToolbar-root {
+    min-height: 0 !important;
+}
+.tss-oeo5eo-MUIDataTableToolbar-filterPaper{
+    height: 400px;
+    top: 176px;
+    z-index: 9999;
+}
+.tss-qbo1l6-MUIDataTableToolbar-actions {
+  position: absolute;
+  right: -10px;
+  top: -58px;
+  background-color: transparent;
+}
+.actionIcon{
+    margin-top: 5px;
+    margin: 5px;
+    padding: 5px !important;
+    /* border: 1px solid rgb(72, 167, 205); */
+    height: 32px;
+    width: 32px;
+    color: rgb(86, 86, 86);
+    border-radius: 30px;
+}
+.actionIcon1{
+  background-color: red !important;
+}
+.tss-qbo1l6-MUIDataTableToolbar-actions > span > button{
+  margin-left: -5px;
+  margin-top: -10px;
+}
+
+.icon-list > a {
+  background-color: red !important;
+}
+
+span > .css-78trlr-MuiButtonBase-root-MuiIconButton-root{
+    background-color: transparent;
+}
+.MuiButtonBase-root .MuiIconButton-root .tss-10rusft-MUIDataTableToolbar-icon .MuiIconButton-sizeMedium .css-78trlr-MuiButtonBase-root-MuiIconButton-root{
+    background-color: transparent !important;
+}
+.datatableIcons{
+  margin-top: 5px;
+}

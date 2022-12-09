@@ -1,0 +1,19 @@
+.makeStyles-editorWrapper-26,
+.MuiPaper-elevation3 {
+    padding: 10px !important;
+    height: 48vh !important;
+}
+
+
+
+
+div.DraftEditor-root {
+    border: 1px solid #C0C0C0;
+    height: 500px;
+    width: auto;
+    overflow-y: scroll;
+}
+div.DraftEditor-editorContainer,
+div.public-DraftEditor-content {
+    height: 100%;
+}

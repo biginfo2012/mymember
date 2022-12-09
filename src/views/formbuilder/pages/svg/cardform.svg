@@ -1,0 +1,16 @@
+<svg width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="400" height="400" fill="#A7A7A7" fill-opacity="0.8"/>
+<rect x="50" y="91" width="300" height="198" rx="12" fill="white"/>
+<rect x="104" y="195" width="223" height="20" rx="9" fill="#D9D9D9"/>
+<rect x="104" y="165" width="223" height="20" rx="9" fill="#D9D9D9"/>
+<rect x="68" y="123" width="223" height="20" rx="9" fill="#D9D9D9"/>
+<rect x="50" y="260" width="300" height="29" rx="2" fill="#1C73F5"/>
+<rect x="73" y="200" width="11" height="10" fill="#D9D9D9"/>
+<rect x="73" y="168" width="11" height="10" fill="#1C73F5"/>
+<path d="M77.2273 174.537L75.5568 172.343L75 173.075L77.2273 176L82 169.731L81.4432 169L77.2273 174.537Z" fill="white"/>
+<circle cx="92.5" cy="306.5" r="3.5" fill="#959595"/>
+<circle cx="199.5" cy="306.5" r="3.5" fill="#1C73F5"/>
+<circle cx="306.5" cy="306.5" r="3.5" fill="#959595"/>
+<line x1="96" y1="306.5" x2="196" y2="306.5" stroke="#A9A9A9"/>
+<line x1="203" y1="306.5" x2="303" y2="306.5" stroke="#A9A9A9"/>
+</svg>

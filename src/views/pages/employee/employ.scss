@@ -1,0 +1,35 @@
+.element {
+  cursor: pointer;
+
+  &:hover {
+    color: rgb(33, 150, 243);
+    background: rgb(234, 244, 254);
+  }
+}
+
+
+
+.element-active {
+  min-width: 3px;
+  width: 3px;
+  background: rgb(234, 244, 254);
+  border-left: 4px solid #3190dd;
+  cursor: pointer;
+}
+
+.label {
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.upgrade{
+  background: rgb(234, 244, 254);
+  margin: 1em;
+  padding: 1em;
+}
+.action{
+  color: gray;
+}
+.divider {
+  border-bottom: 1px solid #e7e7e7;
+}

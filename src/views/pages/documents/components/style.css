@@ -1,0 +1,206 @@
+.searchContainer {
+  display: inline-flex;
+  flex: 1 1 200px;
+  position: relative;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.searchIcon {
+  background: #fff;
+  padding: 0.5rem;
+  font-size: 34px;
+}
+
+.searchBox {
+  border: 0;
+  flex: 1;
+}
+
+.createBtn {
+  height: 35px;
+  border-radius: 5px;
+  background: #00a6e1;
+  color: #fff;
+  border: 1px solid #fff;
+}
+
+.wrapper>div {
+  margin: 5px;
+}
+
+/* 
+.tss-tlx3x1-MUIDataTableToolbar-root,
+.tss-1dqj55d-MUIDataTableToolbarSelect-root {
+  display: none;
+}
+.css-1q1u3t4-MuiTableRow-root > th:nth-child(2) > span {
+  width: 350px;
+}
+.css-1q1u3t4-MuiTableRow-root > th:nth-child(3) > span {
+  width: 150px;
+}
+.css-1q1u3t4-MuiTableRow-root > th:nth-child(4) > span {
+  position: absolute;
+  left: 55px;
+  top: 18px;
+}
+.css-apqrd9-MuiTableBody-root >  tr > td:nth-child(4) > div:nth-child(2){
+  display: flex;
+  justify-content: right;
+}
+.css-apqrd9-MuiTableBody-root >  tr > td:nth-child(5) > div:nth-child(2){
+  margin-left: 25px;
+}
+*/
+.radioGray::after,
+.radioGray::before {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  margin-top: 2px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: rgb(111, 111, 111);
+  border: 2px solid rgb(111, 111, 111);
+}
+
+.radioOrange::after,
+.radioOrange::before {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  margin-top: 2px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: rgb(248 165 108);
+  border: 2px solid rgb(248 165 108);
+}
+
+.radioBlue::after,
+.radioBlue::before {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  margin-top: 2px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: rgb(38, 60, 233);
+  border: 2px solid rgb(38, 60, 233);
+}
+
+.radioVoilot::after,
+.radioVoilot::before {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  margin-top: 2px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: rgb(164, 48, 218);
+  border: 2px solid rgb(164, 48, 218);
+}
+
+.radioLightBlue::after,
+.radioLightBlue::before {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  margin-top: 2px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: rgb(87, 188, 251);
+  border: 2px solid rgb(87, 188, 251);
+}
+
+.radioLightGreen::after,
+.radioLightGreen::before {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  margin-top: 2px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: rgb(125, 244, 117);
+  border: 2px solid rgb(125, 244, 117);
+}
+
+.radioRed::after,
+.radioRed::before {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  margin-top: 2px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: rgb(255, 16, 16);
+  border: 2px solid rgb(255, 16, 16);
+}
+
+.radioGreen::after,
+.radioGreen::before {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  margin-top: 2px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 2px solid rgb(48, 237, 5);
+}
+
+.radioDarkGreen::after,
+.radioDarkGreen::before {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  margin-top: 2px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: rgb(0, 144, 26);
+  border: 2px solid rgb(0, 144, 26);
+}
+.divider {
+  border-bottom: 1px solid #e7e7e7;
+}
+
+/*  .css-1mn4xau-MuiTabs-root .MuiTab-root {
+  border-right: none;
+}
+.css-1mn4xau-MuiTabs-root .Mui-selected {
+  border: none;
+  width: 100%;
+}
+.css-1h9z7r5-MuiButtonBase-root-MuiTab-root {
+  width: 25%;
+}
+.MuiListItem-gutters {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+.MuiListItem-dense {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+.MuiGrid-spacing-xs-2 {
+  width: 100% !important;
+} */
+/* 
+.MuiList-padding {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+@media only screen and (max-width: 600px) {
+  .css-1h9z7r5-MuiButtonBase-root-MuiTab-root {
+    width: 100% !important;
+  }
+} */
