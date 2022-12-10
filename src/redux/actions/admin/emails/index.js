@@ -22,7 +22,7 @@ const getHeadersForFile = () => {
   };
 };
 
-const toastCSS = () => {
+export const toastCSS = () => {
   return {
     position: "top-center",
     autoClose: 3000,

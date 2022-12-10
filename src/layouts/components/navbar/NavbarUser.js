@@ -162,7 +162,7 @@ const UserDropdown = (props) => {
               localStorage.removeItem("userdata");
               localStorage.removeItem("staticDefaultLocation");
               history.replace("/pages/login")
-              // history.push("/pages/login");  
+              // history.push("/pages/login");
             }
           }
         }}
@@ -178,25 +178,28 @@ const WalletDropdown = (props) => {
   return (
     <DropdownMenu right>
       <DropdownItem
-        tag="a"
-        href="#"
         onClick={(e) => handleNavigation(e, "/pages/navwallet/depositFunds")}
       >
-        <span className="align-middle">Deposit Funds</span>
+        <Link to="/pages/navwallet/depositFunds">
+          <span className="align-middle">Deposit Funds</span>
+        </Link>
+        {/*<span className="align-middle">Deposit Funds</span>*/}
       </DropdownItem>
       <DropdownItem
-        tag="a"
-        href="#"
         onClick={(e) => handleNavigation(e, "/pages/navwallet/withdraw")}
       >
-        <span className="align-middle">Withdraw Funds</span>
+        <Link to="/pages/navwallet/withdraw">
+          <span className="align-middle">Withdraw Funds</span>
+        </Link>
+        {/*<span className="align-middle">Withdraw Funds</span>*/}
       </DropdownItem>
       <DropdownItem
-        tag="a"
-        href="#"
         onClick={(e) => handleNavigation(e, "/pages/navwallet/transction")}
       >
-        <span className="align-middle">Transction History</span>
+        <Link to="/pages/navwallet/transction">
+          <span className="align-middle">Transction History</span>
+        </Link>
+        {/*<span className="align-middle">Transction History</span>*/}
       </DropdownItem>
     </DropdownMenu>
   );

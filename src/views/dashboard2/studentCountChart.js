@@ -34,13 +34,13 @@ const StudentCountChart = () => {
           maintainAspectRatio: false,
           responsive: true,
           scales: {
-            yAxes: [
-              {
-                ticks: {
-                  beginAtZero: true,
-                },
-              },
-            ],
+            // yAxes: [
+            //   {
+            //     ticks: {
+            //       //beginAtZero: true,
+            //     },
+            //   },
+            // ],
           },
           legend: {
             labels: {
