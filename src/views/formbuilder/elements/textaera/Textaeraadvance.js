@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import { Select, } from 'antd'
 import { Typography } from '@mui/material';
 
@@ -12,19 +12,8 @@ const Textaeraadvance = ({ editor }) => {
 
   const handlestyle = (newVal, name) => {
     const element = getSelectedHtmlElement();
-    let attributes = getSelectedHtmlElement().getAttributes();
-    attributes[name] = newVal;
-    getSelectedHtmlElement().setAttributes(attributes);
     element.addStyle({ [name]: newVal });
   }
-
-  useEffect(() => {
-    let attributes = getSelectedHtmlElement().getAttributes();
-    if(!attributes) {
-      attributes = {};
-      getSelectedHtmlElement().setAttributes(attributes);
-    }
-  })
   return (
     <div id="inputAdvance">
       <div className='inputwarrper'>
@@ -35,7 +24,6 @@ const Textaeraadvance = ({ editor }) => {
           >Font Weight</Typography>
         </div>
         <Select style={{ width: 250, height: 42 }}
-                defaultValue={getSelectedHtmlElement().getAttributes()["font-weight"]}
           onChange={(e) => { handlestyle(e, "font-weight") }}
           getPopupContainer={() => document.getElementById('inputAdvance')}>
           <Option value="normal">Normal</Option>
@@ -50,7 +38,6 @@ const Textaeraadvance = ({ editor }) => {
           >Text Align</Typography>
         </div>
         <Select style={{ width: 250, height: 42 }}
-                defaultValue={getSelectedHtmlElement().getAttributes()["text-align"]}
           onChange={(e) => { handlestyle(e, "text-align") }}
           getPopupContainer={() => document.getElementById('inputAdvance')}>
           <Option value="left">Left</Option>
@@ -65,9 +52,7 @@ const Textaeraadvance = ({ editor }) => {
             className='mb-0'
           >Corners</Typography>
         </div>
-        <Select
-          defaultValue={getSelectedHtmlElement().getAttributes()["border-radius"]}
-          style={{ width: 250, height: 42 }} onChange={(e) => { handlestyle(e, "border-radius") }}
+        <Select style={{ width: 250, height: 42 }} onChange={(e) => { handlestyle(e, "border-radius") }}
           getPopupContainer={() => document.getElementById('inputAdvance')}>
           <Option value="0">Square Edges</Option>
           <Option value="5px">5px</Option>
@@ -84,7 +69,6 @@ const Textaeraadvance = ({ editor }) => {
           >Height</Typography>
         </div>
         <Select style={{ width: 250, height: 42 }}
-          defaultValue={getSelectedHtmlElement().getAttributes()["height"]}
           onChange={(e) => { handlestyle(e, "height") }}
           getPopupContainer={() => document.getElementById('inputAdvance')}>
           <Option value="default">Default</Option>
@@ -101,7 +85,6 @@ const Textaeraadvance = ({ editor }) => {
           >BG Color</Typography>
         </div>
         <Select style={{ width: 250, height: 42 }}
-          defaultValue={getSelectedHtmlElement().getAttributes()["background"]}
           onChange={(e) => { handlestyle(e, "background") }}
           getPopupContainer={() => document.getElementById('inputAdvance')}>
           <Option value="white">White</Option>

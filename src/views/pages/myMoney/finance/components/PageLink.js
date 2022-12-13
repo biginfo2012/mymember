@@ -30,10 +30,10 @@ const PageLink = ({ children }) => {
         >
           <div
             className={`${
-              activePath === "income" ? "bullet active-bullet" : "bullet"
+              activePath === "income" ? "bullet active_bullet" : "bullet"
             }`}
           />
-          <CardText className={`${activePath === "income" && "active"}`}>
+          <CardText className={`${activePath === "income" && "text-primary"}`}>
             Income
           </CardText>
         </div>
@@ -43,10 +43,10 @@ const PageLink = ({ children }) => {
         >
           <div
             className={`${
-              activePath === "expense" ? "bullet active-bullet" : "bullet"
+              activePath === "expense" ? "bullet active_bullet" : "bullet"
             }`}
           />
-          <CardText className={`${activePath === "expense" && "active"}`}>
+          <CardText className={`${activePath === "expense" && "text-primary"}`}>
             Expense
           </CardText>
         </div>
@@ -56,10 +56,10 @@ const PageLink = ({ children }) => {
         >
           <div
             className={`${
-              activePath === "ccexp" ? "bullet active-bullet" : "bullet"
+              activePath === "ccexp" ? "bullet active_bullet" : "bullet"
             }`}
           />
-          <CardText className={`${activePath === "ccexp" && "active"}`}>
+          <CardText className={`${activePath === "ccexp" && "text-primary"}`}>
             CC Expiring
           </CardText>
         </div>
@@ -69,10 +69,10 @@ const PageLink = ({ children }) => {
         >
           <div
             className={`${
-              activePath === "pnl" ? "bullet active-bullet" : "bullet"
+              activePath === "pnl" ? "bullet active_bullet" : "bullet"
             }`}
           />
-          <CardText className={`${activePath === "pnl" && "active"}`}>
+          <CardText className={`${activePath === "pnl" && "text-primary"}`}>
             P &amp; L
           </CardText>
         </div>

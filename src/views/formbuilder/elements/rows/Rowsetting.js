@@ -1,6 +1,6 @@
 import { TextField, Button, Typography ,Slider} from '@mui/material'
 import { Select, Input } from 'antd'
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 import Icon from "@ant-design/icons";
 import Image from "../../../../assets/img/image.png"
 
@@ -11,7 +11,6 @@ const selectAfter = (
     </Select>
 );
 const SectionAdvance = (props) => {
-  const [rowAttributes, setRowAttributes] = useState({});
   const getSelectedHtmlElement = () => {
     // const selectedElement = props.editor.getSelected();
     // const element = selectedElement.view.el;
@@ -24,9 +23,7 @@ const SectionAdvance = (props) => {
     const element = getSelectedHtmlElement();
     // element.style.paddingLeft = newVal;
     // element.style.paddingRight = newVal;
-    let attributes = getSelectedHtmlElement().getAttributes();
-    attributes.paddingX = newVal;
-    getSelectedHtmlElement().setAttributes(attributes);
+
     element.addStyle({ 'padding-left': newVal })
     element.addStyle({ 'padding-right': newVal })
 
@@ -34,54 +31,33 @@ const SectionAdvance = (props) => {
   const handlePaddingTopChange = (event, newVal) => {
     const element = getSelectedHtmlElement();
     //element.style.paddingTop = newVal;
-    let attributes = getSelectedHtmlElement().getAttributes();
-    attributes.paddingTop = newVal;
-    getSelectedHtmlElement().setAttributes(attributes);
     element.addStyle({ 'padding-top': newVal })
   };
 
   const handlePaddingBottomChange = (event, newVal) => {
     const element = getSelectedHtmlElement();
     //element.style.paddingBottom = newVal;
-    let attributes = getSelectedHtmlElement().getAttributes();
-    attributes.paddingBottom = newVal;
-    getSelectedHtmlElement().setAttributes(attributes);
     element.addStyle({ 'padding-bottom': newVal })
   };
 
   const handleTextColorChange = (event) => {
     const element = getSelectedHtmlElement();
     //element.style.fontColor = event.target.value;
-    let attributes = getSelectedHtmlElement().getAttributes();
-    attributes.textColor = event.target.value;
-    getSelectedHtmlElement().setAttributes(attributes);
     element.addStyle({ 'color': event.target.value })
   }
 
   const handleBackgroundColorChange = (event) => {
 
     const element = getSelectedHtmlElement();
-    let attributes = getSelectedHtmlElement().getAttributes();
-    attributes.backgroundColor = event.target.value;
-    getSelectedHtmlElement().setAttributes(attributes);
     // element.style.backgroundColor = event.target.value;
     element.addStyle({ 'background-color': event.target.value })
   }
 
   const handleBackgroundImageChange = (event) => {
     const element = getSelectedHtmlElement();
-    let attributes = getSelectedHtmlElement().getAttributes();
-    attributes.backgroundSource = event.target.value;
-    getSelectedHtmlElement().setAttributes(attributes);
     //element.style.backgroundImage =  "url('" + event.target.value + "')";
     element.addStyle({ 'background-image': "url('" + event.target.value + "')" })
   }
-
-  useEffect(() => {
-    if(getSelectedHtmlElement() && getSelectedHtmlElement().getAttributes()) {
-      setRowAttributes(getSelectedHtmlElement().getAttributes())
-    }
-  })
     return (
         <div>
             <div className='p-1'>
@@ -102,7 +78,6 @@ const SectionAdvance = (props) => {
                         size="small"
                         type="text"
                         placeholder="Image URL"
-                        defaultValue={rowAttributes.backgroundSource}
                         onChange={handleBackgroundImageChange}
                     />
                     <Button
@@ -124,7 +99,7 @@ const SectionAdvance = (props) => {
                     }}
                     size="small"
                     type="color"
-                    defaultValue={rowAttributes.backgroundColor}
+                    defaultValue={'#EFEFEF'}
                     onChange={handleBackgroundColorChange}
                 />
             </div>
@@ -141,7 +116,7 @@ const SectionAdvance = (props) => {
                     }}
                     size="small"
                     type="color"
-                    defaultValue={rowAttributes.textColor}
+                    defaultValue={'#EFEFEF'}
                     onChange={handleTextColorChange}
                 />
             </div>
@@ -164,7 +139,7 @@ const SectionAdvance = (props) => {
                         className='inputlablewarrper mb-0'
                     >Top</Typography>
                 </div>
-                <Slider defaultValue={rowAttributes.paddingTop}
+                <Slider defaultValue={50}
                     size="small"
                     onChange={handlePaddingTopChange}
                     valueLabelDisplay="auto" />
@@ -185,7 +160,7 @@ const SectionAdvance = (props) => {
                         className='inputlablewarrper mb-0'
                     >Bottom</Typography>
                 </div>
-                <Slider defaultValue={rowAttributes.paddingBottom}
+                <Slider defaultValue={50}
                     size="small"
                     onChange={handlePaddingBottomChange}
                     valueLabelDisplay="auto" />
@@ -206,7 +181,7 @@ const SectionAdvance = (props) => {
                         className='inputlablewarrper mb-0'
                     >Left Right</Typography>
                 </div>
-                <Slider defaultValue={rowAttributes.paddingX}
+                <Slider defaultValue={50}
                     size="small"
                     onChange={handlePaddingXChange}
                     valueLabelDisplay="auto" />

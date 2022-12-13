@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import { Upload } from "react-feather";
@@ -8,13 +8,9 @@ import LoadingForUplaod from "./LoadingForUplaod";
 const AddOrEditDoc = (props) => {
   const { activeMainFolder, activeSubMainFolder, IsEdit, userinformation } =
     props;
-  const [open, setOpen] = React.useState(false);
-  const [state, setState] = React.useState({});
-  const [defaltAlert, setdefaltAlert] = React.useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+  const [open, setOpen] = useState(false);
+  const [state, setState] = useState({});
+  const [defaltAlert, setdefaltAlert] = useState(false);
 
   const fileHandler = async (e) => {
     setdefaltAlert(true);
@@ -32,9 +28,15 @@ const AddOrEditDoc = (props) => {
       setdefaltAlert(true);
     }
   };
+
+  const handleClickOpen = () => {
+    console.log("hejhkjhk jhkj")
+    setOpen(true);
+  };
   const handleClose = () => {
     setOpen(false);
   };
+
   const HandleFile = (docname, doc) => {
     setState({
       ...state,
@@ -56,7 +58,7 @@ const AddOrEditDoc = (props) => {
                 fontSize="16px"
                 disabled={
                   activeMainFolder?.adminId !== undefined &&
-                  userinformation?.role === 0
+                    userinformation?.role === 0
                     ? true
                     : false
                 }
@@ -86,13 +88,16 @@ const AddOrEditDoc = (props) => {
           </div>
         )}
       </div>
+
       <Dialog
         open={open}
+        fullScreen
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
         <DialogContent className="p-1">
+          
           <AttachDocxfile
             title={"Click or drag and drop to Attach your DocxFile"}
             handleDocument={HandleFile}

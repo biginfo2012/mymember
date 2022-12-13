@@ -1,13 +1,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
 import {
-  Stack, useMediaQuery,
-  ListItemIcon
-  , Button
+  useMediaQuery,
+  Button
 } from "@mui/material";
 import {
   Add
@@ -40,7 +36,6 @@ const Index = (props) => {
   const [page, setpage] = useState(0)
   const [perpage, setperpage] = useState(10)
   const { userinformation } = props
-  console.log(userinformation)
   useEffect(() => {
     dispatch(GET_FUNNEL(page, perpage));
   }, [dispatch]);
@@ -110,9 +105,6 @@ const Index = (props) => {
         padding: "1rem"
       }}>
       <div
-        style={{
-          padding: "0.5em",
-        }}
         className="d-flex align-items-center finance-nav cursor-pointer"
         onClick={onMyFormClick}>
         <div
@@ -127,9 +119,6 @@ const Index = (props) => {
         userinformation?.role === 1 &&
         <div
           className="d-flex align-items-center finance-nav cursor-pointer"
-          style={{
-            padding: "0.5em"
-          }}
           onClick={onTemplatesClick}>
           <div
             className={`${4 === status ? "bullet active_bullet" : "bullet"
@@ -139,41 +128,31 @@ const Index = (props) => {
             Templates
           </CardText>
         </div>
-
       }
       <div
         className="d-flex align-items-center finance-nav cursor-pointer"
-        style={{
-          padding: "0.5em"
-        }}
         onClick={onFavouriteFormsClick}>
         <div
           className={`${1 === status ? "bullet active_bullet" : "bullet"
             }`}
         />
-        <CardText>
+        <CardText className={`${1 === status && "text-primary"}`}>
           Favorite
         </CardText>
       </div>
       <div
         className="d-flex align-items-center finance-nav cursor-pointer"
-        style={{
-          padding: "0.5em"
-        }}
         onClick={onArchivedFormsClick}>
         <div
           className={`${2 === status ? "bullet active_bullet" : "bullet"
             }`}
         />
-        <CardText>
+        <CardText className={`${2 === status && "text-primary"}`}>
           Archive
         </CardText>
       </div>
       <div
         className="d-flex align-items-center finance-nav cursor-pointer"
-        style={{
-          padding: "0.5em"
-        }}
         onClick={onDeletedFormsClick}>
         <div
           className={`${3 === status ? "bullet active_bullet" : "bullet"

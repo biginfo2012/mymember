@@ -1,8 +1,6 @@
 import React from "react";
 import {
   Card,
-  CardHeader,
-  CardTitle,
   CardBody,
   FormGroup,
   Row,
@@ -97,7 +95,7 @@ class CreateStudent extends React.Component {
       <Card>
         <CardBody>
           <Form className="mt-2" action="/" onSubmit={this.handleRegister}>
-            <Row>
+            <Row className="w-100">
               <Col md="6" sm="12">
                 <h2>
                   <User />

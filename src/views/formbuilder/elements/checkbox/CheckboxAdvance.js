@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, { useState } from 'react'
 import { Select, Input } from 'antd'
 import { Typography } from '@mui/material';
 import { connect } from 'react-redux';
@@ -43,24 +43,15 @@ const CheckboxAdvance = ({ editor, BorderColor }) => {
 
     const handleBorderChange = (value) => {
         setBorder(value);
-        let attributes = getSelectedHtmlElement().getAttributes();
-        attributes["border"] = value;
-        getSelectedHtmlElement().setAttributes(attributes);
         changeBorder(value, borderStyle, borderSize)
     }
     const handleCornerRadiusChange = (value) => {
         setCornerRadius(value);
-        let attributes = getSelectedHtmlElement().getAttributes();
-        attributes["corner-radius"] = value;
-        getSelectedHtmlElement().setAttributes(attributes);
         changeCornerRadius(value, cornerRadiusType);
     }
 
     const handleCornerEdgeChange = (value) => {
         setCornerRadiusType(value);
-        let attributes = getSelectedHtmlElement().getAttributes();
-        attributes["corner-edge"] = value;
-        getSelectedHtmlElement().setAttributes(attributes);
         changeCornerRadius(cornerRadius, value);
     }
 
@@ -92,17 +83,11 @@ const CheckboxAdvance = ({ editor, BorderColor }) => {
 
     const handleBorderStyleChange = (value) => {
         setBorderStyle(value);
-        let attributes = getSelectedHtmlElement().getAttributes();
-        attributes["border-style"] = value;
-        getSelectedHtmlElement().setAttributes(attributes);
         changeBorder(border, value, borderSize,)
     }
 
     const handleBorderSizeChange = (value) => {
         setBorderSize(value);
-        let attributes = getSelectedHtmlElement().getAttributes();
-        attributes["border-size"] = value;
-        getSelectedHtmlElement().setAttributes(attributes);
         changeBorder(border, borderStyle, value,)
     }
     const getSelectedHtmlElement = () => {
@@ -111,9 +96,6 @@ const CheckboxAdvance = ({ editor, BorderColor }) => {
     }
 
     const handlestyle = (event, name) => {
-        let attributes = getSelectedHtmlElement().getAttributes();
-        attributes[name] = event;
-        getSelectedHtmlElement().setAttributes(attributes);
         const element = getSelectedHtmlElement();
         if (name == "display") {
             element.addStyle({
@@ -125,27 +107,6 @@ const CheckboxAdvance = ({ editor, BorderColor }) => {
         }
     }
 
-    const handleiconpicker = (event) => {
-      const element = getSelectedHtmlElement();
-      let attributes = getSelectedHtmlElement().getAttributes();
-      attributes["icon"] = event.target.value;
-      getSelectedHtmlElement().setAttributes(attributes);
-      element.addAttributes({ 'icon': event.target.value });
-
-    }
-
-    useEffect(() => {
-      let attributes = getSelectedHtmlElement().getAttributes();
-      if(!attributes) {
-        attributes = {};
-        getSelectedHtmlElement().setAttributes(attributes);
-      }
-      setBorder(attributes["border"])
-      setBorderStyle(attributes["border-style"]);
-      setBorderSize(attributes["border-size"])
-      setCornerRadiusType(attributes["corner-edge"])
-      setCornerRadius(attributes["corner-radius"])
-    })
     return (
         <div id="checkbox">
             <div className='inputwarrper'>
@@ -157,8 +118,6 @@ const CheckboxAdvance = ({ editor, BorderColor }) => {
                 </div>
                 <Select
                     className='inputstyle'
-                    defaultValue={getSelectedHtmlElement().getAttributes()["line-height"]}
-                    onChange={(e) => { handlestyle(e, "line-height") }}
                     getPopupContainer={() => document.getElementById('checkbox')}>
                     <Option value="auto">Auto</Option>
                     <Option value="0.7em">0.7em</Option>
@@ -176,7 +135,6 @@ const CheckboxAdvance = ({ editor, BorderColor }) => {
                     >Text Transform</Typography>
                 </div>
                 <Select
-                    defaultValue={getSelectedHtmlElement().getAttributes()["text-transform"]}
                     onChange={(e) => { handlestyle(e, "text-transform") }}
                     className='inputstyle'
                     getPopupContainer={() => document.getElementById('checkbox')}>
@@ -195,7 +153,6 @@ const CheckboxAdvance = ({ editor, BorderColor }) => {
                 </div>
                 <Select
                     className='inputstyle'
-                    defaultValue={getSelectedHtmlElement().getAttributes()["letter-spacing"]}
                     onChange={(e) => { handlestyle(e, "letter-spacing") }}
                     getPopupContainer={() => document.getElementById('checkbox')}>
                     <Option value="normal">Normal</Option>
@@ -214,7 +171,6 @@ const CheckboxAdvance = ({ editor, BorderColor }) => {
                 </div>
                 <Select
                     className='inputstyle'
-                    defaultValue={getSelectedHtmlElement().getAttributes()["text-shadow"]}
                     onChange={(e) => { handlestyle(e, "text-shadow") }}
                     getPopupContainer={() => document.getElementById('checkbox')}>
                     <Option value="none">No Shadow</Option>
@@ -231,10 +187,8 @@ const CheckboxAdvance = ({ editor, BorderColor }) => {
                     >Icon Picker</Typography>
                 </div>
                 <Input
-                  defaultValue={getSelectedHtmlElement().getAttributes()["icon"]}
-                  className='inputstyle'
-                  placeholder='Full Name'
-                  onChange={handleiconpicker}
+                    className='inputstyle'
+                    placeholder='Full Name'
 
                 />
             </div>
@@ -246,7 +200,6 @@ const CheckboxAdvance = ({ editor, BorderColor }) => {
                     >Padding</Typography>
                 </div>
                 <Select className="inputstyle"
-                    defaultValue={getSelectedHtmlElement().getAttributes()["padding"]}
                     onChange={(e) => { handlestyle(e, "padding") }}
                     getPopupContainer={() => document.getElementById('checkbox')}>
                     {paddingArray?.map((padding) => {
@@ -266,7 +219,6 @@ const CheckboxAdvance = ({ editor, BorderColor }) => {
                     >Border Radius</Typography>
                 </div>
                 <Select className="inputstyle"
-                    defaultValue={cornerRadius}
                     onChange={handleCornerRadiusChange}
                     getPopupContainer={() => document.getElementById('checkbox')}>
                     {borderRadiusArray?.map((borderRadius) => {
@@ -286,7 +238,6 @@ const CheckboxAdvance = ({ editor, BorderColor }) => {
                     >Radius Edges</Typography>
                 </div>
                 <Select className="inputstyle"
-                    defaultValue={cornerRadiusType}
                     onChange={handleCornerEdgeChange}
                     getPopupContainer={() => document.getElementById('checkbox')}>
                     <Option value="all">All</Option>
@@ -302,7 +253,6 @@ const CheckboxAdvance = ({ editor, BorderColor }) => {
                     >Borders</Typography>
                 </div>
                 <Select className="inputstyle"
-                    defaultValue={border}
                     onChange={handleBorderChange}
                     getPopupContainer={() => document.getElementById('checkbox')}>
                     <Option value="none">No Border</Option>
@@ -320,7 +270,6 @@ const CheckboxAdvance = ({ editor, BorderColor }) => {
                     >Border Style</Typography>
                 </div>
                 <Select className="inputstyle"
-                    defaultValue={borderStyle}
                     onChange={handleBorderStyleChange}
                     getPopupContainer={() => document.getElementById('checkbox')}>
                     <Option value="none">No Border Style</Option>
@@ -337,7 +286,6 @@ const CheckboxAdvance = ({ editor, BorderColor }) => {
                     >Border Size</Typography>
                 </div>
                 <Select className="inputstyle"
-                    defaultValue={borderSize}
                     onChange={handleBorderSizeChange}
                     getPopupContainer={() => document.getElementById('checkbox')}>
                     <Option value="none">None</Option>
@@ -358,7 +306,6 @@ const CheckboxAdvance = ({ editor, BorderColor }) => {
                     >Shadow</Typography>
                 </div>
                 <Select className="inputstyle"
-                    defaultValue={getSelectedHtmlElement().getAttributes()["box-shadow"]}
                     onChange={(e) => { handlestyle(e, "box-shadow") }}
                     getPopupContainer={() => document.getElementById('checkbox')}>
                     <Option value={0 + 'px'}>No Shadow</Option>
@@ -371,7 +318,7 @@ const CheckboxAdvance = ({ editor, BorderColor }) => {
                     })}
                     {dropShadowArray?.map((size) => {
                         return (
-                            <Option value={-size} key={-size}>
+                            <Option value={-size + 'px'} key={-size}>
                                 {size}% Inner Shadow
                             </Option>
                         );

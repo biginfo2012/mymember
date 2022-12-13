@@ -18,7 +18,7 @@ const BuyMemberShipInfoForm = (props) => {
     studentProfileType,
     handleDateChange,
     formValidation,
-    handleStudentInfo
+    handleStudentInfo,
   } = props;
   return (
     <div style={{ width: "100%" }}>
@@ -50,7 +50,6 @@ const BuyMemberShipInfoForm = (props) => {
         )}
         <Col sm="12" md="3" lg="3">
           {studentProfileType === "student profile" ? (
-            
             <FormGroup>
               <Label> Membership Name </Label>
               <Input
@@ -62,7 +61,6 @@ const BuyMemberShipInfoForm = (props) => {
                 placeholder="Member Ship Name"
               />
             </FormGroup>
-            
           ) : (
             <FormGroup>
               <Label> Student Name </Label>
@@ -76,7 +74,10 @@ const BuyMemberShipInfoForm = (props) => {
               >
                 {props?.studentList.map((value, index) => {
                   return (
-                    <option key={index} value={`${value.firstName}, ${value.lastName}`}>
+                    <option
+                      key={index}
+                      value={`${value.firstName}, ${value.lastName}`}
+                    >
                       {value.firstName}
                     </option>
                   );

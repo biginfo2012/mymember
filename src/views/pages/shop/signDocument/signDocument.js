@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import CloseIcon from '@material-ui/icons/Close';
 import Home from './Home'
 import MailSentSuccess from './mailSentSuccess';
-
 const DocumentSign = (props) => {
   const [open, setOpen] = useState(false)
   const [islinksent2Email, setIslinksent2Email] = useState(false)

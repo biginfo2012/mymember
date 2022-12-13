@@ -30,9 +30,9 @@ const SettingTab = (props) => {
     <div>
       {editor?.getSelected()?.attributes?.name === "Button" ?
         <ButtonSetting editor={editor} onChangeEvent={onChangeEvent}/> : <></>}
-      {/*{editor?.getSelected()?.attributes?.name === "wrapper" ?*/}
-      {/*  <FormSettings editor={editor} /> : <></>*/}
-      {/*}*/}
+      {editor?.getSelected()?.attributes?.name === "wrapper" ?
+        <FormSettings editor={editor} /> : <></>
+      }
       {editor && (editor.getSelected() === null || editor.getSelected() === undefined) ?
         <Rowsetting editor={editor} /> : <></>
       }
@@ -95,7 +95,7 @@ const SettingTab = (props) => {
         <Inputsetting editor={editor} /> : <></>
       }
       {editor?.getSelected()?.attributes?.name === "Fillable Field" ?
-        <HeadingSettings editor={editor} /> : <></>
+        <Inputsetting editor={editor} /> : <></>
       }
     </div >
   )

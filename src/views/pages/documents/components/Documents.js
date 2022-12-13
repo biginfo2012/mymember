@@ -23,6 +23,8 @@ import Sent from "./status/Sent"
 import Viewed from "./status/Viewed"
 import Completed from "./status/Completed"
 import Expired from "./status/Expired";
+import { Divider } from "@mui/material";
+import { useHistory } from "react-router-dom";
 
 
 const Documents = (props) => {
@@ -35,8 +37,8 @@ const Documents = (props) => {
   const IsSmallDevise = useMediaQuery("(max-width:1224px)");
   const [listOfDocument, setListOfDocument] = useState(null);
   const [activeTab, setActiveTab] = useState("1");
-
-  console.log(activeTab);
+  const [documentTutoOrTable, setDocumentTutoOrTable] = useState(true)
+  const history = useHistory()
 
   useEffect(() => {
     GET_DOCUMENT_FOLDER_LIST();
@@ -75,6 +77,11 @@ const Documents = (props) => {
     activeMainFolder,
     activeSubMainFolder,
   ]);
+
+  const handleClick = () => {
+    setDocumentTutoOrTable(!documentTutoOrTable)
+  }
+
   return (
     <>
       <div className="d-flex">
@@ -84,7 +91,7 @@ const Documents = (props) => {
           breadCrumbParent="Pages"
           breadCrumbActive="Documents"
         />
-        <ShareWithMeAction />
+        <ShareWithMeAction setDocumentTutoOrTable={setDocumentTutoOrTable} handleClick={handleClick} />
       </div>
       <Row>
         <Col sm="2">
@@ -97,9 +104,6 @@ const Documents = (props) => {
               padding:'0.5em'
             }}>
               <div
-                style={{
-                  padding: "0.5em",
-                }}
                 className="d-flex align-items-center finance-nav cursor-pointer"
                 onClick={() => {
                   setActiveTab("1");
@@ -113,9 +117,6 @@ const Documents = (props) => {
                 </CardText>
               </div>
               <div
-                style={{
-                  padding: "0.5em",
-                }}
                 className="d-flex align-items-center finance-nav cursor-pointer"
                 onClick={() => {
                   setActiveTab("2");
@@ -129,9 +130,6 @@ const Documents = (props) => {
                 </CardText>
               </div>
               <div
-                style={{
-                  padding: "0.5em",
-                }}
                 className="d-flex align-items-center finance-nav cursor-pointer"
                 onClick={() => {
                   setActiveTab("3");
@@ -293,6 +291,7 @@ const Documents = (props) => {
             <TabContent activeTab={activeTab}>
               <TabPane tabId="1">
                 <DocumentsListing
+                  documentTutoOrTable={documentTutoOrTable}
                   documentFolderList={documentFolderList}
                   listOfDocument={listOfDocument}
                   activeSubMainFolder={activeSubMainFolder}

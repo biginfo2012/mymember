@@ -95,7 +95,7 @@ const CreateFormstepper = (props) => {
             const valid = await validationfornext()
             const keys = await Object.keys(valid)
             if (keys?.length > 0) {
-                
+                toast.error("input fields are required", toastCSS());
 
             } else {
                 setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -144,7 +144,7 @@ const CreateFormstepper = (props) => {
     }
 
     const validationfornext = () => {
-        const data = {}
+        const data = { ...error }
         if (state?.funnelName.trim().length === 0) {
             data["funnelName"] = 'Form Name is required'
         }

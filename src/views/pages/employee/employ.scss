@@ -22,14 +22,71 @@
   font-size: 15px;
 }
 
-.upgrade{
+.upgrade {
   background: rgb(234, 244, 254);
   margin: 1em;
   padding: 1em;
 }
-.action{
+
+.action {
   color: gray;
 }
+
 .divider {
   border-bottom: 1px solid #e7e7e7;
+}
+
+.funnelType.active {
+  border: 2px solid #0BE03A;
+}
+
+.templates_card {
+  .title {
+    padding: 1rem;
+    font-size: 16px;
+  }
+
+  .create_title {
+    padding: 1rem;
+    font-size: 20px;
+  }
+
+  .truncate-ellipsis {
+    width: 100%;
+    padding: 0 1rem 1rem 1rem;
+  }
+
+  .text-monospace {
+    max-width: 100%;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    height: 54px;
+    font-size: 12px;
+    color: #878787;
+  }
+}
+
+.templates_card.active {
+  border: 2px solid #0BE03A;
+}
+
+.forms-main-warpper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 1em;
+  height: 400px;
+  overflow-y: scroll;
+}
+
+.form-column {
+  background-color: rgb(234 244 254);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.show-drawer {
+  width: 400;
 }

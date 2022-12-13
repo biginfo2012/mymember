@@ -1,6 +1,6 @@
 import { TextField, Button, Slider, Typography } from '@mui/material'
 import { Select, Input } from 'antd'
-import React, {useEffect} from 'react'
+import React from 'react'
 import Icon from "@ant-design/icons";
 import Image from "../../../../assets/img/image.png"
 
@@ -29,64 +29,46 @@ const SectionSetting = (props) => {
 
   const handlePaddingXChange = (event, newVal) => {
     const element = getSelectedHtmlElement();
-    let attributes = getSelectedHtmlElement().getAttributes();
-    attributes.paddingX = newVal;
-    getSelectedHtmlElement().setAttributes(attributes);
     element.addStyle({ 'padding-left': newVal })
     element.addStyle({ 'padding-right': newVal })
 
   };
   const handlePaddingTopChange = (event, newVal) => {
     const element = getSelectedHtmlElement();
-    let attributes = getSelectedHtmlElement().getAttributes();
-    attributes.paddingTop = newVal;
-    getSelectedHtmlElement().setAttributes(attributes);
     element.addStyle({ 'padding-top': newVal })
   };
 
   const handlePaddingBottomChange = (event, newVal) => {
     const element = getSelectedHtmlElement();
-    let attributes = getSelectedHtmlElement().getAttributes();
-    attributes.paddingBottom = newVal;
-    getSelectedHtmlElement().setAttributes(attributes);
     element.addStyle({ 'padding-bottom': newVal })
   };
 
   const handleTextColorChange = (event) => {
     const element = getSelectedHtmlElement();
-    let attributes = getSelectedHtmlElement().getAttributes();
-    attributes.textColor = event.target.value;
-    getSelectedHtmlElement().setAttributes(attributes);
     element.addStyle({ 'color': event.target.value })
   }
 
   const handleBackgroundColorChange = (event) => {
     const element = getSelectedHtmlElement();
-    let attributes = getSelectedHtmlElement().getAttributes();
-    attributes.backgroundColor = event.target.value;
-    getSelectedHtmlElement().setAttributes(attributes);
     element.addStyle({ 'background-color': event.target.value })
   }
 
   const handleBackgroundImageChange = (event) => {
     const element = getSelectedHtmlElement();
-    let attributes = getSelectedHtmlElement().getAttributes();
-    attributes.backgroundSource = event.target.value;
-    getSelectedHtmlElement().setAttributes(attributes);
     element.addStyle({ 'background-image': "url('" + event.target.value + "')" })
   }
 
   const handleSectionWidthChange = (value) => {
-
+    let attributes = getSelectedHtmlElement().getAttributes();
+    attributes.widthType = value;
+    getSelectedHtmlElement().setAttributes(attributes);
   }
 
-  useEffect(() => {
+  const handleSectionStickyChange = (value) => {
     let attributes = getSelectedHtmlElement().getAttributes();
-    if(!attributes) {
-      attributes = {};
-      getSelectedHtmlElement().setAttributes(attributes);
-    }
-  })
+    attributes.sticky = value;
+    getSelectedHtmlElement().setAttributes(attributes);
+  }
   return (
     <div id="sectionSetting">
       <div className='p-1'>
@@ -103,7 +85,6 @@ const SectionSetting = (props) => {
             size="small"
             type="text"
             placeholder="Image URL"
-            defaultValue={getSelectedHtmlElement().getAttributes().backgroundSource}
             onChange={handleBackgroundImageChange}
           />
           <Button
@@ -125,7 +106,7 @@ const SectionSetting = (props) => {
             className='mb-0'
           >Section Width</Typography>
         </div>
-        <Select defaultValue={sectionValue} style={{ width: 250, height: 42}} onChange={handleSectionWidthChange} getPopupContainer={() => document.getElementById('sectionSetting')}>
+        <Select defaultValue={getSelectedHtmlElement().getAttributes().widthType || sectionValue} style={{ width: 250, height: 42}} onChange={handleSectionWidthChange} getPopupContainer={() => document.getElementById('sectionSetting')}>
           <Option value="full_page">Full Page</Option>
           <Option value="wide">Wide</Option>
           <Option value="medium">Medium</Option>
@@ -139,7 +120,7 @@ const SectionSetting = (props) => {
             className='mb-0'
           >Sticky</Typography>
         </div>
-        <Select style={{ width: 250, height: 42}} onChange={handleSectionWidthChange} getPopupContainer={() => document.getElementById('sectionSetting')}>
+        <Select defaultValue={getSelectedHtmlElement().getAttributes().sticky} style={{ width: 250, height: 42}} onChange={handleSectionStickyChange} getPopupContainer={() => document.getElementById('sectionSetting')}>
           <Option value="full_page">No Stickiness</Option>
           <Option value="wide">Stick To Top On Scroll</Option>
           <Option value="medium">Stick To Bottom On Load</Option>
@@ -171,7 +152,7 @@ const SectionSetting = (props) => {
           onChange={handleBackgroundColorChange}
           size="small"
           type="color"
-          defaultValue={getSelectedHtmlElement().getAttributes().backgroundColor}
+          defaultValue={'#EFEFEF'}
         />
       </div>
       <div className='inputwarrper'>
@@ -194,7 +175,7 @@ const SectionSetting = (props) => {
           size="small"
           type="color"
           onChange={handleTextColorChange}
-          defaultValue={getSelectedHtmlElement().getAttributes().textColor}
+          defaultValue={'#EFEFEF'}
         />
       </div>
       <div className="bgsecondary d-flex align-items-center"
@@ -215,7 +196,7 @@ const SectionSetting = (props) => {
             className='inputlablewarrper mb-0'
           >Top</Typography>
         </div>
-        <Slider defaultValue={getSelectedHtmlElement().getAttributes().paddingTop}
+        <Slider defaultValue={10}
           size="small"
           onChange={handlePaddingTopChange}
           valueLabelDisplay="auto" />
@@ -236,9 +217,8 @@ const SectionSetting = (props) => {
             className='inputlablewarrper mb-0'
           >Bottom</Typography>
         </div>
-        <Slider
+        <Slider defaultValue={10}
           size="small"
-          defaultValue={getSelectedHtmlElement().getAttributes().paddingBottom}
           onChange={handlePaddingBottomChange}
           valueLabelDisplay="auto" />
         <div className='countinputwrapper'
@@ -258,7 +238,7 @@ const SectionSetting = (props) => {
             className='inputlablewarrper mb-0'
           >Left Right</Typography>
         </div>
-        <Slider defaultValue={getSelectedHtmlElement().getAttributes().paddingX}
+        <Slider defaultValue={20}
           onChange={handlePaddingXChange}
           size="small"
           valueLabelDisplay="auto" />

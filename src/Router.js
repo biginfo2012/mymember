@@ -10,7 +10,13 @@ import "react-toastify/dist/ReactToastify.css";
 const Editemplyee=lazy(() =>
 import("./views/pages/employee/Editemplyee")
 );
+const DocumentTutorial = lazy(() => {
+  import("./views/pages/documents/components/DocumentTutorial")
+})
 
+const  Addform = lazy(() =>
+import("./views/pages/employee/formelemnts/Addform")
+);
 const DemoGetData = lazy(() =>
   import("./views/apps/user/list/DemoGetData")
 );
@@ -18,6 +24,7 @@ const TaskAndGoalsMain = lazy(() => import("./views/apps/task-and-goals"));
 const SubUsers = lazy(() =>
   import("./views/pages/marketing/email/emailVerify/subUser")
 );
+const WorkHistory = lazy(() => import("./views/pages/workHistory/workHistory"));
 const Employee = lazy(() =>
   import("./views/pages/employee/Employeesidebar")
 );
@@ -476,7 +483,14 @@ class AppRouter extends React.Component {
           <AppRoute path="/app/employee" component={Employee} />
           <AppRoute path="/app/my-employee/edit/:id" component={Editemplyee} />
           <AppRoute path="/app/my-employee/add" component={Editemplyee} />
+          <AppRoute path="/app/work-history" component={WorkHistory} />
+          <AppRoute path="/app/employee" component={SubUsers} />
+          <AppRoute
+            path="/app/work-history/:employeeId"
+            component={WorkHistory}
+          />
 
+          <AppRoute path="/app/add-form" component={Addform} />
           <AppRoute path="/events" component={events} />
           {/* custom route end  */}
           <AppRoute
@@ -698,7 +712,7 @@ class AppRouter extends React.Component {
           />
           <AppRoute path="/app/user/edit" component={userEdit} />
           <AppRoute path="/app/user/view" component={userView} />
-
+          <AppRoute path="/app/document/document-tutorial" component={DocumentTutorial} />
           <AppRoute exact path="/builder" component={formBuilderIndex} />
           <AppRoute path="/builder/create/:id" component={formBuilderCreate} />
           <AppRoute path="/builder/create" component={formBuilderCreate} />

@@ -10,17 +10,11 @@ const DropDownAdvanced = ({ editor }) => {
     };
     const handlestyle = (newVal, name) => {
         const element = getSelectedHtmlElement();
-        let attributes = getSelectedHtmlElement().getAttributes();
-        attributes[name] = newVal;
-        getSelectedHtmlElement().setAttributes(attributes);
         element.addStyle({ [name]: newVal })
     }
     const handlestyle2 = (newVal, name) => {
         const element = getSelectedHtmlElement();
-        let attributes = getSelectedHtmlElement().getAttributes();
-        attributes["icon"] = newVal;
-        getSelectedHtmlElement().setAttributes(attributes);
-        // element.addIcon({'icon': newVal })
+        element.addIcon({'icon': newVal })
     }
     return (
         <div id="dropdwon">
@@ -32,7 +26,6 @@ const DropDownAdvanced = ({ editor }) => {
                     >Font Weight</Typography>
                 </div>
                 <Select className="inputstyle"
-                        defaultValue={getSelectedHtmlElement().getAttributes()["font-weight"]}
                     getPopupContainer={() => document.getElementById('dropdwon')}
                     onChange={(e) => { handlestyle(e, "font-weight") }}
                 >
@@ -48,7 +41,6 @@ const DropDownAdvanced = ({ editor }) => {
                     >Icon</Typography>
                 </div>
                 <Select className="inputstyle"
-                        defaultValue={getSelectedHtmlElement().getAttributes()["icon"]}
                     onChange={(e) => { handlestyle2(e) }}
                     getPopupContainer={() => document.getElementById('dropdwon')}>
                     <Option value="caret">Caret</Option>
@@ -67,7 +59,6 @@ const DropDownAdvanced = ({ editor }) => {
                     >Corners</Typography>
                 </div>
                 <Select className="inputstyle"
-                        defaultValue={getSelectedHtmlElement().getAttributes()["border-radius"]}
                     onChange={(e) => { handlestyle(e, "border-radius") }}
                     getPopupContainer={() => document.getElementById('dropdwon')}>
                     <Option value="0">Square Edage</Option>
@@ -85,7 +76,6 @@ const DropDownAdvanced = ({ editor }) => {
                     >BG color</Typography>
                 </div>
                 <Select className="inputstyle"
-                        defaultValue={getSelectedHtmlElement().getAttributes()["background"]}
                     onChange={(e) => { handlestyle(e, "background") }}
                     getPopupContainer={() => document.getElementById('dropdwon')}>
                     <Option value="white">White</Option>

@@ -16,8 +16,9 @@ import { TextField } from "@material-ui/core";
 import { connect } from "react-redux";
 import { CREATE_MEMBERSHIP } from "../../../../redux/actions/shop";
 import { GET_PROGRAM_LIST } from "../../../../redux/actions/programe";
+import { GET_FUNNEL } from "../../../../redux/actions/form-builder";
 //import Autocomplete from "@material-ui/lab/Autocomplete";
-import Autocomplete from '@mui/lab/Autocomplete';
+import Autocomplete from "@mui/lab/Autocomplete";
 import AttachDocxfile from "./components/attacheFiles";
 
 class FloatingLabels extends React.Component {
@@ -41,7 +42,8 @@ class FloatingLabels extends React.Component {
       regular_price: "",
       folderId: null,
       errorFound: false,
-      docType: "None"
+      docType: "None",
+      
     };
 
     this.changeHandler = this.changeHandler.bind(this);
@@ -49,6 +51,7 @@ class FloatingLabels extends React.Component {
   }
   componentDidMount() {
     this.props.GET_PROGRAM_LIST();
+    this.props.GET_FUNNEL();
   }
   handleSelectsubFolder = (e, item) => {
     this.setState({ folderId: item?._id });
@@ -85,9 +88,13 @@ class FloatingLabels extends React.Component {
     this.props.CREATE_MEMBERSHIP(payload, this.state.folderId);
     this.props.toggle();
   };
+
   render() {
+    console.log(this.props)
+    
     return (
       <Card className="w-70 p-0">
+      
         <CardBody>
           <Form className="mt-10" onSubmit={this.onsubmit}>
             <Row>
@@ -133,7 +140,6 @@ class FloatingLabels extends React.Component {
                     <option value="MC">MC </option>
                     <option value="TC">TC </option>
                     <option value="After School">After School</option>
-
                   </CustomInput>
                 </FormGroup>
               </Col>
@@ -271,7 +277,7 @@ class FloatingLabels extends React.Component {
                     value={this.state.docType}
                     onChange={this.changeHandler}
                     style={{
-                      height: '40px !importent'
+                      height: "40px !importent",
                     }}
                     id="docType"
                     required
@@ -294,7 +300,8 @@ class FloatingLabels extends React.Component {
                     type="color"
                     id="colorFloating"
                   />
-                </FormGroup></Col>
+                </FormGroup>
+              </Col>
               <Col sm="12" md="6" lg="6">
                 <FormGroup className="form-label-group">
                   <div>
@@ -397,10 +404,40 @@ class FloatingLabels extends React.Component {
                   />
                 </FormGroup>
               </Col>
-              <Col  xs="12" sm="12" md="6" lg="6">
+              <Col xs="12" sm="12" md="6" lg="6">
                 <FormGroup>
                   <Label>Document Type</Label>
-                  <CustomInput
+                  <div className="d-flex">
+                    <div className="d-flex" style={{ margin: "5px" }}>
+                      <input
+                        type="radio"
+                        value={"None"}
+                        name="docType"
+                        onChange={this.changeHandler}
+                      />
+                      <Label style={{ marginLeft: "2px" }}>None</Label>
+                    </div>
+                    <div className="d-flex" style={{ margin: "5px" }}>
+                      <input
+                        type="radio"
+                        value={"Digital"}
+                        name="docType"
+                        onChange={this.changeHandler}
+                      />
+                      <Label style={{ marginLeft: "2px" }}>Digital</Label>
+                    </div>
+                    <div className="d-flex" style={{ margin: "5px" }}>
+                      <input
+                        type="radio"
+                        value={"Attach File"}
+                        name="docType"
+                        onChange={this.changeHandler}
+                      />
+                      <Label style={{ marginLeft: "2px" }}>Attach File</Label>
+                    </div>
+                  </div>
+
+                  {/* <CustomInput
                     type="select"
                     name="docType"
                     value={this.state.docType}
@@ -411,11 +448,11 @@ class FloatingLabels extends React.Component {
                     <option value={"None"}>None</option>
                     <option value={"Digital"}>Digital</option>
                     <option value={"Attach File"}>Attach File</option>
-                  </CustomInput>
+                  </CustomInput> */}
                 </FormGroup>
               </Col>
-              {
-                this.state.docType === "Digital" && <>
+              {this.state.docType === "Digital" && (
+                <>
                   <Col sm="12" md="6" lg="6">
                     <FormGroup className="form-label-group">
                       <div>
@@ -446,15 +483,33 @@ class FloatingLabels extends React.Component {
                       />
                     </FormGroup>
                   </Col>
+                  <Col xs="12" sm="6" md="6" lg="6">
+                    <FormGroup className="form-label-group">
+                      <div>
+                        <Label for="formbuilderdata">Form Builder Name</Label>
+                      </div>
+                      <CustomInput type="select" name="docType" id="docType">
+                        {
+                          this.props.uforms?.memberdata?.map((data) => {
+                            console.log(data)
+                            return(
+                              <option>{data?.funnelName}</option>
+                            )
+                          })
+                        }
+                      </CustomInput>
+                    </FormGroup>
+                  </Col>
                 </>
-              }
-              {this.state.docType === "Attach File" &&
+              )}
+              {this.state.docType === "Attach File" && (
                 <Col xs="12" sm="6" md="6" lg="6">
                   <AttachDocxfile
                     title={"Click or drag and drop to Attach your DocxFile"}
                     handleDocument={this.handleDocument}
                   />
-                </Col>}
+                </Col>
+              )}
               {/* <Col xs="12" sm="6" md="6" lg="6">
                 <FormGroup className="form-label-group">
                   <div>
@@ -493,7 +548,7 @@ class FloatingLabels extends React.Component {
             </Row>
           </Form>
         </CardBody>
-      </Card >
+      </Card>
     );
   }
 }
@@ -501,9 +556,11 @@ const mapStateToProps = (state) => {
   return {
     getmebershipfolderlisting: state.shop.getmebershipfolderlisting,
     programList: state.program.programList,
+    uforms: state?.formbuilder?.uforms,
   };
 };
 export default connect(mapStateToProps, {
   CREATE_MEMBERSHIP,
   GET_PROGRAM_LIST,
+  GET_FUNNEL,
 })(FloatingLabels);

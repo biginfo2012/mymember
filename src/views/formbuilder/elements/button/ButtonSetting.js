@@ -6,63 +6,49 @@ import FontFamily from "../../configuration/fontfamily"
 const Option = { Select }
 
 const ButtonSetting = ({ editor, onChangeEvent }) => {
+  const [fontsize, setfontsize] = useState(0)
+  const [subtext, setsubtext] = useState(0)
+  useEffect(() => {
+    let attributes = getSelectedHtmlElement().getAttributes();
+    if(!attributes) {
+      attributes = {};
+      getSelectedHtmlElement().setAttributes(attributes)
+    }
+    setsubtext(attributes.subtext);
+  });
   const getSelectedHtmlElement = () => {
     return editor.getSelected().getChildAt(0);
   };
   const handlestyle = (e, name) => {
-    console.log(e);
     const element = getSelectedHtmlElement();
-    let attributes = getSelectedHtmlElement().getAttributes();
-    attributes.fontFamily = e;
-    getSelectedHtmlElement().setAttributes(attributes);
     element.addStyle({ [name]: e })
   }
   const handlestyle2 = (e, name) => {
     const element = getSelectedHtmlElement();
-    let attributes =getSelectedHtmlElement().getAttributes();
-    attributes[name] = e.target.value;
-    getSelectedHtmlElement().setAttributes(attributes);
     element.addStyle({ [name]: e.target.value })
   }
   const handleFontsize = (value, newVal) => {
     const element = getSelectedHtmlElement();
-    let attributes = getSelectedHtmlElement().getAttributes();
-    attributes.fontSize = newVal;
-    getSelectedHtmlElement().setAttributes(attributes);
     element.getChildAt(0).addStyle({ 'font-size': newVal })
+    setfontsize(newVal)
   }
   const handleSubFontSize = (value, newVal) => {
     const element = getSelectedHtmlElement();
-    let attributes = getSelectedHtmlElement().getAttributes();
-    attributes.subFontSize = newVal;
-    getSelectedHtmlElement().setAttributes(attributes);
     element.getChildAt(1).addStyle({ 'font-size': newVal })
-
+    setsubtext(newVal)
   }
 
   const handleTextChange = (e) => {
     const element = getSelectedHtmlElement();
-    let attributes = getSelectedHtmlElement().getAttributes();
-    attributes.text = e.target.value;
-    getSelectedHtmlElement().setAttributes(attributes);
     element.getChildAt(0).set({content: e.target.value})
   }
   const handleSubTextChange = (e) => {
     const element = getSelectedHtmlElement();
     element.getChildAt(1).set({content: e.target.value})
-    let attributes = getSelectedHtmlElement().getAttributes();
-    attributes.subText = e.target.value;
-    getSelectedHtmlElement().setAttributes(attributes);
+    let attributes = editor.getSelected().getAttributes();
+    attributes.subtext = e.target.value;
+    editor.getSelected().setAttributes(attributes);
   }
-
-  useEffect(() => {
-    let attributes = getSelectedHtmlElement().getAttributes();
-    if(!attributes) {
-      attributes = {};
-      getSelectedHtmlElement().setAttributes(attributes);
-    }
-    console.log(attributes);
-  })
   return (
     <div id="button">
       <div className='inputwarrper'>
@@ -88,7 +74,7 @@ const ButtonSetting = ({ editor, onChangeEvent }) => {
         </div>
         <Input
           className='inputstyle'
-          defaultValue={getSelectedHtmlElement().getAttributes().text || "Click to Sign Up"}
+          defaultValue="Click to Sign Up"
           onChange={(e) => { handleTextChange(e) }}
         />
       </div>
@@ -101,7 +87,7 @@ const ButtonSetting = ({ editor, onChangeEvent }) => {
         </div>
         <Input
           className='inputstyle'
-          defaultValue={getSelectedHtmlElement().getAttributes().subText}
+          value={subtext}
           onChange={(e) => { handleSubTextChange(e) }}
         />
       </div>
@@ -116,7 +102,6 @@ const ButtonSetting = ({ editor, onChangeEvent }) => {
           showSearch
           className='inputstyle'
           placeholder="select font"
-          defaultValue={getSelectedHtmlElement().getAttributes().fontFamily }
           onChange={(e) => { handlestyle(e, "font-family") }}
           getPopupContainer={() => document.getElementById('button')}
           filterOption={(input, option) => option.children.toLowerCase().includes(input.toLowerCase())}
@@ -139,12 +124,12 @@ const ButtonSetting = ({ editor, onChangeEvent }) => {
         <Slider
           size="small"
           onChange={handleFontsize}
-          defaultValue={getSelectedHtmlElement().getAttributes().fontSize}
+          defaultValue={fontsize}
           valueLabelDisplay="auto" />
         <div className='countinputwrapper'
         >
           <Input className='countinput p-0'
-            defaultValue={getSelectedHtmlElement().getAttributes().fontSize}
+            defaultValue={fontsize}
             onChange={handleFontsize}
           />
         </div>
@@ -160,14 +145,13 @@ const ButtonSetting = ({ editor, onChangeEvent }) => {
         <Slider
           onChange={handleSubFontSize}
           size="small"
-          defaultValue={getSelectedHtmlElement().getAttributes().subFontSize}
+          defaultValue={subtext}
 
           valueLabelDisplay="auto" />
         <div className='countinputwrapper'
         >
           <Input className='countinput'
             onChange={handleSubFontSize}
-            defaultValue={getSelectedHtmlElement().getAttributes().subFontSize}
             style={{
               border: '1px solid #C4C4C4'
             }} />
@@ -192,7 +176,6 @@ const ButtonSetting = ({ editor, onChangeEvent }) => {
           }}
           size="small"
           type="color"
-          defaultValue={getSelectedHtmlElement().getAttributes().color}
           onChange={(e) => { handlestyle2(e, "color") }}
         />
       </div>
@@ -215,7 +198,6 @@ const ButtonSetting = ({ editor, onChangeEvent }) => {
           }}
           size="small"
           type="color"
-          defaultValue={getSelectedHtmlElement().getAttributes().background}
           onChange={(e) => { handlestyle2(e, "background") }}
         />
       </div>

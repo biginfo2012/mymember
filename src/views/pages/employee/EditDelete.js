@@ -21,7 +21,10 @@ const EditAndDeleteFolder = (props) => {
   const EditState = () => {
     setedit(true);
   };
-  
+  const WorkHistory = () => {
+    window.location.href = `/app/work-history/${item._id}`;
+  };
+
   return (
     <div>
       <IconButton className="rounded m-0 p-0" onClick={handleClick}>
@@ -46,6 +49,10 @@ const EditAndDeleteFolder = (props) => {
         <MenuItem onClick={EditState}>
           <Edit size={16} style={{ color: "#5aa65c", marginRight: "1em" }} />
           Edit
+        </MenuItem>
+        <MenuItem onClick={WorkHistory}>
+          <Edit size={16} style={{ color: "#5aa65c", marginRight: "1em" }} />
+          Work History
         </MenuItem>
         <MenuItem
           onClick={() => {

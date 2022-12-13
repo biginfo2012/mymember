@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, { useState } from 'react'
 import { Select, Input, Button } from 'antd'
 import { IconButton, Slider, Typography } from '@mui/material';
 import FontFamily from '../../configuration/fontfamily';
@@ -20,17 +20,11 @@ const Dropdownsettings = ({ editor }) => {
    };
 
    const handlestyle2 = (e, name) => {
-        const element = getSelectedHtmlElement();
-        let attributes = getSelectedHtmlElement().getAttributes();
-        attributes[name] = e;
-        getSelectedHtmlElement().setAttributes(attributes);
-        element.addStyle({ [name]: e })
+      const element = getSelectedHtmlElement();
+      element.addStyle({ [name]: e })
    }
    const handlestyleaddattribute = (newVal, name) => {
       const element = getSelectedHtmlElement();
-      let attributes = getSelectedHtmlElement().getAttributes();
-      attributes[name] = newVal;
-
       if (name === "required") {
          if (newVal === "required") {
             element.addAttributes({ 'required': true })
@@ -40,28 +34,19 @@ const Dropdownsettings = ({ editor }) => {
       } else {
          element.addAttributes({ [name]: newVal })
       }
-      getSelectedHtmlElement().setAttributes(attributes);
+
    }
-   const handleFontsize = (event, newVal) => {
+   const handleFontsize = (value, newVal) => {
       const element = getSelectedHtmlElement();
-      let attributes = getSelectedHtmlElement().getAttributes();
-      attributes.fontSize = event.target.value;
-      getSelectedHtmlElement().setAttributes(attributes);
-      element.addStyle({ 'font-size': event.target.value + 'px' })
-      setfontsize(event.target.value)
+      element.addStyle({ 'font-size': newVal })
+      setfontsize(newVal)
    }
    const handleinputstyle = (e) => {
-       let attributes = getSelectedHtmlElement().getAttributes();
-       attributes.type = e;
-       getSelectedHtmlElement().setAttributes(attributes);
       setinputstyle(e)
    }
    const handleaddsatribute = (e, name, i) => {
       const element = getSelectedHtmlElement();
-      let attributes = getSelectedHtmlElement().getAttributes();
-      attributes[name] = e.target.value;
-      getSelectedHtmlElement().setAttributes(attributes);
-      element.addAttributes({ [name]: e.target.value })
+      element.addAttributes({ [name]: e })
    }
 
    const handleaddsatribute2 = (e, name, i) => {
@@ -84,13 +69,13 @@ const Dropdownsettings = ({ editor }) => {
       }
       data.push(array)
       setvalue(data)
-      getSelectedHtmlElement().append(createOption('', ''))
+     getSelectedHtmlElement().append(createOption('', ''))
    }
    const handleremoveoption = (e, i) => {
       let data = [...value]
       console.log(data);
       setvalue(data)
-      getSelectedHtmlElement().getChildAt(i).remove();
+     getSelectedHtmlElement().getChildAt(i).remove();
    }
 
     const createOption = (value, text) => ({
@@ -103,15 +88,6 @@ const Dropdownsettings = ({ editor }) => {
       selectable: false,
       hoverable: false,
     });
-
-    useEffect(() => {
-      let attributes = getSelectedHtmlElement().getAttributes();
-      if(!attributes) {
-        attributes = {};
-        getSelectedHtmlElement().setAttributes(attributes);
-      }
-      setfontsize(attributes.fontSize);
-    })
    return (
       <div id="dropdwon">
          <div className='inputwarrper'>
@@ -122,7 +98,6 @@ const Dropdownsettings = ({ editor }) => {
                >Input Type</Typography>
             </div>
             <Select className="inputstyle"
-                    defaultValue={getSelectedHtmlElement().getAttributes()["type"]}
                getPopupContainer={() => document.getElementById('dropdwon')}
                onChange={(e) => { handleinputstyle(e, "type") }}
             >
@@ -144,7 +119,6 @@ const Dropdownsettings = ({ editor }) => {
             <Input
                className='inputstyle'
                placeholder='Input Name'
-               defaultValue={getSelectedHtmlElement().getAttributes()["name"]}
                onChange={(e) => { handleaddsatribute(e, "name") }}
             />
          </div>
@@ -236,13 +210,12 @@ const Dropdownsettings = ({ editor }) => {
                >Required</Typography>
             </div>
             <Select
-              defaultValue={getSelectedHtmlElement().getAttributes()["required"]}
                className="inputstyle"
                getPopupContainer={() => document.getElementById('dropdwon')}
                onChange={(e) => { handlestyleaddattribute(e, "required") }}
             >
-               <Option value={true}>Required</Option>
-               <Option value={false}>Not Required</Option>
+               <Option value="required">Required</Option>
+               <Option value="not-required">Not Required</Option>
             </Select>
          </div>
          <div className='inputwarrper'>
@@ -254,7 +227,6 @@ const Dropdownsettings = ({ editor }) => {
             </div>
             <Select
                showSearch
-               defaultValue={getSelectedHtmlElement().getAttributes()["font-family"]}
                className='inputstyle'
                placeholder="select font"
                onChange={(e) => { handlestyle2(e, "font-family") }}
@@ -282,7 +254,6 @@ const Dropdownsettings = ({ editor }) => {
             </div>
             <Slider
                size="small"
-               defaultValue={getSelectedHtmlElement().getAttributes().fontSize}
                valueLabelDisplay={fontsize}
                onChange={handleFontsize}
             />

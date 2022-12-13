@@ -28,7 +28,7 @@ let paragraphType = {
                 {
                     tagName: 'h5',
                     type: 'text',
-                    components: 'Type a question',
+                    components: '',
                     attributes: {class: 'short-text-label'},
                     draggable: false,
                     droppable: false,

@@ -44,16 +44,11 @@ const Steps = ({
         }
     }
 
-    const showForm = () => {
-      window.open(publicLink, '_blank');
-    }
-
 
     useEffect(() => {
       if(formId) {
         let userId = localStorage.getItem("user_id")
         let link = `${process.env.REACT_APP_BASE_URL}/builder/view/${formId}/${userId}`;
-        // let link = `http://localhost:3001/builder/view/${formId}/${userId}`;
         setPublicLink(link);
       }
 
@@ -98,7 +93,6 @@ const Steps = ({
                     </Button>
                 </div>
                 <Button variant='outlined'
-                    onClick={() => showForm()}
                     style={{
                         borderRadius: '8px',
                         width: '20%'
@@ -124,7 +118,7 @@ const Steps = ({
                                 height: "400px",
                                 borderRadius: 10,
                             }}
-                            src={publicLink}
+                            src={"https://www.openstreetmap.org/export/embed.html?bbox=-0.004017949104309083%2C51.47612752641776%2C0.00030577182769775396%2C51.478569861898606&layer=mapnik"}
                         />
                     </CardContent>
                 </Card>

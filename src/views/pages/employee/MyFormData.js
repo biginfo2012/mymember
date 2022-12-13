@@ -1,7 +1,8 @@
-import { makeStyles } from '@material-ui/core';
+import { Dialog, makeStyles } from '@material-ui/core';
 import { Button, Card } from '@mui/material'
-import React from 'react'
+import React, { useState } from 'react'
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import Addform from './formelemnts/Addform';
 
 const data = [
   {
@@ -145,9 +146,19 @@ const useStyles = makeStyles(() => ({
 
 function MyFormData() {
   const classes = useStyles();
+  const [open, setOpen] = useState(false)
 
   return (
     <div>
+      <div className='d-flex justify-content-end mb-1'>
+        <Button className='primary'
+          onClick={() => {
+            setOpen(true)
+          }}
+        >
+          Add Form
+        </Button>
+      </div>
       <Card style={{ boxShadow: "none" }}>
         <div className="pl-1 pr-1 pt-0">
           <div className={`p-1 pt-0 ${classes.row} border-bottom`}>
@@ -204,8 +215,18 @@ function MyFormData() {
             )
           })
         }
-
       </Card>
+      <Dialog
+        open={open}
+        onClose={() => {
+          setOpen(!open)
+        }}
+        maxWidth="sm"
+      >
+        <div className='m-1 p-1'>
+          <Addform  setOpen={setOpen}/>
+        </div>
+      </Dialog>
     </div>
   )
 }

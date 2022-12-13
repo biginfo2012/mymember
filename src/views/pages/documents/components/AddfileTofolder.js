@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import { Upload } from "react-feather";
@@ -7,11 +7,19 @@ import { connect } from "react-redux";
 import { toast } from "react-toastify";
 import AttachDocxfile from "./attacheFiles";
 import LoadingForUplaod from "./LoadingForUplaod";
+import Slide from "@mui/material/Slide";
+
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
+
 const AddfileTofolder = (props) => {
   const { activeMainFolder, IsEdit, userinformation } = props;
   const [open, setOpen] = React.useState(false);
   const [state, setState] = React.useState({});
   const [defaltAlert, setdefaltAlert] = React.useState(false);
+  const [addNew, setAddNew] = useState([])
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -70,6 +78,7 @@ const AddfileTofolder = (props) => {
     });
   };
 
+
   return (
     <>
       <div className="d-flex p-0 ml-1">
@@ -115,6 +124,50 @@ const AddfileTofolder = (props) => {
         )}
       </div>
       <Dialog
+        fullScreen
+        open={open}
+        onClose={handleClose}
+        TransitionComponent={Transition}
+      >
+        <DialogContent>
+          <AttachDocxfile
+            title={"Click or drag and drop to Attach your DocxFile"}
+            handleDocument={HandleFile}
+          />
+          <div className="m-1 ">
+            <Button
+              variant="outlined"
+              onClick={handleClose}
+              style={{
+                textTransform: "none",
+                fontWeight: "600",
+                borderRadius: "6px",
+                margin: "1em",
+                marginLeft: "20vh"
+              }}
+            >
+              Cancel
+            </Button>
+            <Button
+              style={{
+                textTransform: "none",
+                fontWeight: "600",
+                borderRadius: "6px",
+                background: "#2796f3",
+                color: "#fff",
+                margin: "1em",
+              }}
+              onClick={fileHandler}
+              variant="contained"
+              autoFocus
+            >
+              Upload
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* <Dialog
         open={open}
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"
@@ -155,7 +208,7 @@ const AddfileTofolder = (props) => {
             </Button>
           </div>
         </DialogContent>
-      </Dialog>
+      </Dialog> */}
       <LoadingForUplaod open={defaltAlert} title={"uploading..."} />
     </>
   );

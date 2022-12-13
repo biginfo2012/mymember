@@ -1,14 +1,8 @@
 import {
   Card,
-  Dialog,
-  DialogContent,
-  IconButton,
   Typography,
 } from "@material-ui/core";
-import Close from "@material-ui/icons/Close";
-import React, { useEffect, useState } from "react";
-import { Row, Col, Input, Label, FormGroup } from "reactstrap";
-import Profile from "./uploadProfilePic";
+import React, {  useState } from "react";
 import { connect } from "react-redux";
 import { UPDATE_SUB_USER } from "../../../redux/actions/employee_subusers_roles";
 import { useHistory } from "react-router-dom";
@@ -19,8 +13,6 @@ import "./employ.scss"
 import Personal from "./formelemnts/Personal";
 import Permission from "./formelemnts/Permission";
 import DocumentActiveData from "./formelemnts/DocumentActiveData";
-import DocumentEmployeeTable from "./formelemnts/DocumentEmployeeTable"; 
-import EmployeeDocumentList from "./formelemnts/EmployeeDocumentList";
 import Wagesandpayment from "./formelemnts/Wagesandpayment";
 import Notes from "./formelemnts/Notes";
 import Employement from "./formelemnts/Employement";
@@ -94,7 +86,7 @@ const Editemplyee = (props) => {
               />
             }
             {
-              activeStep === "Documents" &&
+              activeStep === "Employee Folder" &&
               <DocumentActiveData />
             }
             {
@@ -127,13 +119,13 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, { UPDATE_SUB_USER })(Editemplyee);
 
 const option = [
+  { name: "Employee Folder" },
   { name: "Info" },
   { name: "Personal" },
   { name: "Employment" },
   { name: "Assignment" },
   { name: "Wages And Payment" },
-  { name: "Documents" },
-  { name: "Acknowledgement" },
+  { name: "Work history" },
   { name: "Permission" },
   { name: "Notes" }
 

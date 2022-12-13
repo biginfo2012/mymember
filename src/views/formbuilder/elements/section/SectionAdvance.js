@@ -49,17 +49,11 @@ const SectionAdvance = (props) => {
 
   const handleCornerRadiusChange = (value) => {
     setCornerRadius(value);
-    let attributes = getSelectedHtmlElement().getAttributes();
-    attributes.cornerRadius = value;
-    getSelectedHtmlElement().setAttributes(attributes);
     changeCornerRadius(value, cornerRadiusType);
   }
 
   const handleCornerEdgeChange = (value) => {
     setCornerRadiusType(value);
-    let attributes = getSelectedHtmlElement().getAttributes();
-    attributes.cornerRadiusType = value;
-    getSelectedHtmlElement().setAttributes(attributes);
     changeCornerRadius(cornerRadius, value);
   }
 
@@ -101,53 +95,44 @@ const SectionAdvance = (props) => {
 
   const handleBorderChange = (value) => {
     setBorder(value);
-    let attributes = getSelectedHtmlElement().getAttributes();
-    attributes.border = value;
-    getSelectedHtmlElement().setAttributes(attributes);
     changeBorder(value, borderStyle, borderSize, borderColor)
   }
 
   const handleBorderStyleChange = (value) => {
     setBorderStyle(value);
-    let attributes = getSelectedHtmlElement().getAttributes();
-    attributes.borderStyle = value;
-    getSelectedHtmlElement().setAttributes(attributes);
     changeBorder(border, value, borderSize, borderColor)
   }
 
   const handleBorderSizeChange = (value) => {
     setBorderSize(value);
-    let attributes = getSelectedHtmlElement().getAttributes();
-    attributes.borderSize = value;
-    getSelectedHtmlElement().setAttributes(attributes);
     changeBorder(border, borderStyle, value, borderColor)
   }
 
   const handleBorderColorChange = (event) => {
     const value = event.target.value;
     setBorderColor(value);
-    let attributes = getSelectedHtmlElement().getAttributes();
-    attributes.borderColor = value;
-    getSelectedHtmlElement().setAttributes(attributes);
     changeBorder(border, borderStyle, borderSize, value)
   }
 
   const handleFloatChange = (value) => {
     const element = getSelectedHtmlElement();
     // element.style.float = value;
-    let attributes = getSelectedHtmlElement().getAttributes();
-    attributes.float = value;
-    getSelectedHtmlElement().setAttributes(attributes);
     element.addStyle({ 'float': value })
   }
 
   const handleDisplayChange = (value) => {
     const element = getSelectedHtmlElement();
     //element.style.position = value;
-    let attributes = getSelectedHtmlElement().getAttributes();
-    attributes.display = value;
-    getSelectedHtmlElement().setAttributes(attributes);
     element.addStyle({ 'position': value })
+  }
+
+  const handleDropShadowChange = (value) => {
+    const element = getSelectedHtmlElement();
+    //element.style.position = value;
+    let attributes = getSelectedHtmlElement().getAttributes();
+    attributes.dropShadow = value;
+    getSelectedHtmlElement().setAttributes(attributes);
+    element.addStyle({ 'box-shadow': value })
   }
 
   useEffect(() => {
@@ -173,8 +158,7 @@ const SectionAdvance = (props) => {
               className='mb-0'
             >Corner Radius</Typography>
           </div>
-          <Select
-            style={{ width: 250, height: 42 }} defaultValue={cornerRadius} onChange={handleCornerRadiusChange} getPopupContainer={() => document.getElementById('sectionAdvance')}>
+          <Select style={{ width: 250, height: 42 }} defaultValue={cornerRadius} onChange={handleCornerRadiusChange} getPopupContainer={() => document.getElementById('sectionAdvance')}>
             <Option value={0}>Square</Option>
             {cornerRadiusArray?.map((radius) => {
               return (
@@ -194,7 +178,7 @@ const SectionAdvance = (props) => {
                   <Typography className='mb-0'
                   >Edges</Typography>
                 </div>
-                <Select defaultValue={cornerRadiusType} style={{ width: 250, height: 42 }} onChange={handleCornerEdgeChange} getPopupContainer={() => document.getElementById('sectionAdvance')}>
+                <Select style={{ width: 250, height: 42 }} onChange={handleCornerEdgeChange} getPopupContainer={() => document.getElementById('sectionAdvance')}>
                   <Option value="all">All</Option>
                   <Option value="top">Top Only</Option>
                   <Option value="bottom">Bottom Only</Option>
@@ -216,7 +200,7 @@ const SectionAdvance = (props) => {
           <Typography className='mb-0'
           >Border</Typography>
         </div>
-        <Select style={{ width: 250, height: 42 }} value={border} onChange={handleBorderChange} getPopupContainer={() => document.getElementById('sectionAdvance')}>
+        <Select style={{ width: 250, height: 42 }} defaultValue={border} onChange={handleBorderChange} getPopupContainer={() => document.getElementById('sectionAdvance')}>
           <Option value="none">None</Option>
           <Option value="full">Full Border</Option>
           <Option value="bottom">Bottom Only</Option>
@@ -232,7 +216,7 @@ const SectionAdvance = (props) => {
                 <Typography className='mb-0'
                 >Solid</Typography>
               </div>
-              <Select value={borderStyle} style={{ width: 250, height: 42 }} onChange={handleBorderStyleChange} getPopupContainer={() => document.getElementById('sectionAdvance')}>
+              <Select style={{ width: 250, height: 42 }} onChange={handleBorderStyleChange} getPopupContainer={() => document.getElementById('sectionAdvance')}>
                 <Option value="solid">Solid</Option>
                 <Option value="dashed">Dashed</Option>
                 <Option value="dotted">Dotted</Option>
@@ -243,7 +227,7 @@ const SectionAdvance = (props) => {
                 <Typography className='mb-0'
                 >Size</Typography>
               </div>
-              <Select value={borderSize} style={{ width: 250, height: 42 }} onChange={handleBorderSizeChange} getPopupContainer={() => document.getElementById('sectionAdvance')}>
+              <Select style={{ width: 250, height: 42 }} onChange={handleBorderSizeChange} getPopupContainer={() => document.getElementById('sectionAdvance')}>
                 {borderSizeArray?.map((size) => {
                   return (
                     <Option value={size} key={size}>
@@ -286,7 +270,7 @@ const SectionAdvance = (props) => {
           <Typography className='mb-0'
           >Drop Shadow</Typography>
         </div>
-        <Select style={{ width: 250, height: 42 }} getPopupContainer={() => document.getElementById('sectionAdvance')}>
+        <Select defaultValue={getSelectedHtmlElement().getAttributes().dropShadow} onChange={handleDropShadowChange} style={{ width: 250, height: 42 }} getPopupContainer={() => document.getElementById('sectionAdvance')}>
           <Option value={0}>No Shadow</Option>
           {dropShadowArray?.map((size) => {
             return (
@@ -315,7 +299,7 @@ const SectionAdvance = (props) => {
           <Typography className='mb-0'
           >Float</Typography>
         </div>
-        <Select defaultValue={getSelectedHtmlElement().getAttributes().float} style={{ width: 250, height: 42 }} onChange={handleFloatChange} getPopupContainer={() => document.getElementById('sectionAdvance')}>
+        <Select style={{ width: 250, height: 42 }} onChange={handleFloatChange} getPopupContainer={() => document.getElementById('sectionAdvance')}>
           <Option value="initial">None</Option>
           <Option value="left">Left</Option>
           <Option value="right">Right</Option>
@@ -326,7 +310,7 @@ const SectionAdvance = (props) => {
           <Typography className='mb-0'
           >Position</Typography>
         </div>
-        <Select defaultValue={getSelectedHtmlElement().getAttributes().display} style={{ width: 250, height: 42 }} onChange={handleDisplayChange} getPopupContainer={() => document.getElementById('sectionAdvance')}>
+        <Select style={{ width: 250, height: 42 }} onChange={handleDisplayChange} getPopupContainer={() => document.getElementById('sectionAdvance')}>
           <Option value="initial">None</Option>
           <Option value="relative">Relative</Option>
           <Option value="absolute">Absolute</Option>

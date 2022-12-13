@@ -29,6 +29,12 @@
 .wrapper>div {
   margin: 5px;
 }
+.uploadFiles > span {
+  height: 200px;
+}
+.MuiDialog-paperWidthSm {
+  max-width: 100% !important;
+}
 
 /* 
 .tss-tlx3x1-MUIDataTableToolbar-root,
@@ -204,3 +210,25 @@
     width: 100% !important;
   }
 } */
+.checkbox[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+}
+
+.MuiAccordion-region > .css-15v22id-MuiAccordionDetails-root{
+  display: block !important;
+}
+.css-1elwnq4-MuiPaper-root-MuiAccordion-root:last-of-type{
+  box-shadow: none;
+}
+.MuiAccordionSummary-gutters .css-sh22l5-MuiButtonBase-root-MuiAccordionSummary-root{
+  margin-top: 40px;
+}
+.css-yw020d-MuiAccordionSummary-expandIconWrapper >
+   .css-i4bv87-MuiSvgIcon-root{
+  font-size: 3rem !important
+}
+[dir] .MuiDropzoneArea-textContainer {
+  margin-top: 70px;
+}
+

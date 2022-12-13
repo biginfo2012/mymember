@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react"
+import React, { useState } from "react"
 import { Select, Input } from 'antd'
 import { Typography } from '@mui/material';
 
@@ -24,9 +24,6 @@ const HeadingAdvanced = ({ editor }) => {
 
   const handlestyle = (value, name) => {
     const element = getSelectedHtmlElement();
-    let attributes = getSelectedHtmlElement().getAttributes();
-    attributes[name] = value;
-    getSelectedHtmlElement().setAttributes(attributes);
     element.addStyle({ [name]: value });
   }
   const changeCornerRadius = (radius, type) => {
@@ -56,24 +53,15 @@ const HeadingAdvanced = ({ editor }) => {
 
   const handleBorderChange = (value) => {
     setBorder(value);
-    let attributes = getSelectedHtmlElement().getAttributes();
-    attributes["border"] = value;
-    getSelectedHtmlElement().setAttributes(attributes);
     changeBorder(value, borderStyle, borderSize)
   }
   const handleCornerRadiusChange = (value) => {
     setCornerRadius(value);
-    let attributes = getSelectedHtmlElement().getAttributes();
-    attributes["corner-radius"] = value;
-    getSelectedHtmlElement().setAttributes(attributes);
     changeCornerRadius(value, cornerRadiusType);
   }
 
   const handleCornerEdgeChange = (value) => {
     setCornerRadiusType(value);
-    let attributes = getSelectedHtmlElement().getAttributes();
-    attributes["corner-edge"] = value;
-    getSelectedHtmlElement().setAttributes(attributes);
     changeCornerRadius(cornerRadius, value);
   }
 
@@ -106,40 +94,19 @@ const HeadingAdvanced = ({ editor }) => {
 
   const handleBorderStyleChange = (value) => {
     setBorderStyle(value);
-    let attributes = getSelectedHtmlElement().getAttributes();
-    attributes["border-style"] = value;
-    getSelectedHtmlElement().setAttributes(attributes);
     changeBorder(border, value, borderSize,)
   }
 
   const handleBorderSizeChange = (value) => {
     setBorderSize(value);
-    let attributes = getSelectedHtmlElement().getAttributes();
-    attributes["border-size"] = value;
-    getSelectedHtmlElement().setAttributes(attributes);
     changeBorder(border, borderStyle, value,)
   }
   const handleiconpicker = (event) => {
     const element = getSelectedHtmlElement();
-    let attributes = getSelectedHtmlElement().getAttributes();
-    attributes["icon"] = event.target.value;
-    getSelectedHtmlElement().setAttributes(attributes);
+
     element.addAttributes({ 'icon': event.target.value });
 
   }
-
-  useEffect(() => {
-    let attributes = getSelectedHtmlElement().getAttributes();
-    if(!attributes) {
-      attributes = {};
-      getSelectedHtmlElement().setAttributes(attributes);
-    }
-    setBorder(attributes["border"])
-    setBorderStyle(attributes["border-style"]);
-    setBorderSize(attributes["border-size"])
-    setCornerRadiusType(attributes["corner-edge"])
-    setCornerRadius(attributes["corner-radius"])
-  })
   return (
     <div id="headAdvance">
       <div className='inputwarrper'>
@@ -150,7 +117,6 @@ const HeadingAdvanced = ({ editor }) => {
           >Line Height</Typography>
         </div>
         <Select
-          defaultValue={getSelectedHtmlElement().getAttributes()["line-height"]}
           onChange={(e) => { handlestyle(e, "line-height") }}
           className="inputstyle"
           getPopupContainer={() => document.getElementById('headAdvance')}>
@@ -171,7 +137,7 @@ const HeadingAdvanced = ({ editor }) => {
         </div>
         <Select
           onChange={(e) => { handlestyle(e, "text-transform") }}
-          defaultValue={getSelectedHtmlElement().getAttributes()["text-transform"]}
+
           className="inputstyle"
           getPopupContainer={() => document.getElementById('headAdvance')}>
           <Option value="normal">Normal</Option>
@@ -188,7 +154,6 @@ const HeadingAdvanced = ({ editor }) => {
           >Letter Spacing</Typography>
         </div>
         <Select className="inputstyle"
-          defaultValue={getSelectedHtmlElement().getAttributes()["letter-spacing"]}
           onChange={(e) => { handlestyle(e, "letter-spacing") }}
           getPopupContainer={() => document.getElementById('headAdvance')}>
           <Option value="normal">Normal</Option>
@@ -206,7 +171,6 @@ const HeadingAdvanced = ({ editor }) => {
           >Text Shadow</Typography>
         </div>
         <Select className="inputstyle"
-          defaultValue={getSelectedHtmlElement().getAttributes()["text-shadow"]}
           onChange={(e) => { handlestyle(e, "text-shadow") }}
           getPopupContainer={() => document.getElementById('headAdvance')}>
           <Option value="none">No Shadow</Option>
@@ -223,7 +187,6 @@ const HeadingAdvanced = ({ editor }) => {
           >Text Columns</Typography>
         </div>
         <Select className="inputstyle"
-          defaultValue={getSelectedHtmlElement().getAttributes()["columns"]}
           onChange={(e) => { handlestyle(e, "columns") }}
           getPopupContainer={() => document.getElementById('headAdvance')}>
           <Option value="1">One Column</Option>
@@ -240,7 +203,6 @@ const HeadingAdvanced = ({ editor }) => {
           >Icon Picker</Typography>
         </div>
         <Input
-          defaultValue={getSelectedHtmlElement().getAttributes()["icon"]}
           className='inputstyle'
           placeholder='Full Name'
           onChange={handleiconpicker}
@@ -254,7 +216,6 @@ const HeadingAdvanced = ({ editor }) => {
           >Padding</Typography>
         </div>
         <Select className="inputstyle"
-          defaultValue={getSelectedHtmlElement().getAttributes()["padding"]}
           onChange={(e) => { handlestyle(e, "padding") }}
           getPopupContainer={() => document.getElementById('headAdvance')}>
           {paddingArray?.map((padding) => {
@@ -274,7 +235,6 @@ const HeadingAdvanced = ({ editor }) => {
           >Border Radius</Typography>
         </div>
         <Select className="inputstyle"
-          defaultValue={cornerRadius}
           onChange={handleCornerRadiusChange}
           getPopupContainer={() => document.getElementById('headAdvance')}>
           {borderRadiusArray?.map((borderRadius) => {
@@ -294,7 +254,6 @@ const HeadingAdvanced = ({ editor }) => {
           >Radius Edges</Typography>
         </div>
         <Select className="inputstyle"
-          defaultValue={cornerRadiusType}
           onChange={(e) => { handleCornerEdgeChange(e, "border-radius") }}
           getPopupContainer={() => document.getElementById('headAdvance')}>
           <Option value="all">All Edges</Option>
@@ -310,7 +269,6 @@ const HeadingAdvanced = ({ editor }) => {
           >Borders</Typography>
         </div>
         <Select className="inputstyle"
-          defaultValue={border}
           onChange={handleBorderChange}
           getPopupContainer={() => document.getElementById('headAdvance')}>
           <Option value="none">No Border</Option>
@@ -328,7 +286,6 @@ const HeadingAdvanced = ({ editor }) => {
           >Border style</Typography>
         </div>
         <Select className="inputstyle"
-          defaultValue={borderStyle}
           onChange={handleBorderStyleChange}
           getPopupContainer={() => document.getElementById('headAdvance')}>
           <Option value="none">No Border Style</Option>
@@ -346,7 +303,6 @@ const HeadingAdvanced = ({ editor }) => {
         </div>
         <Select className="inputstyle"
           onChange={handleBorderSizeChange}
-          defaultValue={borderSize}
           getPopupContainer={() => document.getElementById('headAdvance')}>
           <Option value="none">None</Option>
           {borderArray?.map((border) => {
@@ -366,7 +322,6 @@ const HeadingAdvanced = ({ editor }) => {
           >Shadow</Typography>
         </div>
         <Select className="inputstyle"
-          defaultValue={getSelectedHtmlElement().getAttributes()["box-shadow"]}
           onChange={(e) => { handlestyle(e, "box-shadow") }}
           getPopupContainer={() => document.getElementById('headAdvance')}>
           <Option value={0 + 'px'}>No Shadow</Option>
@@ -379,7 +334,7 @@ const HeadingAdvanced = ({ editor }) => {
           })}
           {dropShadowArray?.map((size) => {
             return (
-              <Option value={-size} key={-size}>
+              <Option value={-size + 'px'} key={-size}>
                 {size}% Inner Shadow
               </Option>
             );

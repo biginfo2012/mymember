@@ -23,7 +23,6 @@ class Nurturing extends React.Component {
             <DocumentsSidebar/>
           </Col>
           <Col sm="9">
-
             <DocumentListing />
           </Col>
         </Row>

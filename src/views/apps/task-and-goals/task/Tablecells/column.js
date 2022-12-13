@@ -1,4 +1,4 @@
-import { Avatar, Chip, Typography } from '@material-ui/core'
+import { Chip, } from '@material-ui/core'
 import React from 'react'
 import MakeAction from './makeAction';
 import MarkStatus from './markStatus';
@@ -46,7 +46,7 @@ export const columns = [
     },
     {
         name: "Priority",
-        selector:row => ["priority"],
+        selector: row => ["priority"],
         // sortable: true,
         width: '100px',
         style: {
@@ -59,7 +59,7 @@ export const columns = [
     },
     {
         name: "Label",
-        selector:row => ["label"],
+        selector: row => ["label"],
         // sortable: true,
         width: '100px',
         style: {
@@ -75,7 +75,7 @@ export const columns = [
     },
     {
         name: "Due Date",
-        selector:row => ["due_date"],
+        selector: row => ["due_date"],
         // sortable: true,
         width: '120px',
         style: {
@@ -89,7 +89,7 @@ export const columns = [
     },
     {
         name: "Mark",
-        selector:row => ["status"],
+        selector: row => ["status"],
         // sortable: false,
         width: '160px',
         cell: (row) => (
@@ -103,7 +103,7 @@ export const columns = [
     },
     {
         name: "Assignee Activity",
-        selector:row => ["assignee"],
+        selector: row => ["assignee"],
         sortable: true,
         width: '180px',
         id: "assignee-activity",
@@ -127,7 +127,7 @@ export const columns = [
     },
     {
         name: "Status",
-        selector:row => ["status"],
+        selector: row => ["status"],
         sortable: true,
         width: '100px',
         style: {
@@ -139,7 +139,7 @@ export const columns = [
     },
     {
         name: "Action",
-        selector:row => ["status"],
+        selector: row => ["status"],
         sortable: false,
         width: '80px',
         style: {

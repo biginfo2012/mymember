@@ -50,18 +50,6 @@ const Employee = () => {
                 breadCrumbActive="Employee"
             />
             <Employeesidebar />
-            {/* <RootStyle>
-                
-                <MainStyle>
-                <div className='m-1 w-100'>
-                    <Switch>
-                        <Route  exact path="/app/employee/my-employee" component={Myemplyee} />
-                        <Route  exact path="/app/employee/my-form" component={MyForm} />
-                        <Route  exact path="/app/employee/schedule" component={Scheduled} />
-                    </Switch>
-                </div>
-            </MainStyle>
-            </RootStyle> */}
         </div>
     )
 }

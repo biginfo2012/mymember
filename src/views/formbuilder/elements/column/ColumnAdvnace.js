@@ -268,7 +268,6 @@ const ColumnAdvnace = (props) => {
                       onChange={handleBorderColorChange}
                       size="small"
                       type="color"
-                      defaultValue={borderColor}
                     />
                   </div>
                 </>

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, { useState } from 'react'
 import { Select, Input } from 'antd'
 import { Slider, Typography } from '@mui/material';
 import FontFamily from '../../configuration/fontfamily';
@@ -16,16 +16,10 @@ const Chekboxsetting = ({ editor, GET_BORDER_COLOR_FOR_CHECKBOX }) => {
     };
     const handlestyle = (newVal, name) => {
         const element = getSelectedHtmlElement();
-        let attributes = getSelectedHtmlElement().getAttributes();
-        attributes[name] = newVal;
-        getSelectedHtmlElement().setAttributes(attributes);
         element.addStyle({ [name]: newVal })
     }
     const handlestyle2 = (e, name) => {
         const element = getSelectedHtmlElement();
-        let attributes = getSelectedHtmlElement().getAttributes();
-        attributes[name] = e.target.value;
-        getSelectedHtmlElement().setAttributes(attributes);
         if (name === "border-color") {
             GET_BORDER_COLOR_FOR_CHECKBOX(e)
             element.addStyle({ 'border': `1px solid ${e.target.value}` })
@@ -36,26 +30,17 @@ const Chekboxsetting = ({ editor, GET_BORDER_COLOR_FOR_CHECKBOX }) => {
     }
     const handleaddatribute2 = (e, name) => {
         const element = getSelectedHtmlElement()
-        let attributes = getSelectedHtmlElement().getAttributes();
-        attributes[name] = e.target.value;
-        getSelectedHtmlElement().setAttributes(attributes);
         element.addAttributes({ [name]: e.target.value })
 
     }
     const handleFontSizeChange = (event,) => {
         const element = getSelectedHtmlElement();
-        let attributes = getSelectedHtmlElement().getAttributes();
-        attributes.fontSize = event.target.value;
-        getSelectedHtmlElement().setAttributes(attributes);
         element.addStyle({ 'font-size': event.target.value + 'px' })
         setFontSize(event.target.value);
     }
 
     const handleaddatribute = (e, name) => {
         const element = getSelectedHtmlElement()
-        let attributes = getSelectedHtmlElement().getAttributes();
-        attributes[name] = e.target.value;
-        getSelectedHtmlElement().setAttributes(attributes);
         if (name === "required") {
             if (e === "required") {
                 element.addAttributes({ ['required']: true })
@@ -63,16 +48,13 @@ const Chekboxsetting = ({ editor, GET_BORDER_COLOR_FOR_CHECKBOX }) => {
                 element.addAttributes({ ['required']: false })
             }
         } else {
-            element.addAttributes({ [name]: e.target.value })
+            element.addAttributes({ [name]: e })
         }
     }
 
     const handleOpacityChange = (value) => {
         const element = getSelectedHtmlElement();
-        let attributes = getSelectedHtmlElement().getAttributes();
-        attributes.opacity = value;
-        getSelectedHtmlElement().setAttributes(attributes);
-        let opacity = 1.0;
+        let opacity = 1 / 0;
         switch (value) {
             case 'none':
                 opacity = 1.0;
@@ -89,14 +71,6 @@ const Chekboxsetting = ({ editor, GET_BORDER_COLOR_FOR_CHECKBOX }) => {
         }
         element.addStyle({ 'opacitiy': opacity });
     }
-
-    useEffect(() => {
-      let attributes = getSelectedHtmlElement().getAttributes();
-      if(!attributes) {
-        attributes = {};
-        getSelectedHtmlElement().setAttributes(attributes);
-      }
-    })
     return (
         <div id="checkbox">
             <div className='inputwarrper'>
@@ -108,7 +82,6 @@ const Chekboxsetting = ({ editor, GET_BORDER_COLOR_FOR_CHECKBOX }) => {
                 </div>
                 <Select
                     className='inputstyle'
-                    defaultValue={getSelectedHtmlElement().getAttributes()["required"]}
                     onChange={(e) => handleaddatribute(e, "required")}
                     getPopupContainer={() => document.getElementById('checkbox')}>
                     <Option value="required">Required</Option>
@@ -123,10 +96,9 @@ const Chekboxsetting = ({ editor, GET_BORDER_COLOR_FOR_CHECKBOX }) => {
                     >Contact Field Name</Typography>
                 </div>
                 <Input
-                    defaultValue={getSelectedHtmlElement().getAttributes()["full_name"]}
                     className='inputstyle'
                     placeholder='Full Name'
-                    onChange={(e) => handleaddatribute2(e, "full_name")}
+                    onChange={handleaddatribute2}
                 />
             </div>
             <div className='inputwarrper'>
@@ -138,7 +110,6 @@ const Chekboxsetting = ({ editor, GET_BORDER_COLOR_FOR_CHECKBOX }) => {
                 </div>
                 <Select
                     className='inputstyle'
-                    defaultValue={getSelectedHtmlElement().getAttributes()["border-radius"]}
                     getPopupContainer={() => document.getElementById('checkbox')}
                     onChange={(e) => handlestyle(e, "border-radius")}
                 >
@@ -160,7 +131,6 @@ const Chekboxsetting = ({ editor, GET_BORDER_COLOR_FOR_CHECKBOX }) => {
                     showSearch
                     className='inputstyle'
                     placeholder="select font"
-                    defaultValue={getSelectedHtmlElement().getAttributes()["font-family"]}
                     onChange={(e) => { handlestyle(e, "font-family") }}
                     getPopupContainer={() => document.getElementById('checkbox')}
                     filterOption={(input, option) => option.children.toLowerCase().includes(input.toLowerCase())}
@@ -185,15 +155,15 @@ const Chekboxsetting = ({ editor, GET_BORDER_COLOR_FOR_CHECKBOX }) => {
                 </div>
                 <Slider
                     size="small"
-                    defaultValue={getSelectedHtmlElement().getAttributes()["fontSize"]}
                     onChange={handleFontSizeChange}
+                    defaultValue={fontSize}
                     valueLabelDisplay="auto"
                 />
                 <div className='countinputwrapper'
                 >
                     <Input className='countinput p-0'
                         onChange={handleFontSizeChange}
-                           defaultValue={getSelectedHtmlElement().getAttributes()["fontSize"]}
+                        defaultValue={fontSize}
                     />
                 </div>
             </div>
@@ -212,7 +182,6 @@ const Chekboxsetting = ({ editor, GET_BORDER_COLOR_FOR_CHECKBOX }) => {
                     }}
                     size="small"
                     type="color"
-                    defaultValue={getSelectedHtmlElement().getAttributes()["color"]}
                     onChange={(e) => { handlestyle2(e, "color") }}
 
                 />
@@ -232,8 +201,7 @@ const Chekboxsetting = ({ editor, GET_BORDER_COLOR_FOR_CHECKBOX }) => {
                     }}
                     size="small"
                     type="color"
-                    defaultValue={getSelectedHtmlElement().getAttributes()["bold_color"]}
-                    onChange={(e) => { handlestyle2(e, "bold_color") }}
+                    onChange={(e) => { handlestyle2(e, "color") }}
 
                 />
             </div>
@@ -252,7 +220,6 @@ const Chekboxsetting = ({ editor, GET_BORDER_COLOR_FOR_CHECKBOX }) => {
                     }}
                     size="small"
                     type="color"
-                    defaultValue={getSelectedHtmlElement().getAttributes()["background"]}
                     onChange={(e) => { handlestyle2(e, "background") }}
 
                 />
@@ -291,7 +258,6 @@ const Chekboxsetting = ({ editor, GET_BORDER_COLOR_FOR_CHECKBOX }) => {
                     }}
                     size="small"
                     type="color"
-                    defaultValue={getSelectedHtmlElement().getAttributes()["border-color"]}
                     onChange={(e) => { handlestyle2(e, "border-color") }}
                 />
             </div>
@@ -305,7 +271,6 @@ const Chekboxsetting = ({ editor, GET_BORDER_COLOR_FOR_CHECKBOX }) => {
                 <Select
                     className='inputstyle'
                     onChange={handleOpacityChange}
-                    defaultValue={getSelectedHtmlElement().getAttributes()["opacity"]}
                     getPopupContainer={() => document.getElementById('checkbox')}>
                     <Option value="none">None</Option>
                     <Option value="light_fade">Light Fade</Option>
@@ -322,8 +287,7 @@ const Chekboxsetting = ({ editor, GET_BORDER_COLOR_FOR_CHECKBOX }) => {
                 </div>
                 <Select
                     className='inputstyle'
-                    defaultValue={getSelectedHtmlElement().getAttributes()["variant"]}
-                    onChange={(e) => { handleaddatribute(e, "variant") }}
+                    onChange={(e) => { handleaddatribute(e, "varinat") }}
                     getPopupContainer={() => document.getElementById('checkbox')}>
                     <Option value="h1">Headline</Option>
                     <Option value="p">Content Font</Option>

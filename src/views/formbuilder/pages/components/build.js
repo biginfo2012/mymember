@@ -400,24 +400,6 @@ const Build = (props) => {
 
   }
 
-  function checkAddElement(element) {
-    if (element.classList.contains('add-new-column')) {
-      return true;
-    } else if (element.classList.contains('add-new-element')) {
-      return true;
-    } else if (element.classList.contains('add-more-element')) {
-      return true
-    }
-    console.log(element);
-    if(!element.parentElement) {
-      return false;
-    }
-    if(element.tagName.toLowerCase() == 'body') {
-      return false;
-    }
-    return checkAddElement(element.parentElement);
-  }
-
   useEffect(() => {
 
     const editor = grapesjs.init({
@@ -731,18 +713,13 @@ const Build = (props) => {
             })
           } else {
             var clickCount = 0;
-            if(checkAddElement(child)) {
-              continue;
-            }
-            console.log(child);
             child.addEventListener("click", (e) => {
               if (e.target !== e.currentTarget) return;
               // toggleFormProperties({}, false)
-              console.log(e);
               toggleFormSettings({}, false)
               toggleButtonAction({}, false)
               clickCount ++;
-              let inputTagList = ['H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'INPUT', 'TEXTAREA'];
+              let inputTagList = ['H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'INPUT', 'TEXTAREA', 'SPAN'];
               if(!inputTagList.includes(e.target.nodeName)) {
                 setOpenFormProperties(true);
               }

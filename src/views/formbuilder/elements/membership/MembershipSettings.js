@@ -262,6 +262,7 @@ const ProductSettings = (props) => {
               </MuiPickersUtilsProvider>
             </FormGroup>
           </Col>
+          
           <Col sm={"12"} md={"12"}>
             {" "}
             <Typography style={{ fontSize: "1.5rem" }}>

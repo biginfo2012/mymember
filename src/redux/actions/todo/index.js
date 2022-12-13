@@ -273,7 +273,7 @@ export const filterOptionTexts = {
 };
 export const optionsettingText = {
   tasksetting: "Task Setting",
-}
+};
 export const optionsetting = {
   tasksetting: "tasksetting",
 };
@@ -291,10 +291,12 @@ const getHeaders = () => {
   };
 };
 
-const prefixUrl =
-  window.location.href.indexOf("localhost") > -1
-    ? "http://localhost:3001/api"
-    : "https://demo1.mymember.com/api"; // baseUrl + "/api";
+// const prefixUrl =
+//   window.location.href.indexOf("localhost") > -1
+//     ? "http://localhost:3001/api"
+//     : "https://demo1.mymember.com/api"; // baseUrl + "/api";
+
+const prefixUrl = "https://demo1.mymember.com/api";
 // NOTE: Always call fetchTodos function after using any type of api call down
 // below to show the latest data.
 export const todoActionsV2 = {

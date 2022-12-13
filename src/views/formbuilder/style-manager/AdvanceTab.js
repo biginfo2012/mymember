@@ -33,7 +33,7 @@ const AdvanceTab = (props) => {
       {editor?.getSelected()?.attributes?.name === "Column" ?
         <ColumnAdvnace editor={editor} /> : <></>
       }
-      {editor?.getSelected()?.attributes?.name === "Form" ?
+      {editor?.getSelected()?.attributes?.name === "Row" ?
         <Rowadvnace editor={editor} /> : <></>
       }
       {editor?.getSelected()?.attributes?.name === "Bullets" ?

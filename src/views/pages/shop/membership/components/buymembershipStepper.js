@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
@@ -45,8 +45,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function BuyMemberShipStepperForm(props) {
-  const classes = useStyles();
-  const [activeStep, setActiveStep] = React.useState(0);
   const {
     MembershipInfoComponent,
     CardPaymentFormComponent,
@@ -55,8 +53,16 @@ export default function BuyMemberShipStepperForm(props) {
     isPaymentDone,
     loading,
     StripePayment,
-    Buydigitalmembership
+    Buydigitalmembership,
   } = props;
+
+  const classes = useStyles();
+  const [activeStep, setActiveStep] = React.useState(0);
+  const [redirectData, setRedirectData] = useState("None");
+
+  
+
+
   const alertInfo = false;
   const steps = ["Membership info", "Checkout summary", "Document sign"];
 
@@ -136,7 +142,7 @@ export default function BuyMemberShipStepperForm(props) {
           </div>
         )}
         {activeStep === 0 && MembershipInfoComponent}
-        {steps[activeStep] === "Document sign" && <DocumentSign />}
+        {steps[activeStep] === "Document sign" && <DocumentSign redirectData={redirectData} setRedirectData={setRedirectData} />}
         {steps[activeStep] === "Checkout summary" && (
           <div>
             <CheckOutSummary
@@ -166,7 +172,7 @@ export default function BuyMemberShipStepperForm(props) {
               }}
               disabled={
                 (!isPaymentDone && activeStep === 1) ||
-                  props.studentId === undefined
+                props.studentId === undefined
                   ? true
                   : alertInfo
               }

@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Avatar } from "@material-ui/core";
 import AvatarGroup from '@mui/lab/AvatarGroup';
+
 export default function TotalAvatars(props) {
   const { data, count } = props;
   return (

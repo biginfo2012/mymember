@@ -11,7 +11,11 @@ import AvatarGroup from "./Avtargroups";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
-import { IconButton,Card } from "@material-ui/core";
+import {
+  IconButton,
+  Dialog,
+  Card
+} from "@material-ui/core";
 import ConfirmationModal from "../../../components/gloabal/confirmation";
 import {
   Row,
@@ -25,12 +29,16 @@ import {
   FormGroup,
 } from "reactstrap";
 import {
-  GET_EMPLOYEE_ROLES_LIST ,
+  GET_EMPLOYEE_ROLES_LIST,
   CREATE_ROLE_LIST,
   UPDATE_ROLE_LIST,
   DELETE_ROLE,
   GET_ROLE_LIST_USERS_INFO,
 } from "../../../redux/actions/employee_subusers_roles";
+import Addform from "./formelemnts/Addform"
+import Selectedforms from "./Selectedforms";
+import Createtask from "./Createtask";
+import Tasklist from "./Tasklist";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -44,14 +52,22 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
+const divWidth = {
+  width: 700,
+}
+
+
 const RolesList = (props) => {
   const classes = useStyles();
   const { employeeRolesList, usersRoleInfoList } = props;
-
   const [show, setShow] = useState(false);
   const [modalType, setModalType] = useState("Add New");
   const [sweetAlertOpen, setSweetAlertOpen] = useState(false);
   const [roleCardId, setRoleCardId] = useState("");
+  const [state, setState] = useState({
+    formName: null
+  })
   const [roleName, setRoleName] = React.useState({
     roleName: "",
     error: false,
@@ -59,7 +75,9 @@ const RolesList = (props) => {
   });
   const [roleList, setRoleList] = React.useState({});
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [Alert, setAlert] = useState(false)
   const open = Boolean(anchorEl);
+
   const handleClickPopup = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -278,7 +296,8 @@ const RolesList = (props) => {
       <Modal
         isOpen={show}
         toggle={() => onReset()}
-        className="modal-dialog-centered modal-md"
+        className="modal-dialog-centered modal-lg"
+        modalClassName={divWidth}
       >
         <ModalHeader
           className="bg-transparent"
@@ -288,11 +307,9 @@ const RolesList = (props) => {
           <div className="mb-2">
             <h2>{modalType} Role & Permissions</h2>
           </div>
-
           <Row>
             <Col xs={12} className="mb-2">
               <Typography className="mb-0" style={{ fontSize: "1rem", fontWeight: 400, color: "#4d4d4d" }}>Role Name</Typography>
-
               <Input
                 style={{ padding: "0px 5px" }}
                 id="roleName"
@@ -329,7 +346,25 @@ const RolesList = (props) => {
                 })}
               </Row>
             </Col>
-
+            <Col xs={12}>
+              <div className="divider" />
+              <div className="d-flex justify-content-end align-items-center">
+                <Button
+                  color="primary"
+                  className="mr-1"
+                  onClick={() => { setAlert(true) }}>Add form</Button>
+              </div>
+            </Col>
+            <Col xs={12}>
+              <Selectedforms />
+            </Col>
+            <Col xs={12}>
+              <div className="divider" />
+              <div>
+                <Createtask />
+              </div>
+              <Tasklist/>
+            </Col>
             <Col className="mt-2 d-flex justify-content-center" xs={12}>
               <Button
                 onClick={() => {
@@ -364,6 +399,17 @@ const RolesList = (props) => {
         contiunuebuttonTitle={"Delete"}
         description=" Are you sure you want to delete?"
       />
+      <Dialog
+        open={Alert}
+        onClose={() => {
+          setAlert(!Alert)
+        }}
+        maxWidth="sm"
+      >
+        <div className='m-1 p-1'>
+          <Addform setOpen={setAlert} />
+        </div>
+      </Dialog>
     </Fragment>
   );
 };

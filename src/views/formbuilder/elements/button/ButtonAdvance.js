@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import { Select, Input } from 'antd'
 import { Typography } from '@mui/material';
 
@@ -13,9 +13,6 @@ const ButtonAdvance = ({ editor }) => {
     return editor.getSelected().getChildAt(0);
   };
   const handlestylewidth = (e, value) => {
-    let attributes = getSelectedHtmlElement().getAttributes();
-    attributes.widthStyle = e;
-    getSelectedHtmlElement().setAttributes(attributes);
     if (e === "fill width") {
       const element = getSelectedHtmlElement();
       element.addStyle({ width: '100%' })
@@ -26,9 +23,6 @@ const ButtonAdvance = ({ editor }) => {
 
   }
   const handlestyle2 = (e, name) => {
-    let attributes = getSelectedHtmlElement().getAttributes();
-    attributes[name] = e;
-    getSelectedHtmlElement().setAttributes(attributes);
     if (name === "border-radius") {
       if (e === "square") {
         const element = getSelectedHtmlElement();
@@ -47,9 +41,6 @@ const ButtonAdvance = ({ editor }) => {
     }
   }
   const addeffct = (e, name) => {
-    let attributes = getSelectedHtmlElement().getAttributes();
-    attributes[name] = e;
-    getSelectedHtmlElement().setAttributes(attributes);
     const element = getSelectedHtmlElement();
     if (e === "no-effect") {
       element.addStyle({
@@ -85,36 +76,6 @@ const ButtonAdvance = ({ editor }) => {
     }
 
   }
-
-  const handlePaddingVerticalChange = (value) => {
-    let attributes = getSelectedHtmlElement().getAttributes();
-    attributes["padding-vertical"] = value;
-    getSelectedHtmlElement().setAttributes(attributes);
-    const element = getSelectedHtmlElement();
-    element.addStyle({
-      'padding-left': value,
-      'padding-right': value,
-    })
-  }
-
-  const handlePaddingHorizontalChange = (value) => {
-    console.log(value + ":" + value);
-    let attributes = getSelectedHtmlElement().getAttributes();
-    attributes["padding-horizontal"] = value;
-    getSelectedHtmlElement().setAttributes(attributes);
-    const element = getSelectedHtmlElement();
-    element.addStyle({
-      'padding-top': value,
-      'padding-bottom': value,
-    })
-  }
-  useEffect(() => {
-    let attributes = getSelectedHtmlElement().getAttributes();
-    if(!attributes) {
-      attributes = {};
-      getSelectedHtmlElement().setAttributes(attributes);
-    }
-  })
   return (
     <div id='buttoninput'
     >
@@ -126,7 +87,6 @@ const ButtonAdvance = ({ editor }) => {
           >Button Width</Typography>
         </div>
         <Select
-          defaultValue={getSelectedHtmlElement().getAttributes().widthStyle}
           className='inputstyle'
           getPopupContainer={() => document.getElementById('buttoninput')}
           onChange={(e) => handlestylewidth(e, "width")}
@@ -143,7 +103,6 @@ const ButtonAdvance = ({ editor }) => {
           >Inline / Block</Typography>
         </div>
         <Select
-          defaultValue={getSelectedHtmlElement().getAttributes().display}
           className='inputstyle'
           getPopupContainer={() => document.getElementById('buttoninput')}
           onChange={(e) => handlestyle2(e, "display")}
@@ -160,10 +119,9 @@ const ButtonAdvance = ({ editor }) => {
           >Style</Typography>
         </div>
         <Select
-          defaultValue={getSelectedHtmlElement().getAttributes()["display-style"]}
           className='inputstyle'
           getPopupContainer={() => document.getElementById('buttoninput')}
-          onChange={(e) => handlestyle2(e, "display-style")}
+          onChange={(e) => handlestyle2(e, "display")}
         >
           <Option value="display-block">Custom</Option>
           <Option value="display-inline">Line flat</Option>
@@ -177,11 +135,9 @@ const ButtonAdvance = ({ editor }) => {
           >Vertical Space</Typography>
         </div>
         <Select
-
           className='inputstyle'
-          defaultValue={getSelectedHtmlElement().getAttributes()["padding-vertical"]}
           getPopupContainer={() => document.getElementById('buttoninput')}
-          onChange={(e) => handlePaddingVerticalChange(e)}
+          onChange={(e) => handlestyle2(`${e} 0px ${e} 0px`, "padding")}
         >
           {verticalspace.map((item) => {
             return (
@@ -199,9 +155,8 @@ const ButtonAdvance = ({ editor }) => {
         </div>
         <Select
           className='inputstyle'
-          defaultValue={getSelectedHtmlElement().getAttributes()["padding-horizontal"]}
           getPopupContainer={() => document.getElementById('buttoninput')}
-          onChange={(e) => handlePaddingHorizontalChange(e)}
+          onChange={(e) => handlestyle2(`0px ${e} 0px ${e} `, "padding")}
         >
           {verticalspace.map((item) => {
             return (
@@ -219,7 +174,6 @@ const ButtonAdvance = ({ editor }) => {
         </div>
         <Select
           className='inputstyle'
-          defaultValue={getSelectedHtmlElement().getAttributes()["border-radius"]}
           getPopupContainer={() => document.getElementById('buttoninput')}
           onChange={(e) => handlestyle2(e, "border-radius")}
         >
@@ -239,7 +193,6 @@ const ButtonAdvance = ({ editor }) => {
         </div>
         <Select
           className='inputstyle'
-          defaultValue={getSelectedHtmlElement().getAttributes()["border"]}
           getPopupContainer={() => document.getElementById('buttoninput')}
           onChange={(e) => handlestyle2(e, "border")}
         >
@@ -258,7 +211,6 @@ const ButtonAdvance = ({ editor }) => {
           >Box Shadow</Typography>
         </div>
         <Select style={{ width: 250, height: 42 }}
-          defaultValue={getSelectedHtmlElement().getAttributes()["box-shadow"]}
           onChange={(e) => { handlestyle2(e, "box-shadow") }}
           getPopupContainer={() => document.getElementById('buttonAdvance')}>
           <Option value="none">No Shadow</Option>
@@ -283,7 +235,6 @@ const ButtonAdvance = ({ editor }) => {
         </div>
         <Select
           className='inputstyle'
-          defaultValue={getSelectedHtmlElement().getAttributes()["text-shadow"]}
           onChange={(e) => { handlestyle2(e, "text-shadow") }}
           getPopupContainer={() => document.getElementById('buttoninput')}>
           <Option value="none">No Shadow</Option>
@@ -300,7 +251,6 @@ const ButtonAdvance = ({ editor }) => {
           >Text Transform</Typography>
         </div>
         <Select
-          defaultValue={getSelectedHtmlElement().getAttributes()["text-transform"]}
           onChange={(e) => { handlestyle2(e, "text-transform") }}
           className='inputstyle'
           getPopupContainer={() => document.getElementById('buttoninput')}>
@@ -319,7 +269,6 @@ const ButtonAdvance = ({ editor }) => {
         </div>
         <Select
           className='inputstyle'
-          defaultValue={getSelectedHtmlElement().getAttributes()["letter-spacing"]}
           onChange={(e) => { handlestyle2(e, "letter-spacing") }}
           getPopupContainer={() => document.getElementById('buttoninput')}>
           <Option value="normal">Normal</Option>
@@ -351,8 +300,7 @@ const ButtonAdvance = ({ editor }) => {
         </div>
         <Select
           className='inputstyle'
-          defaultValue={getSelectedHtmlElement().getAttributes()["effect"]}
-          onChange={(e) => { addeffct(e, "effect") }}
+          onChange={(e) => { addeffct(e,) }}
           getPopupContainer={() => document.getElementById('buttoninput')}>
           <Option value="no-effect">No Effect</Option>
           <Option value="pulseGlow">Pluse Glow </Option>
@@ -370,7 +318,6 @@ const ButtonAdvance = ({ editor }) => {
         </div>
         <Select
           className='inputstyle'
-          defaultValue={getSelectedHtmlElement().getAttributes()["justify-content"]}
           onChange={(e) => handlestyle2(e, "justify-content")}
           getPopupContainer={() => document.getElementById('buttoninput')}>
           <Option value="center">Center</Option>

@@ -18,7 +18,7 @@ import { ConnectWithoutContact } from "@mui/icons-material";
 import GroupAdd from "@material-ui/icons/GroupAdd";
 import CallMissedIcon from "@material-ui/icons/CallMissedOutlined";
 import AutorenewIcon from "@material-ui/icons/AutorenewOutlined";
-import PeopleOutlineTwoTone from "@material-ui/icons/PeopleOutlineTwoTone"
+import PeopleOutlineTwoTone from "@material-ui/icons/PeopleOutlineTwoTone";
 import CakeIcon from "@material-ui/icons/CakeOutlined";
 import PersonIcon from "@material-ui/icons/PersonOutlined";
 import LocalLibraryIcon from "@material-ui/icons/LocalLibraryOutlined";
@@ -27,8 +27,8 @@ import VerifiedUserIcon from "@material-ui/icons/VerifiedUserOutlined";
 import MailIcon from "@material-ui/icons/Mail";
 import PeopleOutlineIcon from "@material-ui/icons/PeopleOutline";
 import BuildIcon from "@material-ui/icons/Build";
-import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
-import GroupsIcon from '@mui/icons-material/Groups';
+import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
+import GroupsIcon from "@mui/icons-material/Groups";
 
 const SchoolNavigationConfig = [
   {
@@ -184,7 +184,7 @@ const SchoolNavigationConfig = [
     permissions: ["admin", "editor"],
     navLink: "/app/task-and-goals/task/all/taskonly", // "/app/task-and-goals/:featureType/:filtertype/:otherFilter",
   },
-  
+
   // {
   //   role: 0,
   //   id: 4,
@@ -284,7 +284,12 @@ const SchoolNavigationConfig = [
         role: 0,
         id: "nested34",
         title: "Social Connect",
-        icon: <ConnectWithoutContact style={{ fontSize: "1.5em" }} className="ml-1"  />,
+        icon: (
+          <ConnectWithoutContact
+            style={{ fontSize: "1.5em" }}
+            className="ml-1"
+          />
+        ),
         permissions: ["admin", "editor"],
         navLink: "/app/marketing/social-media-connecting",
       },
@@ -292,7 +297,9 @@ const SchoolNavigationConfig = [
         role: 0,
         id: "nested35",
         title: "Reputation",
-        icon: <ThumbUpOffAltIcon style={{ fontSize: "1.5em" }} className="ml-1"  />,
+        icon: (
+          <ThumbUpOffAltIcon style={{ fontSize: "1.5em" }} className="ml-1" />
+        ),
         permissions: ["admin", "editor"],
         navLink: "/app/marketing/reputation",
       },
@@ -360,7 +367,7 @@ const SchoolNavigationConfig = [
     icon: <BuildIcon style={{ fontSize: "1.5em" }} />,
     permissions: ["admin", "editor"],
     navLink: "/builder",
-  }
+  },
 ];
 
 const AdminNavigationConfig = [

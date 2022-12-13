@@ -1,19 +1,17 @@
-import { ListItem } from '@material-ui/core';
-import { List, Typography, Card } from '@mui/material';
+import { Typography, Card } from '@mui/material';
 import BreadCrumbs from '../../../components/@vuexy/breadCrumbs/BreadCrumb'
 import SettingsIcon from "@material-ui/icons/SettingsOutlined";
 import { CardText } from 'reactstrap';
 import { useHistory } from 'react-router-dom';
 import { Divider } from 'antd';
 import React, { useState } from 'react'
-import Radio from '@mui/material/Radio';
-import classnames from "classnames";
 import { TabContent, TabPane } from 'reactstrap';
 import Myemplyee from './Myemplyee';
 import MyForm from './MyFormData';
 import Schedule from './Schedule';
-import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import "./style.css"
+import Employeesetting from './formelemnts/Employeesetting';
+
 const Employeesidebar = ({ }) => {
   const history = useHistory()
   const [activeTab, setActiveTab] = useState("1")
@@ -33,9 +31,6 @@ const Employeesidebar = ({ }) => {
             <Divider />
           </div>
           <div
-            style={{
-              padding: "0.5em",
-            }}
             className="d-flex align-items-center finance-nav cursor-pointer m-0"
             onClick={() => {
               setActiveTab("1");
@@ -49,9 +44,6 @@ const Employeesidebar = ({ }) => {
             </CardText>
           </div>
           <div
-            style={{
-              padding: "0.5em",
-            }}
             className="d-flex align-items-center finance-nav cursor-pointer m-0"
             onClick={() => {
               setActiveTab("2");
@@ -65,9 +57,6 @@ const Employeesidebar = ({ }) => {
             </CardText>
           </div>
           <div
-            style={{
-              padding: "0.5em",
-            }}
             className="d-flex align-items-center finance-nav cursor-pointer m-0"
             onClick={() => {
               setActiveTab("3");
@@ -75,6 +64,7 @@ const Employeesidebar = ({ }) => {
           >
             <div
               className={`${activeTab === "3" ? "bullet active_bullet" : "bullet"}`}
+
             />
             <CardText className={`${activeTab === "3" && "text-primary"}`}>
               Schedule
@@ -89,8 +79,9 @@ const Employeesidebar = ({ }) => {
             <div className="divider" />
           </div>
           <div
-            onClick={() => { history.push("/app/employee/setting") }}
-            className="d-flex align-items-center finance-nav cursor-pointer m-0"
+            onClick={() => {
+              setActiveTab("4");
+            }} className="d-flex align-items-center finance-nav cursor-pointer m-0"
           >
             <SettingsIcon
               style={{
@@ -112,6 +103,9 @@ const Employeesidebar = ({ }) => {
             </TabPane>
             <TabPane tabId="3">
               <Schedule />
+            </TabPane>
+            <TabPane tabId="4">
+              <Employeesetting />
             </TabPane>
           </TabContent>
         </div>

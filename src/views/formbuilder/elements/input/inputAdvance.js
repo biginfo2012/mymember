@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import { Select, Input } from 'antd'
 import { Typography } from '@mui/material';
 
@@ -14,25 +14,16 @@ const InputAdvance = ({ editor }) => {
   };
   const handleFontWeightChange = (newVal) => {
     const element = getSelectedHtmlElement();
-    let attributes = getSelectedHtmlElement().getAttributes();
-    attributes.fontWeight = newVal;
-    getSelectedHtmlElement().setAttributes(attributes);
     element.addStyle({ 'font-weight': newVal })
   }
 
   const handleTextAlignChange = (newVal) => {
     const element = getSelectedHtmlElement();
-    let attributes = getSelectedHtmlElement().getAttributes();
-    attributes.textAlign = newVal;
-    getSelectedHtmlElement().setAttributes(attributes);
     element.addStyle({ 'text-align': newVal })
   }
 
   const handleCornersChange = (newVal) => {
     const element = getSelectedHtmlElement();
-    let attributes = getSelectedHtmlElement().getAttributes();
-    attributes.borderRadius = newVal;
-    getSelectedHtmlElement().setAttributes(attributes);
     element.addStyle({ 'border-radius': newVal })
   }
 
@@ -42,31 +33,26 @@ const InputAdvance = ({ editor }) => {
 
   const handleBackgroundColorChange = (newVal) => {
     const element = getSelectedHtmlElement();
-    let attributes = getSelectedHtmlElement().getAttributes();
-    attributes.background = newVal;
-    getSelectedHtmlElement().setAttributes(attributes);
     element.addStyle({ 'background': newVal })
   }
 
   const handleIconChange = (newVal) => {
-
+    let attributes = getSelectedHtmlElement().getAttributes();
+    attributes.icon = newVal;
+    getSelectedHtmlElement().setAttributes(attributes);
   }
 
   const handleIconStyleChange = (newVal) => {
-
+    let attributes = getSelectedHtmlElement().getAttributes();
+    attributes.iconStyle = newVal;
+    getSelectedHtmlElement().setAttributes(attributes);
   }
 
   const handleIconPositionChange = (newVal) => {
-
-  }
-
-  useEffect(() => {
     let attributes = getSelectedHtmlElement().getAttributes();
-    if(!attributes) {
-      attributes = {};
-      getSelectedHtmlElement().setAttributes(attributes);
-    }
-  })
+    attributes.iconPosition = newVal;
+    getSelectedHtmlElement().setAttributes(attributes);
+  }
   return (
     <div id="inputAdvance">
       <div className='inputwarrper'>
@@ -77,7 +63,6 @@ const InputAdvance = ({ editor }) => {
           >Font Weight</Typography>
         </div>
         <Select className='inputstyle' onChange={handleFontWeightChange}
-                defaultValue={getSelectedHtmlElement().getAttributes().fontWeight}
           getPopupContainer={() => document.getElementById('inputAdvance')}>
           <Option value="normal">Normal</Option>
           <Option value="bold">Bold</Option>
@@ -91,7 +76,6 @@ const InputAdvance = ({ editor }) => {
           >Text Align</Typography>
         </div>
         <Select className='inputstyle'
-                defaultValue={getSelectedHtmlElement().getAttributes().textAlign}
           onChange={handleTextAlignChange}
           getPopupContainer={() => document.getElementById('inputAdvance')}>
           <Option value="left">Left</Option>
@@ -108,7 +92,6 @@ const InputAdvance = ({ editor }) => {
         </div>
         <Select className='inputstyle'
           onChange={handleCornersChange}
-          defaultValue={getSelectedHtmlElement().getAttributes().borderRadius}
           getPopupContainer={() => document.getElementById('inputAdvance')}>
           <Option value="0px">Square Edges</Option>
           <Option value="5px">5px</Option>
@@ -136,9 +119,7 @@ const InputAdvance = ({ editor }) => {
             className='mb-0'
           >BG Color</Typography>
         </div>
-        <Select
-          defaultValue={getSelectedHtmlElement().getAttributes().background}
-          className='inputstyle' onChange={handleBackgroundColorChange} getPopupContainer={() => document.getElementById('inputAdvance')}>
+        <Select className='inputstyle' onChange={handleBackgroundColorChange} getPopupContainer={() => document.getElementById('inputAdvance')}>
           <Option value="white">White</Option>
           <Option value="grey">Grey</Option>
           <Option value="black">Black</Option>
@@ -153,7 +134,9 @@ const InputAdvance = ({ editor }) => {
             className='mb-0'
           >Icon</Typography>
         </div>
-        <Select className='inputstyle' onChange={handleIconChange} getPopupContainer={() => document.getElementById('inputAdvance')}>
+        <Select
+          defaultValue={getSelectedHtmlElement().getAttributes().icon}
+          className='inputstyle' onChange={handleIconChange} getPopupContainer={() => document.getElementById('inputAdvance')}>
           <Option value="none">No Icon</Option>
           <Option value="email">Email Icon</Option>
           <Option value="name">Name Icon</Option>
@@ -168,7 +151,9 @@ const InputAdvance = ({ editor }) => {
             className='mb-0'
           >Icon Style</Typography>
         </div>
-        <Select className='inputstyle' onChange={handleIconStyleChange} getPopupContainer={() => document.getElementById('inputAdvance')}>
+        <Select
+          defaultValue={getSelectedHtmlElement().getAttributes().iconStyle}
+          className='inputstyle' onChange={handleIconStyleChange} getPopupContainer={() => document.getElementById('inputAdvance')}>
           <Option value="black">Black</Option>
           <Option value="white">White</Option>
           <Option value="color">Color</Option>
@@ -181,7 +166,9 @@ const InputAdvance = ({ editor }) => {
             className='mb-0'
           >Icon Position</Typography>
         </div>
-        <Select className='inputstyle' onChange={handleIconPositionChange} getPopupContainer={() => document.getElementById('inputAdvance')}>
+        <Select
+          defaultValue={getSelectedHtmlElement().getAttributes().iconPosition}
+          className='inputstyle' onChange={handleIconPositionChange} getPopupContainer={() => document.getElementById('inputAdvance')}>
           <Option value="right">Right</Option>
           <Option value="left">Left</Option>
         </Select>

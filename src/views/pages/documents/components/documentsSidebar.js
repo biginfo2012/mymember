@@ -17,6 +17,7 @@ import EditDeleteFolder from "./EditAndDeleteFolder";
 import HttpsOutlinedIcon from "@material-ui/icons/HttpsOutlined";
 import ConfirmationModal from "../../../../components/gloabal/confirmation";
 import classnames from "classnames";
+// import EdiztFolder
 
 
 const useStyles = makeStyles(() => ({
@@ -110,6 +111,7 @@ function DocumentSidebar(props) {
                   padding: "0"
                 }}
                 className={
+                  activeSubMainFolder === null &&
                   `${activeSubMainFolder === null &&
                     activeMainFolder?._id === item?._id
                     ? classes.activeMainFolder
@@ -120,6 +122,13 @@ function DocumentSidebar(props) {
                   setActiveMainFolder(item);
                 }}
               >
+                {item?.subFolder?.length > 0 ? (
+                  <ExpandMoreIcon fontSize="small" onClick={() => {
+                    handleMainFolder(item);
+                  }} />
+                ) : (
+                  <div className="ml-1"></div>
+                )}
                 <Button
                   className={classes.folderBtn}
                   fullWidth
@@ -141,9 +150,10 @@ function DocumentSidebar(props) {
                     {item?.folderName}
                   </span>
                 </Button>
+
                 {userinformation?.role === 1 ? (
                   <EditDeleteFolder
-                    editfolder={<EditFolder folder={item} />}
+                    // editfolder={<EdiztFolder folder={item} />}
                     OpenAlert={handleDeleteId}
                     item={item}
                     FolderType="folder"

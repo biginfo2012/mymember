@@ -28,11 +28,11 @@ const EditDeleteFolder = (props) => {
     };
     return (
         <div>
-            <div className="ml-1">
+            <div className="d-flex align-items-center">
                 <IconButton
-                    className='rounded-circle'
+                    className='rounded-circle p-0'
                     sx={{
-                        background: "#e6f8ff"
+                        color:"#000"
                     }}
                     onClick={handleClick}
                 >
