@@ -274,6 +274,76 @@ export const UPDATE_FORM_DATA = (id, html, css, js, data) => {
     }
 }
 
+//creat automation
+export const CREATE_AUTOMATION = (payload) => {
+  let url = `${domain}/api/forms/automation/new/${getUserId()}`
+  return async (dispatch) => {
+    try {
+      let response = await axios.post(url, payload, { headers: getHeaders() })
+      return response
+    }
+    catch (error) {
+
+      toast.error(error.message.replace(/\\/g, ""), toastCSS())
+
+      dispatch({
+        type: "CREATE_AUTOMATION_FAIL",
+        payload: error.response
+      })
+    }
+  }
+}
+//get automations
+export const GET_AUTOMATIONS = (formId) => {
+  let url = `${domain}/api/forms/automations/${formId}`;
+  return async (dispatch) => {
+    try {
+      let res = await axios.get(url, { headers: getHeaders() });
+      return res.data.uAutomations
+    } catch (error) {
+
+      toast.error(error.message.replace(/\\/g, ""), toastCSS());
+
+      dispatch({
+        type: "GET_AUTOMATION_FAIL",
+        payload: error.response
+      })
+    }
+  }
+}
+//delete automation
+export const DELETE_AUTOMATION = (id) => {
+  let url = `${domain}/api/forms/automation/delete/${id}`
+  return async (dispatch) => {
+    try {
+      let res = await axios.delete(url, { headers: getHeaders() })
+      return res;
+    } catch (error) {
+      toast.error(error.message.replace(/\\/g, ""), toastCSS())
+    }
+  }
+}
+//update automation
+export const UPDATE_AUTOMATION_DATA = (id, data) => {
+  let url = `${domain}/api/forms/automation/update/${id}`
+  return async (dispatch) => {
+    try {
+
+      let res = await axios.patch(url, { data: data }, { headers: getHeaders() })
+      return res
+      // if (res.data.success) {
+      //   dispatch({
+      //     type: "UPDATE_AUTOMATION_SUCCESS",
+      //     payload: res.data.data,
+      //   });
+      // }
+    } catch (error) {
+
+      toast.error(error.message.replace(/\\/g, ""), toastCSS());
+    }
+  }
+}
+
 export const UPDATE_FORM_SETTING = async (id, title, enabled) => {
     let url = `${domain}/api/forms/update/settings/${id}`;
     try {

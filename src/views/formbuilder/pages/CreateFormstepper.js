@@ -62,7 +62,7 @@ const CreateFormstepper = (props) => {
 
     const getselectedformdata = async (state) => {
         const request = await dispatch(GET_SINGLE_FUNNLE(state?._id))
-        if(request?.data.forms.length > 0) {
+        if(request?.data?.forms?.length > 0) {
           request.data.formId = request.data.forms[0]._id
         }
         await setState(request?.data)

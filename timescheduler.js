@@ -19,7 +19,7 @@ class App extends React.Component {
             <Inject services={[Week, WorkWeek, TimelineViews]}/>
         </ScheduleComponent>;
     }
-}
-;
+};
+
 const root = ReactDOM.createRoot(document.getElementById("schedule"));
 root.render(<App />);

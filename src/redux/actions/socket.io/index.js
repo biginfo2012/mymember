@@ -6,7 +6,8 @@ export const socketIo = io(process.env.REACT_APP_BASE_URL, {
 socketIo.connect();
 
 socketIo.on("connect", () => {
-  console.log("connected to socket server");
+  socketIo.emit("adminRegister", localStorage.getItem('user_id'));
+  console.log("connected to socket server", baseUrl);
 });
 
 socketIo.on("connect_error", (err) => {
@@ -32,6 +33,7 @@ export const SOCKET_GET_MEMBER_CHAT = (Info) => {
 };
 
 export const SOCKET_EMIT_JOIN_ROOM_SYSTEM_TYPE = (room_type) => {
+  console.log("joinTextChatRoom ", room_type);
   socketIo.emit("joinTextChatRoom", room_type);
   return
 };

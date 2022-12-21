@@ -318,7 +318,8 @@ const Publishd = (props) => {
               <Salses />
             </TabPanel>
             <TabPanel value='4' className="p-0">
-              <Automations />
+              {/*change to implement automation logic*/}
+              <Automations formId={state?.formId}/>
             </TabPanel>
             <TabPanel value='5' className="p-0">
               <Setting

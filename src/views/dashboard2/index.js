@@ -79,7 +79,7 @@ const Dashboard2 = () => {
 
         </Col>
         <Col xs="12" sm="6">
-          <div className="section-title">Payment Due</div>
+          <div className="section-title">Payment Due </div>
           <Grid container spacing={1}>
             <Grid item sm={4} md={4} lg={4}>
               <Card className="single-stat-card">

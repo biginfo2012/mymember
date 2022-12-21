@@ -6,7 +6,7 @@ import {
 } from '@mui/material'
 import optin from "../../../../src/assets/img/optin.png"
 import forms from "../../../../src/assets/img/forms.png"
-import salses from "../../../../src/assets/img/sales.png"
+// import salses from "../../../../src/assets/img/sales.png"
 import webinar from "../../../../src/assets/img/webinar.png"
 import "./home-module.scss"
 import React, { useEffect, useState } from 'react'
@@ -30,7 +30,11 @@ const Funnelinformation = (props) => {
     error
   } = props
 
-  const imgArr = [optin, salses, webinar, forms]
+  const imgArr = [optin,
+    
+    // salses,
+    
+    webinar, forms]
 
   const [activeType, setActiveType] = React.useState(0);
   const [selectsmartlist, setselectsmartlist] = useState(null)

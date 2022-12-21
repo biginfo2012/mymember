@@ -273,7 +273,7 @@ export const SENT_EMAIL_COMPOSE = (task) => {
       }
     );
     if (response.data && response.status === 200) {
-      
+
     } else {
       console.log("Something went wrong");
     }
@@ -1190,6 +1190,46 @@ export const DELETE_EXPANSES_FOR_ADMIN = (id) => {
       if (response.data.success) {
         dispatch(GET_EXPENSES_LIST_FOR_ADMIN());
         toast.info(response.data.msg, toastCss());
+      }
+    } catch (error) {
+      toast.error(error.message.replace(/\\/g, ""), toastCss());
+    }
+  };
+};
+
+
+export const ADD_INVOICE = (payload) => {
+  let url = `${'https://d228-116-206-203-171.in.ngrok.io'}/api/finance/finance_invoice/${getUserId()}`;
+  return async () => {
+    try {
+      let response = await axios.post(url,
+        payload,
+        {
+          headers: getHeaders(),
+        });
+      if (response.data.success) {
+        toast.success(response?.data?.message, toastCss())
+        return true
+      }
+    } catch (error) {
+      toast.error(error.message.replace(/\\/g, ""), toastCss());
+    }
+  };
+};
+
+export const GET_ALL_INVOICE = () => {
+  let url = ` https://d228-116-206-203-171.in.ngrok.io/api/finance/finance_invoice/${getUserId()}`;
+  return async (dispatch) => {
+    try {
+      let response = await axios.get(url,
+        {
+          headers: getHeaders(),
+        });
+      if (response.status === 200) {
+        dispatch({
+          type: "GET_ALL_INVOICE",
+          payload: response.data,
+        });
       }
     } catch (error) {
       toast.error(error.message.replace(/\\/g, ""), toastCss());

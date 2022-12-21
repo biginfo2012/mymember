@@ -3,7 +3,7 @@ const initState = {
   total: 0,
   list: [],
   isFetching: false,
-  
+
 };
 
 export const ccListReducer = (state = initState, action) => {
@@ -600,7 +600,7 @@ export const IncomeReducer = (state = incomeInitialState, action) => {
           loading: false,
         },
       };
-      
+
 
     default:
       return state;
@@ -856,3 +856,17 @@ export const pnlReducer = (state = pnlInitialState, action) => {
       return state;
   }
 };
+
+
+
+const invoice = {
+  getallinvoice: []
+};
+export const invoiceReducer = (state = invoice, action) => {
+  switch (action.type) {
+    case "GET_ALL_INVOICE":
+      return { ...state, getallinvoice: action.payload };
+    default:
+      return state;
+  }
+}

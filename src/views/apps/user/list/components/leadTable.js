@@ -129,6 +129,7 @@ export const RowSkeleton = (props) => {
   );
 };
 const StudentTable = (props) => {
+  console.log("props in Student table",props);
   const {
     listofStudentdata,
     SELECTED_TEST_DATA,
@@ -246,6 +247,7 @@ const StudentTable = (props) => {
 
   const handleSelectAutoComp = (e, newValue, name) => {
     let payload = FilterPayload;
+
     if (name === "programName") {
       setFilterPayload({
         ...FilterPayload,
@@ -485,6 +487,7 @@ const StudentTable = (props) => {
                   labelName={"Rank Name"}
                   keyName="rank_name"
                   data={selectProgram[0] || []}
+                  // {console.log(selectProgram[0])}
                   handleSelect={handleSelectAutoComp}
                 />
               </Grid>

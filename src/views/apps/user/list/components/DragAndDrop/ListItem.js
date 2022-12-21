@@ -125,7 +125,7 @@ const ListItem = (props) => {
               <Box sx={{ display: "block", width: "61%" }}>
                 <Typography
                   className={classes.classTypography}
-                >{`Entry Date: ${moment(item?.createdAt).format(
+                >{`Entry Date : ${moment(item?.createdAt).format(
                   "MM/DD/YYYY"
                 )}`}</Typography>
                 {/*${moment(item?.createdAt).format(

@@ -12,7 +12,7 @@ import DataTable from "react-data-table-component";
 import { Button, Chip } from "@material-ui/core";
 import NoRankSvg from "../../../../assets/img/not_found.jpg";
 
-const customStyles = {
+export const customStyles = {
   headCells: {
     style: {
       fontSize: "1rem",

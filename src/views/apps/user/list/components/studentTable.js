@@ -118,6 +118,7 @@ export const RowSkeleton = (props) => {
   );
 };
 const StudentTable = (props) => {
+  
   const {
     listofStudentdata,
     SELECTED_TEST_DATA,
@@ -224,8 +225,11 @@ const StudentTable = (props) => {
         program: getFilterValueFromList(newValue, name),
       });
       payload["program"] = getFilterValueFromList(newValue, name);
+      // setSelectedProgram(newValue.map((i) => console.log("i in newValue",i)));
+
       setSelectedProgram(newValue.map((i) => i?.program_rank || []));
     } else if (name === "rank_name") {
+      console.log("rank_name =",newValue, name);
       payload["current_rank_name"] = getFilterValueFromList(newValue, name);
       setFilterPayload({
         ...FilterPayload,
@@ -362,11 +366,11 @@ const StudentTable = (props) => {
       cell: (row) => (
         <div>
           {StudentTypeOrInterest === "Active Trial" || StudentTypeOrInterest === "Former Trial" ?
-            row?.membership_details.slice(-1)[0]?.membership_type ||
+            row?.membership_details?.slice(-1)[0]?.membership_type ||
             row?.data?.membership_type ||
             "N/A"
             :
-            row?.membership_details.slice(-1)[0]?.membership_type ||
+            row?.membership_details?.slice(-1)[0]?.membership_type ||
             row?.data?.membership_type ||
             "N/A"}
         </div>

@@ -33,6 +33,7 @@ import {
   expenseReducer,
   IncomeReducer,
   pnlReducer,
+  invoiceReducer
 } from "./finance";
 import { adminfinacereducer } from "./admin/finace";
 import { dashboard2Reducer } from "./dashboard2";
@@ -43,12 +44,14 @@ import { templateReducerAdmin } from "./admin/Text";
 import { FormBuilderReducer } from "./formbuilder/index"
 //New Text Chat
 import { V2textChatReducer } from "./marketing/V2TextChat";
-
+import { livechatReducer } from './marketing/livechat'
+import { ticketReducer } from './marketing/ticket'
 // Employee sub-user
 import { EmployeeSubUserReducer } from "./employee_subusers_roles/index";
 
 import { chatUsersReducer } from "./chatUsers";
 import { adminDashboardReducer } from "./admin/adminDashboard";
+import { WorkHistoryReducer } from "./work-history";
 
 const rootReducer = combineReducers({
   docuSignReducer: docuSignReducer,
@@ -95,7 +98,11 @@ const rootReducer = combineReducers({
   employeeSubUser: EmployeeSubUserReducer,
   templateReducerAdmin: templateReducerAdmin,
   chatUsers: chatUsersReducer,
-  FormBuilderReducer: FormBuilderReducer
+  livechat: livechatReducer,
+  FormBuilderReducer: FormBuilderReducer,
+  ticket: ticketReducer,
+  invoiceReducer: invoiceReducer,
+  workhistory: WorkHistoryReducer,
 });
 
 export default rootReducer;

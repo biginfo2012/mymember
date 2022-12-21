@@ -2,6 +2,7 @@
   font-size: 16px;
   font-weight: 500;
   margin-bottom: 10px;
+  text-align: start;
 }
 .dash-single-stat-grid {
   display: grid;
@@ -12,7 +13,14 @@
   box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.07);
   border-radius: 7px;
   padding: 10px;
+  display: flex;
+  flex-direction: column;
 }
+
+.single-stat-card span{
+  text-align: start;
+}
+
 .mr-10 {
   margin-right: 10px;
 }

@@ -298,3 +298,25 @@ export const GET_SUB_USERS_ASSIGNEE = () => {
     }
   };
 };
+
+export const GET_PERSONAL_EMPLOYEE = () => {};
+
+export const CREATE_PERSONAL_EMPLOYEE = () => {
+  return async (dispatch) => {
+    try {
+      let response = await axios.post(
+        `${baseUrl}/api/sub-users/permissions/create/${getUserId()}`,
+        { headers: getHeaders() }
+      );
+      if (response?.data?.success) {
+        dispatch(GET_PERSONAL_EMPLOYEE());
+        return { msg: "done", success: true };
+      } else {
+        toast.error(response?.data?.msg, toastCSS());
+        return { msg: response?.data?.msg, success: false };
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};

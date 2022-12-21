@@ -9,18 +9,17 @@ import InputAdornment from '@mui/material/InputAdornment';
 import React from 'react'
 import toadyssales from "../../../../assets/img/toadyssales.png"
 import lastweeksales from "../../../../assets/img/lastweeksales.png"
-import sales from "../../../../assets/img/sales.png"
+// import sales from "../../../../assets/img/sales.png"
 import { Space, Table } from 'antd';
 import 'antd/dist/antd.css';
 import SearchIcon from '@mui/icons-material/Search';
 
 const data = [
-  { name: "Total Sales", icon: sales, total: "123" },
+  { name: "Total Sales", icon: "sales", total: "123" },
   { name: "Today's Sales", icon: toadyssales, total: "123" },
   { name: "Last Week Sales", icon: lastweeksales, total: "123" },
-
-
 ]
+
 const Salses = () => {
   return (
     <div className='w-100'>
@@ -80,7 +79,6 @@ const Salses = () => {
                   </div>
                 </Card>
               </Grid>
-
             )
           })
         }

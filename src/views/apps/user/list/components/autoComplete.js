@@ -38,17 +38,17 @@ export default function CheckboxesTags(props) {
         disableClearable
         disableCloseOnSelect
         getOptionLabel={(option) => option[keyName]}
-        renderOption={(option, { selected }) => (
-          <React.Fragment>
-            <Checkbox
-              icon={icon}
-              checkedIcon={checkedIcon}
-              style={{ marginRight: 8 }}
-              checked={selected}
-            />
-            {option[keyName]}
-          </React.Fragment>
-        )}
+        // renderOption={(option, { selected }) => (
+        //   <React.Fragment>
+        //     {/* <Checkbox
+        //       icon={icon}
+        //       checkedIcon={checkedIcon}
+        //       style={{ marginRight: 8 }}
+        //       checked={selected}
+        //     /> */}
+        //     {option[keyName]}
+        //   </React.Fragment>
+        // )}
         renderInput={(params) => (
           <TextField {...params} variant="outlined" placeholder={labelName} />
         )}

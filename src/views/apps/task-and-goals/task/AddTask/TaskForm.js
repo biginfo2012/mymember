@@ -41,6 +41,10 @@ const TaskForm = (props) => {
     GET_SUB_USERS_ASSIGNEE,
     CREATE_TASK_WITHOUT_GONE_INTO_FOLDER,
   } = props;
+
+  console.log(taskFolderList)
+
+
   const toastCSS = () => {
     return {
       position: "bottom-right",

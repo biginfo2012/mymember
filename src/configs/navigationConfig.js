@@ -59,7 +59,7 @@ const SchoolNavigationConfig = [
       {
         role: 0,
         id: "nested12",
-        title: "Active Trials",
+        title: "Active Trials ",
         type: "active_trial",
         background: "#42a8e0",
         icon: <BarChartIcon style={{ fontSize: "1.5em" }} className="ml-1" />,
@@ -275,10 +275,19 @@ const SchoolNavigationConfig = [
       {
         role: 0,
         id: "nested31",
-        title: "Chats",
+        title: "Ticket",
         icon: <TextsmsIcon style={{ fontSize: "1.5em" }} className="ml-1" />,
         permissions: ["admin", "editor"],
-        navLink: "/company/marketing/chatbot",
+        navLink: "/app/ticket/ticketview/overview/all",
+      },
+      {
+        role: 0,
+        id: "nested32",
+        title: "LiveChat",
+        icon: <TextsmsIcon style={{ fontSize: "1.5em" }} className="ml-1" />,
+        permissions: ["admin", "editor"],
+        // navLink: "/company/marketing/chatbot",
+        navLink: "/app/livechat/chat",
       },
       {
         role: 0,

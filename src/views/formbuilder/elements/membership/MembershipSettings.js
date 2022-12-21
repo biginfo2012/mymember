@@ -30,6 +30,7 @@ const ProductSettings = (props) => {
   const getSelectedHtmlElement = () => {
     return editor.getSelected();
   };
+  
   const handleSelectStudent = (e, newValue, keyName) =>{
     console.log(newValue);
     setStudentData(newValue);

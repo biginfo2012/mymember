@@ -32,7 +32,9 @@ class EditorContainer extends Component {
   render() {
     const { editorState } = this.state;
     return (
-      <div>
+      <div style={{
+        border: "1px solid #b8c2cc", //for border
+      }}>
         <Editor
           editorState={this.props.editorState}
           wrapperClassName="editorWrapper"
@@ -40,7 +42,8 @@ class EditorContainer extends Component {
           onEditorStateChange={editorState => this.onEditorStateChange(editorState)}
           style={{
             widht: "100%",
-            height: "50vh"
+            height: "50vh",
+            border: "1px solid #b8c2cc",
           }}
           toolbar={{
             options: ['inline', 'blockType', 'image', 'fontSize', 'list', 'textAlign', 'history'],
