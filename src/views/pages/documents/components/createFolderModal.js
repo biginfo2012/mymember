@@ -18,9 +18,9 @@ class ModalForm extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <div className="section-header-pd">
-          <span className="section-title m-1">Folder</span> 
-          <span><AddIcon onClick={this.toggleModal} /></span>
+        <div className="mb-0 mt-1 d-flex justify-content-between">
+          <h4 className="ml-1">Folder</h4> 
+          <AddIcon className="" onClick={this.toggleModal} />
         </div>
         <Modal
           isOpen={this.state.modal}

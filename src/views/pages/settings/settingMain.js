@@ -20,6 +20,7 @@ import Billing1Table from "./billing/billing1Table";
 import General1Form from "./general1/general1Form";
 import SettingSmartlistMain from "./Smratlist/SettingSmartlistMain";
 import ChatbotScripts from "./chatbot/scripts";
+import LiveChatScripts from "./livechat";
 import { List, ListItem } from "@mui/material";
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import ScheduleOutlinedIcon from '@mui/icons-material/ScheduleOutlined';
@@ -32,6 +33,7 @@ import CommentOutlinedIcon from '@mui/icons-material/CommentOutlined';
 import { makeStyles } from "@material-ui/core";
 import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined';
 import NotificationSetting from "./NotificationSetting/NotificationSetting";
+import BuyingHistory from "./BuyingHistory/BuyingHistory";
 
 class UserEdit extends React.Component {
   state = {
@@ -219,6 +221,37 @@ class UserEdit extends React.Component {
                     </h5>
                   </div>
                 </ListItem>
+                <ListItem button
+                  style={{ background: (this.state.activeTab === "9" ? "#eaf4fe" : "#fff"), color: (this.state.activeTab === "10" ? "#2796f3" : "#878787"), paddingTop: "10px" }}
+                  className={`d-flex justify-content-start m-0 ${classnames({
+                    active: this.state.activeTab === "10",
+                  })}`}
+                  onClick={() => {
+                    this.toggle("10");
+                  }} >
+                  <div className="d-flex">
+                    <CommentOutlinedIcon />
+                    <h5 className="text-capitalize ml-1" style={{ color: (this.state.activeTab === "10" ? "#2796f3" : "#878787") }}>
+                      <b>LiveChat Scripts</b>
+                    </h5>
+                  </div>
+                </ListItem>
+
+                <ListItem button
+                  style={{ background: (this.state.activeTab === "12" ? "#eaf4fe" : "#fff"), color: (this.state.activeTab === "12" ? "#2796f3" : "#878787"), paddingTop: "10px" }}
+                  className={`d-flex justify-content-start m-0 ${classnames({
+                    active: this.state.activeTab === "12",
+                  })}`}
+                  onClick={() => {
+                    this.toggle("12");
+                  }} fullWidth>
+                  <div className="d-flex">
+                    <CommentOutlinedIcon />
+                    <h5 className="text-capitalize ml-1" style={{ color: (this.state.activeTab === "12" ? "#2796f3" : "#878787") }}>
+                      <b>Buy History</b>
+                    </h5>
+                  </div>
+                </ListItem>
               </List>
             </Card>
           </Col>
@@ -271,6 +304,12 @@ class UserEdit extends React.Component {
                   </TabPane>
                   <TabPane tabId={"9"}>
                     <ChatbotScripts />
+                  </TabPane>
+                  <TabPane tabId={"10"}>
+                    <LiveChatScripts />
+                  </TabPane>
+                  <TabPane tabId={"12"}>
+                  <BuyingHistory/>
                   </TabPane>
                 </TabContent>
               </CardBody>

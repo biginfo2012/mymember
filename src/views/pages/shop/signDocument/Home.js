@@ -34,9 +34,9 @@ import NotesIcon from '@mui/icons-material/Notes';
 import TaskAltIcon from '@mui/icons-material/TaskAlt';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty';
-import { CustomInput } from 'reactstrap';
 import MenuItem from '@mui/material/MenuItem';
-
+import RedoIcon from '@mui/icons-material/Redo';
+import UndoIcon from '@mui/icons-material/Undo';
 const { Option } = Select
 
 const urlGStorage = process.env.REACT_APP_GOOGLE_STORAGE_PATH
@@ -175,14 +175,13 @@ function Home(props) {
               </CardContent>
             </Card>
           </Grid>
-          <Grid item sm={2} md={2} lg={2}>
+          <Grid item sm={2} md={2} lg={2} className="pr-4">
             <div
               style={{
                 borderRadius: "0.4em",
-                // height: "3em",
+                height: "4vh",
                 border: "1px solid #b8c2cc",
                 width: "100%",
-                // marginTop: "3px",
               }}
             >
               <Select
@@ -283,7 +282,7 @@ function Home(props) {
             </div>
           </Grid> */}
 
-          <Grid style={{ width: '100%' }} item sm={12} md={2} lg={2}>
+          <Grid item sm={2} md={2} lg={2} className="pr-4">
             <Grid container spacing={1}>
               <Grid item sm={2} md={2} lg={2}>
                 <Card style={{ backgroundColor: "#e9e9e9", minHeight: "93vh" }}>
@@ -308,112 +307,112 @@ function Home(props) {
                       <div className='mr-1 ' style={{ backgroundColor: "#fcd55a", borderRadius: "4px", padding: "5px" }}>
                         <BorderColorIcon />
                       </div>
-                      <p style={{ fontSize: "20px" }}>Signature</p>
+                      <p style={{ fontSize: "16px" }}>Signature</p>
                     </ListItem>
                     <ListItem>
                       <div className='mr-1 ' style={{ backgroundColor: "#fcd55a", borderRadius: "4px", padding: "5px" }}>
                         <HourglassEmptyIcon />
                       </div>
-                      <p style={{ fontSize: "20px" }}>Initial</p>
+                      <p style={{ fontSize: "16px" }}>Initial</p>
                     </ListItem>
                     <ListItem>
                       <div className='mr-1 ' style={{ backgroundColor: "#fcd55a", borderRadius: "4px", padding: "5px" }}>
                         <ApprovalIcon />
                       </div>
-                      <p style={{ fontSize: "20px" }}>Stamp</p>
+                      <p style={{ fontSize: "16px" }}>Stamp</p>
                     </ListItem>
                     <ListItem>
                       <div className='mr-1 ' style={{ backgroundColor: "#fcd55a", borderRadius: "4px", padding: "5px" }}>
                         <CalendarTodayIcon />
                       </div>
-                      <p style={{ fontSize: "20px" }}>Date Signed</p>
+                      <p style={{ fontSize: "16px" }}>Date Signed</p>
                     </ListItem>
                     <Divider />
                     <ListItem>
                       <div className='mr-1 ' style={{ backgroundColor: "#fcd55a", borderRadius: "4px", padding: "5px" }}>
                         <PersonIcon />
                       </div>
-                      <p style={{ fontSize: "20px" }}>Name</p>
+                      <p style={{ fontSize: "16px" }}>Name</p>
                     </ListItem>
                     <ListItem>
                       <div className='mr-1 ' style={{ backgroundColor: "#fcd55a", borderRadius: "4px", padding: "5px" }}>
                         <EmailIcon />
                       </div>
-                      <p style={{ fontSize: "20px" }}>Email</p>
+                      <p style={{ fontSize: "16px" }}>Email</p>
                     </ListItem>
                     <ListItem>
                       <div className='mr-1 ' style={{ backgroundColor: "#fcd55a", borderRadius: "4px", padding: "5px" }}>
                         <BusinessIcon />
                       </div>
-                      <p style={{ fontSize: "20px" }}>Company</p>
+                      <p style={{ fontSize: "16px" }}>Company</p>
                     </ListItem>
                     <ListItem>
                       <div className='mr-1 ' style={{ backgroundColor: "#fcd55a", borderRadius: "4px", padding: "5px" }}>
                         <WorkIcon />
                       </div>
-                      <p style={{ fontSize: "20px" }}>Title</p>
+                      <p style={{ fontSize: "16px" }}>Title</p>
                     </ListItem>
                     <Divider />
                     <ListItem>
                       <div className='mr-1 ' style={{ backgroundColor: "#fcd55a", borderRadius: "4px", padding: "5px" }}>
                         <TitleIcon />
                       </div>
-                      <p style={{ fontSize: "20px" }}>Text</p>
+                      <p style={{ fontSize: "16px" }}>Text</p>
                     </ListItem>
                     <ListItem>
                       <div className='mr-1 ' style={{ backgroundColor: "#fcd55a", borderRadius: "4px", padding: "5px" }}>
                         <CheckBoxOutlinedIcon />
                       </div>
-                      <p style={{ fontSize: "20px" }}>Checkbox</p>
+                      <p style={{ fontSize: "16px" }}>Checkbox</p>
                     </ListItem>
                     <ListItem>
                       <div className='mr-1 ' style={{ backgroundColor: "#fcd55a", borderRadius: "4px", padding: "5px" }}>
                         <ArrowDropDownCircleOutlinedIcon />
                       </div>
-                      <p style={{ fontSize: "20px" }}>DropDown</p>
+                      <p style={{ fontSize: "16px" }}>DropDown</p>
                     </ListItem>
                     <ListItem>
                       <div className='mr-1 ' style={{ backgroundColor: "#fcd55a", borderRadius: "4px", padding: "5px" }}>
                         <RadioButtonCheckedIcon />
                       </div>
-                      <p style={{ fontSize: "20px" }}>Radio</p>
+                      <p style={{ fontSize: "16px" }}>Radio</p>
                     </ListItem>
                     <ListItem>
                       <div className='mr-1 ' style={{ backgroundColor: "#fcd55a", borderRadius: "4px", padding: "5px" }}>
                         <PaymentsOutlinedIcon />
                       </div>
-                      <p style={{ fontSize: "20px" }}>Payment Item</p>
+                      <p style={{ fontSize: "16px" }}>Payment Item</p>
                     </ListItem>
                     <Divider />
                     <ListItem>
                       <div className='mr-1 ' style={{ backgroundColor: "#fcd55a", borderRadius: "4px", padding: "5px" }}>
                         <FunctionsIcon />
                       </div>
-                      <p style={{ fontSize: "20px" }}>Formula</p>
+                      <p style={{ fontSize: "16px" }}>Formula</p>
                     </ListItem>
                     <ListItem>
                       <div className='mr-1 ' style={{ backgroundColor: "#fcd55a", borderRadius: "4px", padding: "5px" }}>
                         <AttachFileIcon />
                       </div>
-                      <p style={{ fontSize: "20px" }}>Attachment</p>
+                      <p style={{ fontSize: "16px" }}>Attachment</p>
                     </ListItem>
                     <ListItem>
                       <div className='mr-1 ' style={{ backgroundColor: "#fcd55a", borderRadius: "4px", padding: "5px" }}>
                         <NotesIcon />
                       </div>
-                      <p style={{ fontSize: "20px" }}>Note</p>
+                      <p style={{ fontSize: "16px" }}>Note</p>
                     </ListItem>
                     <ListItem>
                       <div className='mr-1 ' style={{ backgroundColor: "#fcd55a", borderRadius: "4px", padding: "5px" }}>
                         <TaskAltIcon />
                       </div>
-                      <p style={{ fontSize: "20px" }}>Approve</p>
+                      <p style={{ fontSize: "16px" }}>Approve</p>
                     </ListItem>
                     <ListItem>
                       <div className='mr-1 ' style={{ backgroundColor: "#fcd55a", borderRadius: "4px", padding: "5px" }}>
                         <HighlightOffIcon />
                       </div>
-                      <p style={{ fontSize: "20px" }}>Decline</p>
+                      <p style={{ fontSize: "16px" }}>Decline</p>
                     </ListItem>
                   </List>
                 </Card>
@@ -457,15 +456,15 @@ function Home(props) {
                     <div className=' w-100'>
                       <div className='d-flex m-1'>
                         <h4>1.</h4>
-                        <img className='ml-1' alt='' src={doctImage1} style={{ height: "30vh", width: "100%" }} />
+                        <img className='ml-1' alt='' src={doctImage1} style={{ height: "25vh", width: "100%" }} />
                       </div>
                       <div className='d-flex m-1'>
                         <h4>2.</h4>
-                        <img className='ml-1' alt='' src={doctImage2} style={{ height: "30vh", width: "100%" }} />
+                        <img className='ml-1' alt='' src={doctImage2} style={{ height: "25vh", width: "100%" }} />
                       </div>
                       <div className='d-flex m-1'>
                         <h4>3.</h4>
-                        <img className='ml-1' alt='' src={doctImage3} style={{ height: "30vh", width: "100%" }} />
+                        <img className='ml-1' alt='' src={doctImage3} style={{ height: "25vh", width: "100%" }} />
                       </div>
                       {/* <img alt='' src={doctImage2} style={{ height: "30vh", width: "100%" }} />
                       <img alt='' src={doctImage3} style={{ height: "30vh", width: "100%" }} /> */}

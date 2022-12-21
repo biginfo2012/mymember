@@ -32,9 +32,9 @@
 .uploadFiles > span {
   height: 200px;
 }
-.MuiDialog-paperWidthSm {
+/* .MuiDialog-paperWidthSm {
   max-width: 100% !important;
-}
+} */
 
 /* 
 .tss-tlx3x1-MUIDataTableToolbar-root,
@@ -136,6 +136,19 @@
   border-radius: 50%;
   background-color: rgb(125, 244, 117);
   border: 2px solid rgb(125, 244, 117);
+}
+
+.radioDeraft::after,
+.radioDeraft::before {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  margin-top: 2px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: #b8c2cc;
+  border: 2px solid #b8c2cc;
 }
 
 .radioRed::after,

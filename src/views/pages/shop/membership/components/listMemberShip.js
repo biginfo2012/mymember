@@ -42,6 +42,7 @@ function hexToRGB(hex, alpha) {
 const ListMemberShip = (props) => {
   const IsSmallDevise = useMediaQuery("(max-width:1224px)");
   const { membershipList, folderId, userinformation, getstudentInfoById, GET_ACTIVE_STUDENT_INFO } = props;
+  console.log(membershipList)
   const { studentId } = useParams();
   const [itemToDelete, setitemToDelete] = useState({
     id: null,

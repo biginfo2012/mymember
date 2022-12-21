@@ -5,7 +5,7 @@ import { toast } from "react-toastify"
 // import Input from "react-select/src/components/Input"
 import { CircularProgress } from "@material-ui/core";
 import { loadStripe } from "@stripe/stripe-js"
-//import CheckoutForm from '../../stripePayments/CheckoutForm';
+// import CheckoutForm from '../../stripePayments/CheckoutForm';
 import {
   Row, Col, CardBody, Card, CustomInput, Button,
   Modal, ModalBody, Input, FormGroup, ModalFooter
@@ -13,16 +13,19 @@ import {
 import "../../../../assets/scss/pages/users.scss"
 import { toastCSS } from "../../../../redux/actions/admin/emails"
 import DepositForm from "./depositForm"
-import { Elements } from "@stripe/react-stripe-js";
+
 import axios from "axios";
 import { useSelector } from "react-redux";
 import AvailabeSearchNum from "../../settings/AvailableNumber/AvailabeSearchNum";
 
-let baseUrl = process.env.REACT_APP_BASE_URL;
+
+// let baseUrl = process.env.REACT_APP_BASE_URL;
+let baseUrl = "http://localhost:3001"
 const PUBLIC_KEY = "pk_test_51KRZKuEqCRWTYE4oajfAApSgOqzCU9ruLRd7zwW10FEX8B3W4mLTnnloeN14ukofwhWSnZeAPgTQxIIGPsZPbXd400qKPcMKF5"
 // const PUBLIC_KEY = process.env.STRIPE_PUBLISHABLE_KEY
 const stripeTestPromise = loadStripe(PUBLIC_KEY);
 const TopProgram = () => {
+
   const [loader, setLoader] = useState(false)
   let { userinformation } = useSelector(state => state.userinfo)
   const [model, setModal] = useState(false);
@@ -48,22 +51,27 @@ const TopProgram = () => {
   const [PurchaseModel, setPurchaseModel] = useState(false)
   // for showing availabe credits and balance
   const [BalanceInfo, setBalanceInfo] = useState({})
-  // setSelectAny
+  // setSelectAny 
   const [SelectAny, setSelectAny] = useState(false)
   const [SelectAnySubscriptions, setSelectAnySubscriptions] = useState(false)
 
 
   useEffect(() => {
     const init = async () => {
-      let user_id = await localStorage.getItem("user_id");
-      let ndata = {
-        user_id: user_id
-      }
-      let data = await axios.post(`${baseUrl}/api/balanceInfo`, ndata)
-      console.log("daara balance and credits", data?.data?.data)
-      if (data?.data?.success) {
-        // data?.data?.data
-        setBalanceInfo(data?.data?.data)
+      try {
+        let user_id = await localStorage.getItem("user_id");
+        let ndata = {
+          user_id: user_id
+        }
+
+        let data = await axios.post(`${baseUrl}/api/balanceInfo`, ndata)
+
+        if (data?.data?.success) {
+
+          setBalanceInfo(data?.data?.data)
+        }
+      } catch (error) {
+        console.log("error", error);
       }
     }
     init()
@@ -72,8 +80,8 @@ const TopProgram = () => {
   const BuyCreditsBtn = async () => {
     let user_id = await localStorage.getItem("user_id");
 
-    let year = exp_month.split('-')[0]
-    let month = exp_month.split('-')[1]
+    let year = exp_month?.split('-')[0]
+    let month = exp_month?.split('-')[1]
     if (!buyCredits) {
       toast.error("Please Select deposit Amount ", toastCSS());
     }
@@ -175,6 +183,7 @@ const TopProgram = () => {
     }
   }
   const NumberBuyCreditsBtn = async () => {
+    console.log("number here", selectedNumNew);
     let user_id = await localStorage.getItem("user_id");
     try {
       if (!selectedNumNew) {
@@ -183,6 +192,7 @@ const TopProgram = () => {
         toast.error("Please Deposit Funds First ", toastCSS());
       }
       else {
+
         const DepositAmount = async () => {
           let newData = {
             wallet: userinformation?.is_Already_Purchase ? 10 : 0,
@@ -263,18 +273,22 @@ const TopProgram = () => {
   useEffect(() => {
 
     const init = async () => {
+    
       try {
         setLoader(true)
         let data = await axios.post(`${baseUrl}/api/availablePhoneNumbers`, { value: region })
-        setNum_List(data.data.data)
+       
+        setNum_List(data?.data?.data)
         setLoader(false)
       } catch (error) {
-        console.log('errrrrr', error)
+        
         setLoader(false)
       }
     }
     init()
   }, [region])
+
+
   const handleByRegion = async (e) => {
     setPurchaseModel(true)
     setSelectAny(true)
@@ -318,6 +332,7 @@ const TopProgram = () => {
             cardNum: cardNum,
             cvc: cvc
           }
+          
           return await axios.post(`${baseUrl}/api/stripePaymentSubscriptions`, pData)
         }
         Promise.all([
@@ -362,8 +377,8 @@ const TopProgram = () => {
               <p className="mass">You can deposit your funds here </p>
 
               <div style={{ display: 'flex', justifyContent: 'space-around' }}>
-                <span>Balance : ${BalanceInfo?.wallet}</span>
-                <span>Credits:{BalanceInfo?.cretits} </span>
+                <span>Balance : ${BalanceInfo?.wallet ? BalanceInfo?.wallet : 0}</span>
+                <span>Credits:{BalanceInfo?.cretits ? BalanceInfo?.cretits : 0} </span>
               </div>
 
               <Input
@@ -439,8 +454,8 @@ const TopProgram = () => {
               <p className="mass">View and add additional SMS Credits
               </p>
               <div style={{ display: 'flex', justifyContent: 'space-around' }}>
-                <span>Balance : ${BalanceInfo?.wallet}</span>
-                <span>Credits:{BalanceInfo?.cretits} </span>
+                <span>Balance : ${BalanceInfo?.wallet ? BalanceInfo?.wallet : 0}</span>
+                <span>Credits:{BalanceInfo?.cretits ? BalanceInfo?.cretits : 0} </span>
               </div>
               <form>
                 <CustomInput type="select"
@@ -479,8 +494,8 @@ const TopProgram = () => {
               <h3 className="mass1">Buy Number</h3>
               <p className="mass">Buy or Exchange Phone Number for $10.</p>
               <div style={{ display: 'flex', justifyContent: 'space-around' }}>
-                <span>Balance:  ${BalanceInfo?.wallet}</span>
-                <span>Credits:{BalanceInfo?.cretits} </span>
+                <span>Balance:  ${BalanceInfo?.wallet ? BalanceInfo?.wallet : 0}</span>
+                <span>Credits:{BalanceInfo?.cretits ? BalanceInfo?.cretits : 0} </span>
               </div>
               {selectedNumNew ? <p className="mass">Selected number: {selectedNumNew} </p> : null}
               <FormGroup>
@@ -502,7 +517,7 @@ const TopProgram = () => {
                   <option value="CT">Connecticut</option>
                   <option value="DE">Delaware</option>
                   <option value="DC">District Of Columbia</option>
-                  {/* <option value="FL">Florida</option> */}
+                 
                   <option value="GA">Georgia</option>
                   <option value="HI">Hawaii</option>
                   <option value="ID">Idaho</option>
@@ -562,7 +577,7 @@ const TopProgram = () => {
                   <Button className="cnfn-btn" style={{ marginTop: 10 }}
                     onClick={() => NumberBuyCreditsBtn()}
 
-                  > Buy Number</Button>
+                  > Buy Number test</Button>
                   <Button onClick={() => { setSelectAny(false); setSelectedNumNew('') }} className="cnfn-btn" style={{ marginTop: 10, marginBottom: 10 }}
                     color="danger"
                     outline
@@ -607,13 +622,13 @@ const TopProgram = () => {
         </Col>
         <Col lg="5" md="12">
           <Card className="crdheight">
-            <CardBody >
+            <CardBody>
+
               <DepositForm
                 cardNum={cardNum}
                 setCardNum={setCardNum}
                 cvc={cvc}
                 setCvc={setCvc}
-
                 exp_month={exp_month}
                 setexp_month={setexp_month}
                 zip={zip}

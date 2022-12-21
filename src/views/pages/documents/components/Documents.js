@@ -18,14 +18,14 @@ import ShareWithMe from "./ShareWithMe";
 import Trash from "./Trash";
 import ShareWithMeAction from "./ShareWithMeAction";
 //Add status component
-import ForApproval from "./status/ForApproval"
-import Sent from "./status/Sent"
-import Viewed from "./status/Viewed"
-import Completed from "./status/Completed"
+import ForApproval from "./status/ForApproval";
+import Sent from "./status/Sent";
+import Viewed from "./status/Viewed";
+import Completed from "./status/Completed";
 import Expired from "./status/Expired";
 import { Divider } from "@mui/material";
 import { useHistory } from "react-router-dom";
-
+import CreateRecipientUploadDoc from "./CreateRecipientUploadDoc";
 
 const Documents = (props) => {
   const { userinformation, documentFolderList, GET_DOCUMENT_FOLDER_LIST } =
@@ -34,11 +34,12 @@ const Documents = (props) => {
   const [activeMainFolder, setActiveMainFolder] = useState(null);
   const [activeSubMainFolder, setActiveSubMainFolder] = useState(null);
   const [FolderMenuOpen, setFolderMenuOpen] = useState(false);
+  const [openCreateRecipient, setOpenCreateRecipient] = useState(false);
   const IsSmallDevise = useMediaQuery("(max-width:1224px)");
   const [listOfDocument, setListOfDocument] = useState(null);
   const [activeTab, setActiveTab] = useState("1");
-  const [documentTutoOrTable, setDocumentTutoOrTable] = useState(true)
-  const history = useHistory()
+  const [documentTutoOrTable, setDocumentTutoOrTable] = useState(true);
+  const history = useHistory();
 
   useEffect(() => {
     GET_DOCUMENT_FOLDER_LIST();
@@ -79,8 +80,8 @@ const Documents = (props) => {
   ]);
 
   const handleClick = () => {
-    setDocumentTutoOrTable(!documentTutoOrTable)
-  }
+    setDocumentTutoOrTable(!documentTutoOrTable);
+  };
 
   return (
     <>
@@ -91,18 +92,21 @@ const Documents = (props) => {
           breadCrumbParent="Pages"
           breadCrumbActive="Documents"
         />
-        <ShareWithMeAction setDocumentTutoOrTable={setDocumentTutoOrTable} handleClick={handleClick} />
+        <ShareWithMeAction
+          setDocumentTutoOrTable={setDocumentTutoOrTable}
+          handleClick={handleClick}
+          setOpenCreateRecipient={setOpenCreateRecipient}
+          openCreateRecipient={openCreateRecipient}
+        />
       </div>
       <Row>
         <Col sm="2">
-          <Card className="pt-1">
+          <Card className="p-1">
             <div>
-              <span className="ml-1">Documents</span>
-              <div className="divider" />
+              <h4 className="ml-1">Documents</h4>
+              <Divider className="mt-0" />
             </div>
-            <div style={{
-              padding:'0.5em'
-            }}>
+            <div className="mb-1" style={{ padding: "0.5em" }}>
               <div
                 className="d-flex align-items-center finance-nav cursor-pointer"
                 onClick={() => {
@@ -110,7 +114,8 @@ const Documents = (props) => {
                 }}
               >
                 <div
-                  className={`${activeTab === "1" ? "bullet active_bullet" : "bullet"}`}
+                  className={`${activeTab === "1" ? "bullet active_bullet" : "bullet"
+                    }`}
                 />
                 <CardText className={`${activeTab === "1" && "text-primary"}`}>
                   All
@@ -123,7 +128,8 @@ const Documents = (props) => {
                 }}
               >
                 <div
-                  className={`${activeTab === "2" ? "bullet active_bullet" : "bullet"}`}
+                  className={`${activeTab === "2" ? "bullet active_bullet" : "bullet"
+                    }`}
                 />
                 <CardText className={`${activeTab === "2" && "text-primary"}`}>
                   Shared with me
@@ -136,17 +142,20 @@ const Documents = (props) => {
                 }}
               >
                 <div
-                  className={`${activeTab === "3" ? "bullet active_bullet" : "bullet"}`}
+                  className={`${activeTab === "3" ? "bullet active_bullet" : "bullet"
+                    }`}
                 />
                 <CardText className={`${activeTab === "3" && "text-primary"}`}>
                   Trash
                 </CardText>
               </div>
             </div>
-            <div className="divider" />
+
             <div>
-              <span className="ml-1">Status</span>
+              <h4 className="ml-1 ">Status</h4>
+              <Divider className="mt-0" />
             </div>
+
             <div dense className="ml-1 m-0">
               <div
                 button
@@ -158,7 +167,7 @@ const Documents = (props) => {
                 className={`d-flex justify-content-start m-0 ${classnames({
                   active: activeTab === "4",
                 })}`}
-                onClick={() => setActiveTab("4")}
+              // onClick={() => setActiveTab("4")}
               >
                 <div className="d-flex">
                   <input
@@ -179,7 +188,7 @@ const Documents = (props) => {
                 className={`d-flex justify-content-start m-0 ${classnames({
                   active: activeTab === "5",
                 })}`}
-                onClick={() => setActiveTab("5")}
+              // onClick={() => setActiveTab("5")}
               >
                 <div className="d-flex">
                   <input
@@ -200,7 +209,7 @@ const Documents = (props) => {
                 className={`d-flex justify-content-start m-0 ${classnames({
                   active: activeTab === "6",
                 })}`}
-                onClick={() => setActiveTab("6")}
+              // onClick={() => setActiveTab("6")}
               >
                 <div className="d-flex">
                   <input
@@ -221,7 +230,7 @@ const Documents = (props) => {
                 className={`d-flex justify-content-start m-0 ${classnames({
                   active: activeTab === "7",
                 })}`}
-                onClick={() => setActiveTab("7")}
+              // onClick={() => setActiveTab("7")}
               >
                 <div className="d-flex">
                   <input
@@ -242,7 +251,7 @@ const Documents = (props) => {
                 className={`d-flex justify-content-start m-0 ${classnames({
                   active: activeTab === "8",
                 })}`}
-                onClick={() => setActiveTab("8")}
+              // onClick={() => setActiveTab("8")}
               >
                 <div className="d-flex">
                   <input
@@ -253,8 +262,28 @@ const Documents = (props) => {
                   <span className="text-capitalize ml-1">Expired</span>
                 </div>
               </div>
+              <div
+                button
+                style={{
+                  background: activeTab === "9" ? "#fff" : "#fff",
+                  color: activeTab === "9" ? "bullet active-bullet" : "bullet",
+                  paddingTop: "5px",
+                }}
+                className={`d-flex justify-content-start m-0 ${classnames({
+                  active: activeTab === "9",
+                })}`}
+              // onClick={() => setActiveTab("8")}
+              >
+                <div className="d-flex">
+                  <input
+                    type="radio"
+                    className="radioDeraft"
+                    style={{ marginTop: "3px" }}
+                  />
+                  <span className="text-capitalize ml-1">Drafts</span>
+                </div>
+              </div>
             </div>
-            <div className="divider" />
             {IsSmallDevise ? (
               <Drawer
                 onClose={() => {
@@ -290,38 +319,95 @@ const Documents = (props) => {
           <Card>
             <TabContent activeTab={activeTab}>
               <TabPane tabId="1">
-                <DocumentsListing
-                  documentTutoOrTable={documentTutoOrTable}
-                  documentFolderList={documentFolderList}
-                  listOfDocument={listOfDocument}
-                  activeSubMainFolder={activeSubMainFolder}
-                  data={props?.data}
-                  isrecommendedOrregistered={props.isrecommendedOrregistered}
-                  isDelete={props.isDelete}
-                  userinformation={userinformation}
-                  activeMainFolder={activeMainFolder}
-                />
+                {openCreateRecipient ?
+                  <CreateRecipientUploadDoc
+                    setOpenCreateRecipient={setOpenCreateRecipient}
+                  />
+                  :
+                  <DocumentsListing
+                    documentTutoOrTable={documentTutoOrTable}
+                    documentFolderList={documentFolderList}
+                    listOfDocument={listOfDocument}
+                    activeSubMainFolder={activeSubMainFolder}
+                    data={props?.data}
+                    isrecommendedOrregistered={props.isrecommendedOrregistered}
+                    isDelete={props.isDelete}
+                    userinformation={userinformation}
+                    activeMainFolder={activeMainFolder}
+                  />
+                }
               </TabPane>
               <TabPane tabId="2">
-                <ShareWithMe />
+                {openCreateRecipient ?
+                  <CreateRecipientUploadDoc
+                    setOpenCreateRecipient={setOpenCreateRecipient}
+                  />
+                  :
+                  <ShareWithMe />
+                }
               </TabPane>
               <TabPane tabId="3">
-                <Trash />
+                {openCreateRecipient ?
+                  <CreateRecipientUploadDoc
+                    setOpenCreateRecipient={setOpenCreateRecipient}
+                  />
+                  :
+                  <Trash />
+                }
               </TabPane>
               <TabPane tabId="4">
-                <ForApproval />
+                {openCreateRecipient ?
+                  <CreateRecipientUploadDoc
+                    setOpenCreateRecipient={setOpenCreateRecipient}
+                  />
+                  :
+                  <ForApproval />
+                }
               </TabPane>
               <TabPane tabId="5">
-                <Sent />
+                {openCreateRecipient ?
+                  <CreateRecipientUploadDoc
+                    setOpenCreateRecipient={setOpenCreateRecipient}
+                  />
+                  :
+                  <Sent />
+                }
               </TabPane>
               <TabPane tabId="6">
-                <Viewed />
+                {openCreateRecipient ?
+                  <CreateRecipientUploadDoc
+                    setOpenCreateRecipient={setOpenCreateRecipient}
+                  />
+                  :
+                  <Viewed />
+                }
               </TabPane>
               <TabPane tabId="7">
-                <Completed />
+                {openCreateRecipient ?
+                  <CreateRecipientUploadDoc
+                    setOpenCreateRecipient={setOpenCreateRecipient}
+                  />
+                  :
+                  <Completed />
+                }
               </TabPane>
               <TabPane tabId="8">
-                <Expired />
+                {openCreateRecipient ?
+                  <CreateRecipientUploadDoc
+                    setOpenCreateRecipient={setOpenCreateRecipient}
+                  />
+                  :
+                  <Expired />
+                }
+              </TabPane>
+              <TabPane tabId="9">
+                {openCreateRecipient ?
+                  <CreateRecipientUploadDoc
+                    setOpenCreateRecipient={setOpenCreateRecipient}
+                  />
+                  :
+                  <Expired />
+                }
               </TabPane>
             </TabContent>
           </Card>

@@ -22,7 +22,6 @@ const EditTicketForm = (props) => {
   const [editorState, setEditorState] = React.useState(
     MUIEditorState.createEmpty()
   );
-  console.log(SelectedEdit);
   const customContentStateConverter = (contentState) => {
     const newBlockMap = contentState.getBlockMap().map((block) => {
       const entityKey = block.getEntityAt(0);

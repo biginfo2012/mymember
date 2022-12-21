@@ -20,6 +20,9 @@ const BuyMemberShipInfoForm = (props) => {
     formValidation,
     handleStudentInfo,
   } = props;
+
+  console.log(info)
+  
   return (
     <div style={{ width: "100%" }}>
       <Row>
@@ -76,7 +79,7 @@ const BuyMemberShipInfoForm = (props) => {
                   return (
                     <option
                       key={index}
-                      value={`${value.firstName}, ${value.lastName}`}
+                      value={`${value.firstName} ${value.lastName} `  }
                     >
                       {value.firstName}
                     </option>

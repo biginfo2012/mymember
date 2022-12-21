@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
+import { connect } from "react-redux";
 import StepLabel from "@material-ui/core/StepLabel";
 import Button from "@material-ui/core/Button";
 import CheckOutSummary from "./checkoutSummary";
@@ -9,6 +10,8 @@ import { Paper } from "@material-ui/core";
 import { validationError } from "../../../../../utilities/errorMessage";
 import { toast } from "react-toastify";
 import DocumentSign from "../../signDocument/signDocument";
+import { GET_PROGRAM_LIST } from "../../../../../redux/actions/programe";
+import { GET_FUNNEL } from "../../../../../redux/actions/form-builder";
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
@@ -44,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function BuyMemberShipStepperForm(props) {
+function BuyMemberShipStepperForm(props) {
   const {
     MembershipInfoComponent,
     CardPaymentFormComponent,
@@ -54,14 +57,15 @@ export default function BuyMemberShipStepperForm(props) {
     loading,
     StripePayment,
     Buydigitalmembership,
+    getmebershipfolderlisting
   } = props;
 
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const [redirectData, setRedirectData] = useState("None");
-
+  const [memberdata, setMemberData] = useState(getmebershipfolderlisting?.map((res) => res?.membership))
   
-
+  console.log(props.programList)
 
   const alertInfo = false;
   const steps = ["Membership info", "Checkout summary", "Document sign"];
@@ -195,3 +199,17 @@ export default function BuyMemberShipStepperForm(props) {
     </div>
   );
 }
+
+const mapStateToProps = (state) => {
+  return {
+    getmebershipfolderlisting: state.shop.getmebershipfolderlisting,
+    programList: state.program.programList,
+    uforms: state?.formbuilder?.uforms,
+  };
+};
+
+export default connect(mapStateToProps, {
+  GET_PROGRAM_LIST,
+  GET_FUNNEL,
+})(BuyMemberShipStepperForm);
+

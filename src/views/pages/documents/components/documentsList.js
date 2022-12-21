@@ -18,7 +18,16 @@ import ConfirmationModal from "../../../../components/gloabal/confirmation";
 import { Breadcrumb, BreadcrumbItem } from "reactstrap";
 import AddfileTofolder from "./AddfileTofolder";
 import EditAnddeletFolderDoc from "./EditAnddeletFolderDoc";
-import { Tabs, Tab, Box, Select, Dialog, DialogTitle, DialogContent, DialogActions } from "@mui/material";
+import {
+  Tabs,
+  Tab,
+  Box,
+  Select,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+} from "@mui/material";
 import Badge from "@mui/material/Badge";
 import InsertDriveFileOutlinedIcon from "@mui/icons-material/InsertDriveFileOutlined";
 import PhotoSizeSelectActualOutlinedIcon from "@material-ui/icons/PhotoSizeSelectActualOutlined";
@@ -27,7 +36,16 @@ import SendRoundedIcon from "@mui/icons-material/SendRounded";
 import "./style.css";
 import moment from "moment";
 import DocumentTutorial from "./DocumentTutorial";
-import { Article, CircleSharp, Description, Image, InsertDriveFile, PictureAsPdf, TextSnippet, Wallpaper } from "@mui/icons-material";
+import {
+  Article,
+  CircleSharp,
+  Description,
+  Image,
+  InsertDriveFile,
+  PictureAsPdf,
+  TextSnippet,
+  Wallpaper,
+} from "@mui/icons-material";
 import DocumentViewer from "./component/DocumentViewer";
 
 const useStyles = makeStyles(() => ({
@@ -63,13 +81,13 @@ const DocumentsList = (props) => {
     activeMainFolder,
     activeSubMainFolder,
     documentFolderList,
-    documentTuto
+    documentTuto,
   } = props;
 
-  console.log(activeSubMainFolder)
+  console.log(activeMainFolder);
 
   const [sweetAlertOpen, setSweetAlertOpen] = useState(false);
-  const [modelOpen, setModelOpen] = useState(false)
+  const [modelOpen, setModelOpen] = useState(false);
   const [progress, setProgress] = React.useState(false);
   const [id, setId] = useState("");
   const [type, setType] = useState("");
@@ -82,12 +100,12 @@ const DocumentsList = (props) => {
   };
 
   const handleDocumentView = () => {
-    setModelOpen(true)
-  }
+    setModelOpen(true);
+  };
 
   const handleClose = () => {
-    setModelOpen(false)
-  }
+    setModelOpen(false);
+  };
 
   const handleDeleteDocument = () => {
     if (type === "subfolder") {
@@ -273,9 +291,7 @@ const DocumentsList = (props) => {
                   <SendRoundedIcon
                     fontSize="large"
                     style={{
-                      color: leadView === "Finalized"
-                        ? "#7cb5f5"
-                        : "#878787",
+                      color: leadView === "Finalized" ? "#7cb5f5" : "#878787",
                     }}
                   />
                 </Badge>
@@ -285,188 +301,241 @@ const DocumentsList = (props) => {
           />
         </Tabs>
       </Box>
-      {
-        props.documentTutoOrTable ?
-          <div>
-            <div className="pl-1 pr-1 pt-0 mt-2" >
-              <div className={`p-1 pt-0 ${classes.row} border-bottom`} style={{ boder: "1px solid" }}>
-                <div className="d-flex justify-content-start">
-                  <b>Title </b>
-                </div>
-                <div className="d-flex justify-content-center ml-2">
-                  <b>Type</b>
-                </div>
-                <div className="d-flex justify-content-center">
-                  <b>Status</b>
-                </div>
-                <div className="d-flex justify-content-center">
-                  <b>Modified</b>
-                </div>
-                <div className="d-flex justify-content-center">
-                  <b>Action</b>
-                </div>
+      {props.documentTutoOrTable ? (
+        <div>
+          <div className="pl-1 pr-1 pt-0 mt-2">
+            <div
+              className={`p-1 pt-0 ${classes.row} border-bottom`}
+              style={{ boder: "1px solid" }}
+            >
+              <div className="d-flex justify-content-start">
+                <b>Title </b>
+              </div>
+              <div className="d-flex justify-content-center ml-2">
+                <b>Type</b>
+              </div>
+              <div className="d-flex justify-content-center">
+                <b>Status</b>
+              </div>
+              <div className="d-flex justify-content-center">
+                <b>Modified</b>
+              </div>
+              <div className="d-flex justify-content-center">
+                <b>Action</b>
               </div>
             </div>
-            <div
-              style={{ borderBottom: "1px solid #dddddd" }}
-              className="p-1"
-            >
-              {
-                listOfDocument !== null && listOfDocument?.length > 0 ? (
-                  listOfDocument?.map((items, i) => {
-                    let lastPdf = items?.document.substr(items?.document.length - 4)
-                    return (
-                      <>
-                        <div className={classes.row} key={items?._id}>
-                          <div className="d-flex justify-content-start align-items-center ml-1">
-                            {
-                              lastPdf === ".png" ?
-                                <div className="d-flex" onClick={handleDocumentView}>
-                                  <Wallpaper style={{ color: "#afe8ff", fontSize: "24px", marginTop: "10px" }} />
-                                  <p className="ml-1" style={{ marginTop: "10px" }}>{items?.document_name}</p>
-                                </div>
-                                :
-                                lastPdf === "docx" ?
-                                  <div className="d-flex" onClick={handleDocumentView}>
-                                    <Description style={{ color: "#0787ba", fontSize: "24px", marginTop: "10px" }} />
-                                    <p className="ml-1" style={{ marginTop: "10px" }}>{items?.document_name}</p>
-                                  </div>
-                                  :
-                                  lastPdf === "doc" ?
-                                    <div className="d-flex" onClick={handleDocumentView}>
-                                      <TextSnippet style={{ color: "#211aef", fontSize: "24px", marginTop: "10px" }} />
-                                      <p className="ml-1" style={{ marginTop: "10px" }}>{items?.document_name}</p>
-                                    </div>
-                                    :
-                                    lastPdf === "jpeg" ?
-                                      <div className="d-flex" onClick={handleDocumentView}>
-                                        <Image style={{ color: "#d8d8d8", fontSize: "24px", marginTop: "10px" }} />
-                                        <p className="ml-1" style={{ marginTop: "10px" }}>{items?.document_name}</p>
-                                      </div>
-                                      :
-                                      lastPdf === ".txt" ?
-                                        <div className="d-flex" onClick={handleDocumentView}>
-                                          <Article style={{ color: "#000", fontSize: "24px", marginTop: "10px" }} />
-                                          <p className="ml-1" style={{ marginTop: "10px" }}>{items?.document_name}</p>
-                                        </div>
-                                        :
-                                        <div className="d-flex" onClick={handleDocumentView}>
-                                          <PictureAsPdf style={{ color: "red", fontSize: "24px", marginTop: "10px" }} />
-                                          <p className="ml-1" style={{ marginTop: "10px" }}>{items?.document_name}</p>
-                                        </div>
-
-                            }
-
-                            <Dialog
-                              open={modelOpen}
-                              onClose={handleClose}
-                              aria-labelledby="alert-dialog-title"
-                              aria-describedby="alert-dialog-description"
-                            >
-                              <DialogContent>
-                                <DocumentViewer lastPdf={lastPdf} items={items} />
-                              </DialogContent>
-                            </Dialog>
-                          </div>
-                          <div className="d-flex justify-content-center align-items-center">
-                            <p>
-                              {lastPdf === ".png" ?
-                                <div className="d-flex">
-                                  <p className="ml-1">PNG</p>
-                                </div>
-                                : lastPdf === "docx" ?
-                                  <div className="d-flex">
-                                    <p className="ml-1">DOCX</p>
-                                  </div>
-                                  :
-                                  lastPdf === "doc" ?
-                                    <div className="d-flex">
-                                      <p className="ml-1">DOC</p>
-                                    </div>
-                                    :
-                                    lastPdf === "jpeg" ?
-                                      <div className="d-flex">
-                                        <p className="ml-1">JPEG</p>
-                                      </div>
-                                      :
-                                      lastPdf === ".txt" ?
-                                        <div className="d-flex">
-                                          <p className="ml-1">TXT</p>
-                                        </div>
-                                        :
-                                        <div className="d-flex">
-                                          <p className="ml-1">PDF</p>
-                                        </div>
-                              }
-                            </p>
-                          </div>
-                          <div className="d-flex justify-content-center align-items-center">
-                            <CircleSharp style={{ color: "gray", fontSize: "15px" }} />
-                            <p style={{ marginTop: "10px", marginLeft: "10px" }}>Draft</p>
-                          </div>
-                          <div className="d-flex justify-content-center align-items-center">
-                            <p>
-                              {items?.updatedAt ? moment(items?.updatedAt).format("MM/DD/YYYY") : "N/A"}
-                            </p>
-                          </div>
-                          <div className="d-flex justify-content-center align-items-center">
-                            <img
-                              src={"/images/download.png"}
-                              alt={`${items?.document_name}`}
-                              onClick={() => {
-                                window.open(items.document, "_blank");
-                              }}
-                              style={{ cursor: "pointer" }}
-                            />
-                            <div>
-                              {activeSubMainFolder === null ? (
-                                <EditAnddeletFolderDoc
-                                  setProgress={setProgress}
-                                  OpenAlert={handlesweatalert}
-                                  item={items}
-                                  documentFolderList={documentFolderList}
-                                  userinformation={userinformation}
-                                  activeFolder={props.listOfDocument}
-                                  EDIT_DOCUMENT={props.EDIT_DOCUMENT}
-                                  activeSubMainFolder={activeSubMainFolder}
-                                  activeMainFolder={activeMainFolder}
-                                  data={props?.data}
-                                  isrecommendedOrregistered={
-                                    props.isrecommendedOrregistered
-                                  }
-                                  isDelete={props.isDelete}
-                                />
-                              ) : (
-                                <EditDeletDoc
-                                  setProgress={setProgress}
-                                  OpenAlert={handlesweatalert}
-                                  item={items}
-                                  userinformation={userinformation}
-                                  activeFolder={props.listOfDocument}
-                                  EDIT_DOCUMENT={props.EDIT_DOCUMENT}
-                                  activeSubMainFolder={activeSubMainFolder}
-                                  activeMainFolder={activeMainFolder}
-                                  data={props?.data}
-                                  isrecommendedOrregistered={
-                                    props.isrecommendedOrregistered
-                                  }
-                                  isDelete={props.isDelete}
-                                />
-                              )}
-                            </div>
-                          </div>
-                        </div>
-                        <hr />
-                      </>
-                    )
-                  })
-                ) : <div className="d-flex justify-content-center"><h3>No Document!</h3></div>
-              }
-            </div>
           </div>
-          :
-          <DocumentTutorial />
-      }
+          <div style={{ borderBottom: "1px solid #dddddd" }} className="p-1">
+            {listOfDocument !== null && listOfDocument?.length > 0 ? (
+              listOfDocument?.map((items, i) => {
+                let lastPdf = items?.document.substr(
+                  items?.document.length - 4
+                );
+                return (
+                  <>
+                    <div className={classes.row} key={items?._id}>
+                      <div className="d-flex justify-content-start align-items-center ml-1">
+                        {lastPdf === ".png" ? (
+                          <div className="d-flex" onClick={handleDocumentView}>
+                            <Wallpaper
+                              style={{
+                                color: "#afe8ff",
+                                fontSize: "24px",
+                                marginTop: "10px",
+                              }}
+                            />
+                            <p className="ml-1" style={{ marginTop: "10px" }}>
+                              {items?.document_name}
+                            </p>
+                          </div>
+                        ) : lastPdf === "docx" ? (
+                          <div className="d-flex" onClick={handleDocumentView}>
+                            <Description
+                              style={{
+                                color: "#0787ba",
+                                fontSize: "24px",
+                                marginTop: "10px",
+                              }}
+                            />
+                            <p className="ml-1" style={{ marginTop: "10px" }}>
+                              {items?.document_name}
+                            </p>
+                          </div>
+                        ) : lastPdf === ".doc" ? (
+                          <div className="d-flex" onClick={handleDocumentView}>
+                            <TextSnippet
+                              style={{
+                                color: "#211aef",
+                                fontSize: "24px",
+                                marginTop: "10px",
+                              }}
+                            />
+                            <p className="ml-1" style={{ marginTop: "10px" }}>
+                              {items?.document_name}
+                            </p>
+                          </div>
+                        ) : lastPdf === "jpeg" ? (
+                          <div className="d-flex" onClick={handleDocumentView}>
+                            <Image
+                              style={{
+                                color: "#d8d8d8",
+                                fontSize: "24px",
+                                marginTop: "10px",
+                              }}
+                            />
+                            <p className="ml-1" style={{ marginTop: "10px" }}>
+                              {items?.document_name}
+                            </p>
+                          </div>
+                        ) : lastPdf === ".txt" ? (
+                          <div className="d-flex" onClick={handleDocumentView}>
+                            <Article
+                              style={{
+                                color: "#000",
+                                fontSize: "24px",
+                                marginTop: "10px",
+                              }}
+                            />
+                            <p className="ml-1" style={{ marginTop: "10px" }}>
+                              {items?.document_name}
+                            </p>
+                          </div>
+                        ) : (
+                          <div className="d-flex" onClick={handleDocumentView}>
+                            <PictureAsPdf
+                              style={{
+                                color: "red",
+                                fontSize: "24px",
+                                marginTop: "10px",
+                              }}
+                            />
+                            <p className="ml-1" style={{ marginTop: "10px" }}>
+                              {items?.document_name}
+                            </p>
+                          </div>
+                        )}
+
+                        <Dialog
+                          open={modelOpen}
+                          onClose={handleClose}
+                          aria-labelledby="alert-dialog-title"
+                          aria-describedby="alert-dialog-description"
+                        >
+                          <DialogContent>
+                            <DocumentViewer lastPdf={lastPdf} items={items} />
+                          </DialogContent>
+                        </Dialog>
+                      </div>
+                      <div className="d-flex justify-content-center align-items-center">
+                        <p>
+                          {lastPdf === ".png" ? (
+                            <div className="d-flex">
+                              <p className="ml-1">PNG</p>
+                            </div>
+                          ) : lastPdf === "docx" ? (
+                            <div className="d-flex">
+                              <p className="ml-1">DOCX</p>
+                            </div>
+                          ) : lastPdf === ".doc" ? (
+                            <div className="d-flex">
+                              <p className="ml-1">DOC</p>
+                            </div>
+                          ) : lastPdf === "jpeg" ? (
+                            <div className="d-flex">
+                              <p className="ml-1">JPEG</p>
+                            </div>
+                          ) : lastPdf === ".txt" ? (
+                            <div className="d-flex">
+                              <p className="ml-1">TXT</p>
+                            </div>
+                          ) : (
+                            <div className="d-flex">
+                              <p className="ml-1">PDF</p>
+                            </div>
+                          )}
+                        </p>
+                      </div>
+                      <div className="d-flex justify-content-center align-items-center">
+                        <CircleSharp
+                          style={{  color: "#579b4b", fontSize: "15px" }}
+                        />
+                        {/* <p style={{ marginTop: "10px", marginLeft: "10px" }}>
+                          {activeSubMainFolder !== null
+                            ? activeSubMainFolder?.subFolderName
+                            : activeSubMainFolder?.folderName}
+                        </p> */}
+                        <p style={{ marginTop: "10px", marginLeft: "10px" }}>
+                          {activeSubMainFolder?.subFolderName ? activeSubMainFolder?.subFolderName : activeMainFolder?.folderName}
+                        </p>
+                      </div>
+                      <div className="d-flex justify-content-center align-items-center">
+                        <p>
+                          {items?.updatedAt
+                            ? moment(items?.updatedAt).format("MM/DD/YYYY")
+                            : "N/A"}
+                        </p>
+                      </div>
+                      <div className="d-flex justify-content-center align-items-center">
+                        <img
+                          src={"/images/download.png"}
+                          alt={`${items?.document_name}`}
+                          onClick={() => {
+                            window.open(items.document, "_blank");
+                          }}
+                          style={{ cursor: "pointer" }}
+                        />
+                        <div>
+                          {activeSubMainFolder === null ? (
+                            <EditAnddeletFolderDoc
+                              setProgress={setProgress}
+                              OpenAlert={handlesweatalert}
+                              item={items}
+                              documentFolderList={documentFolderList}
+                              userinformation={userinformation}
+                              activeFolder={props.listOfDocument}
+                              EDIT_DOCUMENT={props.EDIT_DOCUMENT}
+                              activeSubMainFolder={activeSubMainFolder}
+                              activeMainFolder={activeMainFolder}
+                              data={props?.data}
+                              isrecommendedOrregistered={
+                                props.isrecommendedOrregistered
+                              }
+                              isDelete={props.isDelete}
+                            />
+                          ) : (
+                            <EditDeletDoc
+                              setProgress={setProgress}
+                              OpenAlert={handlesweatalert}
+                              item={items}
+                              userinformation={userinformation}
+                              activeFolder={props.listOfDocument}
+                              EDIT_DOCUMENT={props.EDIT_DOCUMENT}
+                              activeSubMainFolder={activeSubMainFolder}
+                              activeMainFolder={activeMainFolder}
+                              data={props?.data}
+                              isrecommendedOrregistered={
+                                props.isrecommendedOrregistered
+                              }
+                              isDelete={props.isDelete}
+                            />
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                    <hr />
+                  </>
+                );
+              })
+            ) : (
+              <div className="d-flex justify-content-center">
+                <h3>No Document!</h3>
+              </div>
+            )}
+          </div>
+        </div>
+      ) : (
+        <DocumentTutorial />
+      )}
 
       {/* <Grid container spacing={2} className="p-0 m-0">
         { listOfDocument !== null && listOfDocument?.length > 0 ? (
@@ -575,7 +644,7 @@ const DocumentsList = (props) => {
         contiunuebuttonTitle={"Delete"}
         description=" Are you sure you save it ?"
       />
-    </div >
+    </div>
   );
 };
 const mapStateToProps = (state) => {

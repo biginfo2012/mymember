@@ -7,3 +7,21 @@ export const formatDuration = (duration) => {
   str += seconds + "s ";
   return str;
 };
+
+export const formatTime = (dateTime) => {
+  let hours = dateTime.getHours();
+  let mins = dateTime.getMinutes();
+  
+  let result = '';
+  let isPM = false;
+  if(hours > 12) {
+    hours -=12;
+    isPM = true;
+  }
+  result += hours.toString();
+  result += ":";
+  result += mins.toString();
+  result += " ";
+  result += isPM ? "PM" : "AM";
+  return result;
+}

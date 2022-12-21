@@ -17,8 +17,8 @@ const useStyles = makeStyles(() => ({
 }));
 const SelectStudent = (props) => {
   const classes = useStyles();
-  const { handleSelect, keyName, getAllTypeStudent, GET_ALL_TYPE_STUDENT } =
-    props;
+  const { handleSelect, keyName, getAllTypeStudent, GET_ALL_TYPE_STUDENT } = props;
+  console.log("getAllTypeStudent",getAllTypeStudent);
 
   useEffect(() => {
     GET_ALL_TYPE_STUDENT();
@@ -33,7 +33,7 @@ const SelectStudent = (props) => {
         onChange={(e, newValue) => {
           handleSelect(e, newValue);
         }}
-        getOptionLabel={(option) => option[keyName]}
+        getOptionLabel={(option) => ` ${option.firstName} ${option.lastName}    '${option.studentType}' ` }
         renderInput={(params) => (
           <TextField
             name={keyName}
@@ -43,32 +43,32 @@ const SelectStudent = (props) => {
             required
           />
         )}
-        renderOption={(option) => {
-          return (
-            <div
-              style={{ width: "100%" }}
-              className="d-flex d-flex justify-content-between aling-items-center"
-            >
-              <div className="d-flex justify-content-start">
-                <Avatar
-                  alt={option.firstName}
-                  src={option?.memberprofileImage}
-                  className="mr-1"
-                />
-                <div>
-                  <Typography className="mb-0">
-                    {option.firstName} {option.lastName}
-                  </Typography>
-                  <Chip
-                    variant="outlined"
-                    label={option?.studentType || "not found student type"}
-                    size="small"
-                  />
-                </div>
-              </div>
-            </div>
-          );
-        }}
+        // renderOption={(option) => {
+        //   return (
+        //     <div
+        //       style={{ width: "100%" }}
+        //       className="d-flex d-flex justify-content-between aling-items-center"
+        //     >
+        //       <div className="d-flex justify-content-start">
+        //         <Avatar
+        //           alt={option.firstName}
+        //           src={option?.memberprofileImage}
+        //           className="mr-1"
+        //         />
+        //         <div>
+        //           <Typography className="mb-0">
+        //             {option.firstName} {option.lastName}
+        //           </Typography>
+        //           <Chip
+        //             variant="outlined"
+        //             label={option?.studentType || "not found student type"}
+        //             size="small"
+        //           />
+        //         </div>
+        //       </div>
+        //     </div>
+        //   );
+        // }}
       />
     </div>
   );

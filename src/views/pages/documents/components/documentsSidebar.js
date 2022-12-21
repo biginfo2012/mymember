@@ -17,7 +17,9 @@ import EditDeleteFolder from "./EditAndDeleteFolder";
 import HttpsOutlinedIcon from "@material-ui/icons/HttpsOutlined";
 import ConfirmationModal from "../../../../components/gloabal/confirmation";
 import classnames from "classnames";
+import { Divider } from "@mui/material";
 // import EdiztFolder
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 
 
 const useStyles = makeStyles(() => ({
@@ -66,7 +68,7 @@ function DocumentSidebar(props) {
     activeSubMainFolder,
     setActiveSubMainFolder,
   } = props;
-  const [openFolder, setOpenFolder] = useState(null);
+  const [openFolder, setOpenFolder] = useState(false);
   const [sweetAlertOpen, setSweetAlertOpen] = useState(false);
   const [type, setType] = useState("");
 
@@ -103,6 +105,7 @@ function DocumentSidebar(props) {
     <Fragment>
       <List className={classes.listWrapper} dense>
         <NewFolder />
+        <Divider className="mt-0" />
         {props?.documentFolderList?.map((item) => {
           return (
             <Fragment key={item?._id}>
@@ -117,18 +120,12 @@ function DocumentSidebar(props) {
                     ? classes.activeMainFolder
                     : classes.inActiveFolder}`
                 }
-                button
+                // button
                 onClick={() => {
                   setActiveMainFolder(item);
                 }}
               >
-                {item?.subFolder?.length > 0 ? (
-                  <ExpandMoreIcon fontSize="small" onClick={() => {
-                    handleMainFolder(item);
-                  }} />
-                ) : (
-                  <div className="ml-1"></div>
-                )}
+
                 <Button
                   className={classes.folderBtn}
                   fullWidth
@@ -137,11 +134,21 @@ function DocumentSidebar(props) {
                   }}
                 >
                   {item?.subFolder?.length > 0 ? (
+                    !openFolder ?
+                      <ExpandMoreIcon fontSize="small" onClick={() => {
+                        handleMainFolder(item);
+                      }} />
+                      :
+                      <ExpandLessIcon fontSize="small" />
+                  ) : (
+                    <div className="ml-1"></div>
+                  )}
+                  {/* {item?.subFolder?.length > 0 ? (
                     <ExpandMoreIcon fontSize="small"
                       className="action_fontcolor" />
                   ) : (
                     <div className="ml-1 mr-1" />
-                  )}
+                  )} */}
                   <img
                     src={`/images/FolderM.png`}
                     alt={`${item?.folderName}`}

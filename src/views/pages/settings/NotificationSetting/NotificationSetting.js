@@ -10,7 +10,6 @@ import { connect } from "react-redux";
 
 const NotificationSetting = (props) => {
     const { GET_USER_INFORMATION, NOTIFICATION_ON_OFF, userinformation } = props
-    console.log(userinformation)
     useEffect(() => {
         GET_USER_INFORMATION()
     }, [GET_USER_INFORMATION])

@@ -17,7 +17,9 @@ import { User, Upload, EyeOff, Eye } from "react-feather";
 import { connect } from "react-redux";
 import { updateUserInfo } from "../../../../redux/actions/auth/loginActions";
 import { InputBase } from "@material-ui/core";
+import AttachFileIcon from '@mui/icons-material/AttachFile'
 import PersonIcon from "@material-ui/icons/Person";
+import Avatar from '@mui/material/Avatar';
 
 class HorizontalForm extends React.Component {
   constructor() {
@@ -224,54 +226,78 @@ class HorizontalForm extends React.Component {
 
                     <Col xs="12" md="6" sm="12" lg="6">
                       <FormGroup>
-                        <Label>Member Profile Image</Label>
-                        <div className="my-1">
-
+                        <span>Member Profile Image</span>
+                        <div className="my-2">
                           <div
                             className="d-flex justify-content-center align-items-center"
                             style={{
                               background: "rgb(239 238 238 / 45%)",
                               width: "128px",
                               borderRadius: "4px",
-                              height: "98px",
-                              color:"#1aa6e0"
+                              height: "108px",
+                              color: "#1aa6e0"
                             }}
                           >
                             {this.state.memberProfileUrl === undefined ? (
-                              <div style={{textDecoration: "underline"}}>
-                                <input
+                              <div style={{ textDecoration: "underline" }}>
+                                {/* <input
                                   style={{ display: "none", width: "74px", opacity: 0 }}
                                   type={"file"}
                                   ref={this.myRef}
                                   onChange={this.imageHandler}
                                   className="position-absolute"
+                                /> */}
+                                <Label htmlFor="attachment" >
+                                  <Upload
+                                    size={16}
+                                    style={{
+                                      margin: "0 0.5em 0 0",
+                                    }}
+                                  />
+                                  Upload
+                                  {/* <AttachFileIcon style={{ color: "#f5d03c", fontSize: "40px" }} /> */}
+                                </Label>
+                                <Input
+                                  type='file'
+                                  name='attachment'
+                                  id='attachment'
+                                  accept='image/*'
+                                  style={{ display: "none" }}
+                                  ref={this.myRef}
+                                  onChange={this.imageHandler}
                                 />
-                                <Upload
+                                {/* <Upload
                                   size={16}
                                   style={{
                                     margin: "0 0.5em 0 0",
                                   }}
-                                />{" "}
-                                Upload
+                                /> */}
+                                {" "}
+
                               </div>
                             ) : (
+                              // <Avatar alt="Remy Sharp"  src={this.state.memberProfileUrl}    sx={{ width: 106, height: 108 }}/>
                               <img
                                 style={{
-                                  width:"100%"
+                                  width: "100%"
+                                  ,borderRadius : "12px"
                                 }}
                                 src={this.state.memberProfileUrl}
                                 alt="select_image"
-                                width="100"
-                                height="100"
+                                width="80"
+                                height="140"
+                                
                               />
                             )}
                           </div>
                         </div>
                         {this.state.memberProfileUrl !== undefined && (
-                          <div style={{color:"#1aa6e0", textDecoration: "underline",paddingLeft: "26px"}} >
+                          <div style={{ color: "#1aa6e0", textDecoration: "underline", paddingLeft: "26px" }} >
                             <input
-                              style={{width: "74px",
-                                opacity: 0}}
+                              style={{
+                                width: "74px",
+                                opacity: 0
+                              }}
                               className="position-absolute cursor-pointer"
                               type={"file"}
                               ref={this.myRef}
@@ -285,7 +311,8 @@ class HorizontalForm extends React.Component {
                             />
                             Replace
                           </div>
-                        )}
+                        )
+                        }
                       </FormGroup>
                     </Col>
                   </Row>

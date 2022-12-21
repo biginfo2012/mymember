@@ -1,0 +1,9 @@
+.MuiSelect-select {
+    padding: '4px 16px'
+}
+
+#messageInput::after {
+    top: '2px';
+    right: '-2px';
+    position: absolute;
+}

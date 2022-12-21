@@ -18,7 +18,9 @@ const PageLink = ({ children }) => {
   }
 
   return (
-    <Card>
+    <Card style={{
+      height: '90vh'
+    }}>
       <CardBody>
         <div className="section-header">
           <span className="section-title">Finance</span>
@@ -29,9 +31,8 @@ const PageLink = ({ children }) => {
           className="d-flex align-items-center finance-nav cursor-pointer"
         >
           <div
-            className={`${
-              activePath === "income" ? "bullet active_bullet" : "bullet"
-            }`}
+            className={`${activePath === "income" ? "bullet active_bullet" : "bullet"
+              }`}
           />
           <CardText className={`${activePath === "income" && "text-primary"}`}>
             Income
@@ -42,9 +43,8 @@ const PageLink = ({ children }) => {
           className="d-flex align-items-center finance-nav cursor-pointer"
         >
           <div
-            className={`${
-              activePath === "expense" ? "bullet active_bullet" : "bullet"
-            }`}
+            className={`${activePath === "expense" ? "bullet active_bullet" : "bullet"
+              }`}
           />
           <CardText className={`${activePath === "expense" && "text-primary"}`}>
             Expense
@@ -55,12 +55,22 @@ const PageLink = ({ children }) => {
           className="d-flex align-items-center finance-nav cursor-pointer"
         >
           <div
-            className={`${
-              activePath === "ccexp" ? "bullet active_bullet" : "bullet"
-            }`}
+            className={`${activePath === "ccexp" ? "bullet active_bullet" : "bullet"
+              }`}
           />
           <CardText className={`${activePath === "ccexp" && "text-primary"}`}>
             CC Expiring
+          </CardText>
+        </div>
+        <div
+          onClick={(_) => changePath("/company/mymoney/finance/invoice")}
+          className="d-flex align-items-center finance-nav cursor-pointer"
+        >
+          <div
+            className={`${activePath === "invoice" ? "bullet active_bullet" : "bullet"}`}
+          />
+          <CardText className={`${activePath === "invoice" && "text-primary"}`}>
+            invoice
           </CardText>
         </div>
         <div
@@ -68,15 +78,14 @@ const PageLink = ({ children }) => {
           className="d-flex align-items-center finance-nav cursor-pointer"
         >
           <div
-            className={`${
-              activePath === "pnl" ? "bullet active_bullet" : "bullet"
-            }`}
+            className={`${activePath === "pnl" ? "bullet active_bullet" : "bullet"
+              }`}
           />
           <CardText className={`${activePath === "pnl" && "text-primary"}`}>
             P &amp; L
           </CardText>
         </div>
-        {children}
+        {/* {children} */}
         <div className="section-header">
           <span className="section-title">Settings</span>
           <div className="divider" />

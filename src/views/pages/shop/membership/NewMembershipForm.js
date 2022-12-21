@@ -43,7 +43,6 @@ class FloatingLabels extends React.Component {
       folderId: null,
       errorFound: false,
       docType: "None",
-      
     };
 
     this.changeHandler = this.changeHandler.bind(this);
@@ -90,11 +89,10 @@ class FloatingLabels extends React.Component {
   };
 
   render() {
-    console.log(this.props)
-    
+    console.log(this.props);
+
     return (
       <Card className="w-70 p-0">
-      
         <CardBody>
           <Form className="mt-10" onSubmit={this.onsubmit}>
             <Row>
@@ -404,7 +402,7 @@ class FloatingLabels extends React.Component {
                   />
                 </FormGroup>
               </Col>
-              <Col xs="12" sm="12" md="6" lg="6">
+              {/* <Col xs="12" sm="12" md="6" lg="6">
                 <FormGroup>
                   <Label>Document Type</Label>
                   <div className="d-flex">
@@ -437,7 +435,7 @@ class FloatingLabels extends React.Component {
                     </div>
                   </div>
 
-                  {/* <CustomInput
+                  <CustomInput
                     type="select"
                     name="docType"
                     value={this.state.docType}
@@ -448,12 +446,29 @@ class FloatingLabels extends React.Component {
                     <option value={"None"}>None</option>
                     <option value={"Digital"}>Digital</option>
                     <option value={"Attach File"}>Attach File</option>
-                  </CustomInput> */}
+                  </CustomInput>
+                </FormGroup>
+              </Col> */}
+              <Col xs="12" sm="12" md="6" lg="6">
+                <FormGroup>
+                  <Label>Document Type</Label>
+                  <CustomInput
+                    type="select"
+                    name="docType"
+                    value={this.state.docType}
+                    id="docType"
+                    onChange={this.changeHandler}
+                    required
+                  >
+                    <option value={"None"}>None</option>
+                    <option value={"Digital"}>Digital</option>
+                    <option value={"Attach File"}>Attach File</option>
+                  </CustomInput>
                 </FormGroup>
               </Col>
               {this.state.docType === "Digital" && (
                 <>
-                  <Col sm="12" md="6" lg="6">
+                  {/* <Col sm="12" md="6" lg="6">
                     <FormGroup className="form-label-group">
                       <div>
                         <Label for="PaymentsFloating">Folder Name</Label>
@@ -467,8 +482,8 @@ class FloatingLabels extends React.Component {
                         placeholder="Folder Name"
                       />
                     </FormGroup>
-                  </Col>
-                  <Col xs="12" sm="6" md="6" lg="6">
+                  </Col> */}
+                  {/* <Col xs="12" sm="6" md="6" lg="6">
                     <FormGroup className="form-label-group">
                       <div>
                         <Label for="PaymentsFloating">File name</Label>
@@ -482,21 +497,17 @@ class FloatingLabels extends React.Component {
                         placeholder="File Name"
                       />
                     </FormGroup>
-                  </Col>
+                  </Col> */}
                   <Col xs="12" sm="6" md="6" lg="6">
                     <FormGroup className="form-label-group">
                       <div>
                         <Label for="formbuilderdata">Form Builder Name</Label>
                       </div>
                       <CustomInput type="select" name="docType" id="docType">
-                        {
-                          this.props.uforms?.memberdata?.map((data) => {
-                            console.log(data)
-                            return(
-                              <option>{data?.funnelName}</option>
-                            )
-                          })
-                        }
+                        {this.props.uforms?.memberdata?.map((data) => {
+                          console.log(data);
+                          return <option>{data?.funnelName}</option>;
+                        })}
                       </CustomInput>
                     </FormGroup>
                   </Col>

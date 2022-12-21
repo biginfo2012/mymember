@@ -7,15 +7,15 @@ import { ContextLayout } from "./utility/context/Layout";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const Editemplyee=lazy(() =>
-import("./views/pages/employee/Editemplyee")
+const Editemplyee = lazy(() =>
+  import("./views/pages/employee/Editemplyee")
 );
 const DocumentTutorial = lazy(() => {
   import("./views/pages/documents/components/DocumentTutorial")
 })
 
-const  Addform = lazy(() =>
-import("./views/pages/employee/formelemnts/Addform")
+const Addform = lazy(() =>
+  import("./views/pages/employee/formelemnts/Addform")
 );
 const DemoGetData = lazy(() =>
   import("./views/apps/user/list/DemoGetData")
@@ -44,6 +44,8 @@ const thumbView = lazy(() => import("./views/ui-elements/data-list/ThumbView"));
 const newstudentform = lazy(() =>
   import("./views/pages/newstudent/createStudentmain")
 );
+
+
 
 // Event Manager
 const events = lazy(() => import("./views/eventManager"));
@@ -74,6 +76,7 @@ const ShopAddMembership = lazy(() =>
 const DocumentSignHome = lazy(() =>
   import("./views/pages/shop/signDocument/Home")
 );
+
 const DocumentSignSign = lazy(() =>
   import("./views/pages/shop/signDocument/Sign")
 );
@@ -116,10 +119,29 @@ const MymoneyFinancePNL = lazy(() =>
   import("./views/pages/myMoney/finance/pnl/pnl")
 );
 
+const Invoice = lazy(() =>
+  import("./views/pages/myMoney/finance/invoice/InvoiceMain")
+);
+
+
 // New chat-text route
 const V2TextChat = lazy(() =>
   import("./views/pages/marketing/v2test/textChart/Index")
 );
+
+// Ticket Management
+
+const TicketView = lazy(() => 
+  import("./views/pages/marketing/ticket")
+)
+
+const TicketDetail = lazy(() => 
+  import("./views/pages/marketing/ticket/detail")
+)
+
+const LiveChat = lazy(() => 
+  import("./views/pages/marketing/livechat/Chat")
+)
 
 // chatbot component
 const ChatbotDetails = lazy(() => import("./views/pages/marketing/v2test/chatbot"));
@@ -475,11 +497,17 @@ class AppRouter extends React.Component {
             path="/company/mymoney/finance/pnl"
             component={MymoneyFinancePNL}
           />
+          <AppRoute path="/app/ticket/ticketview/overview/:ticketStatus" component={TicketView}/>
+          <AppRoute path="/app/ticket/ticketview/:ticketId" component={TicketDetail}/>
+          <AppRoute path="/app/livechat/chat" component={LiveChat}/>
+          <AppRoute
+            path="/company/mymoney/finance/invoice"
+            component={Invoice}
+          />
           <AppRoute path="/app/miss-you-call" component={missYoucall} />
           <AppRoute path="/app/renewals" component={renewals} />
           <AppRoute path="/app/birthday" component={birthday} />
           <AppRoute path="/app/stat" component={stat} />
-          {/* <AppRoute path="/app/employee" component={SubUsers} /> */}
           <AppRoute path="/app/employee" component={Employee} />
           <AppRoute path="/app/my-employee/edit/:id" component={Editemplyee} />
           <AppRoute path="/app/my-employee/add" component={Editemplyee} />
@@ -490,7 +518,6 @@ class AppRouter extends React.Component {
             component={WorkHistory}
           />
 
-          <AppRoute path="/app/add-form" component={Addform} />
           <AppRoute path="/events" component={events} />
           {/* custom route end  */}
           <AppRoute

@@ -11,11 +11,7 @@ import AvatarGroup from "./Avtargroups";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
-import {
-  IconButton,
-  Dialog,
-  Card
-} from "@material-ui/core";
+import { IconButton, Dialog, Card } from "@material-ui/core";
 import ConfirmationModal from "../../../components/gloabal/confirmation";
 import {
   Row,
@@ -35,7 +31,7 @@ import {
   DELETE_ROLE,
   GET_ROLE_LIST_USERS_INFO,
 } from "../../../redux/actions/employee_subusers_roles";
-import Addform from "./formelemnts/Addform"
+import Addform from "./formelemnts/Addform";
 import Selectedforms from "./Selectedforms";
 import Createtask from "./Createtask";
 import Tasklist from "./Tasklist";
@@ -52,11 +48,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
 const divWidth = {
   width: 700,
-}
-
+};
 
 const RolesList = (props) => {
   const classes = useStyles();
@@ -65,17 +59,23 @@ const RolesList = (props) => {
   const [modalType, setModalType] = useState("Add New");
   const [sweetAlertOpen, setSweetAlertOpen] = useState(false);
   const [roleCardId, setRoleCardId] = useState("");
-  const [state, setState] = useState({
-    formName: null
-  })
   const [roleName, setRoleName] = React.useState({
     roleName: "",
     error: false,
     edit_id: "",
+    default_location: "",
+    firstName: "",
+    lastName: "",
+    email: "",
+    digitalId: [],
+    documentId: [],
+    taskId: [],
   });
+
   const [roleList, setRoleList] = React.useState({});
+  console.log(roleList);
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const [Alert, setAlert] = useState(false)
+  const [Alert, setAlert] = useState(false);
   const open = Boolean(anchorEl);
 
   const handleClickPopup = (event) => {
@@ -141,7 +141,9 @@ const RolesList = (props) => {
           Object.assign(
             {},
             { roles: [roleList] },
-            { rolename: roleName.roleName }
+            { rolename: roleName.roleName },
+            { digitalId: roleName.digitalId },
+            { documentId: roleName.documentId }
           )
         );
         if (response.success) {
@@ -203,7 +205,6 @@ const RolesList = (props) => {
                             },
                           }}
                         >
-
                           <MenuItem>
                             <Link
                               to="/"
@@ -230,7 +231,6 @@ const RolesList = (props) => {
                           </MenuItem>
                         </Menu>
                       </div>
-
                     </div>
                   </div>
                   <div className="d-flex justify-content-between align-items-center">
@@ -309,7 +309,12 @@ const RolesList = (props) => {
           </div>
           <Row>
             <Col xs={12} className="mb-2">
-              <Typography className="mb-0" style={{ fontSize: "1rem", fontWeight: 400, color: "#4d4d4d" }}>Role Name</Typography>
+              <Typography
+                className="mb-0"
+                style={{ fontSize: "1rem", fontWeight: 400, color: "#4d4d4d" }}
+              >
+                Role Name
+              </Typography>
               <Input
                 style={{ padding: "0px 5px" }}
                 id="roleName"
@@ -352,7 +357,12 @@ const RolesList = (props) => {
                 <Button
                   color="primary"
                   className="mr-1"
-                  onClick={() => { setAlert(true) }}>Add form</Button>
+                  onClick={() => {
+                    setAlert(true);
+                  }}
+                >
+                  Add form
+                </Button>
               </div>
             </Col>
             <Col xs={12}>
@@ -363,7 +373,7 @@ const RolesList = (props) => {
               <div>
                 <Createtask />
               </div>
-              <Tasklist/>
+              <Tasklist />
             </Col>
             <Col className="mt-2 d-flex justify-content-center" xs={12}>
               <Button
@@ -402,12 +412,16 @@ const RolesList = (props) => {
       <Dialog
         open={Alert}
         onClose={() => {
-          setAlert(!Alert)
+          setAlert(!Alert);
         }}
         maxWidth="sm"
       >
-        <div className='m-1 p-1'>
-          <Addform setOpen={setAlert} />
+        <div className="m-1 p-1">
+          <Addform
+            roleName={roleName}
+            setRoleName={setRoleName}
+            setOpen={setAlert}
+          />
         </div>
       </Dialog>
     </Fragment>
