@@ -183,9 +183,9 @@ export default function AttachDocxfile(props) {
                 <MenuItem disabled value="">
                   <Label style={{ fontSize: "16px" }}>CUSTOMIZE</Label>
                 </MenuItem>
-                {names.map((name) => (
+                {names.map((name,i) => (
                   <MenuItem
-                    key={name}
+                    key={i}
                     value={name}
                     style={getStyles(name, personName, theme)}
                   >
@@ -240,9 +240,9 @@ export default function AttachDocxfile(props) {
                   <MenuItem disabled value="">
                     <Label style={{ fontSize: "16px" }}>Need to sign</Label>
                   </MenuItem>
-                  {names.map((name) => (
+                  {names.map((name,i) => (
                     <MenuItem
-                      key={name}
+                      key={i}
                       value={name}
                       style={getStyles(name, personName, theme)}
                     >
@@ -396,9 +396,9 @@ export default function AttachDocxfile(props) {
                       <MenuItem disabled value="">
                         <Label style={{ fontSize: "16px" }}>CUSTOMIZE</Label>
                       </MenuItem>
-                      {names.map((name) => (
+                      {names.map((name,i) => (
                         <MenuItem
-                          key={name}
+                          key={i}
                           value={name}
                           style={getStyles(name, personName, theme)}
                         >
