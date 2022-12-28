@@ -2005,3 +2005,21 @@ a:hover.back-to-top {
 a.btn-solid-lg.page-scroll.btn2:hover {
     color: #fff;
 }
+
+.automation-add-line {
+  height: 1px;
+  width: 65px;
+  background: #666;
+  position: relative;
+  rotate: 90deg;
+}
+.automation-add-line:before {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: #666;
+  top: 50%;
+  transform: translateY(-55%);
+  border-radius: 50%
+}

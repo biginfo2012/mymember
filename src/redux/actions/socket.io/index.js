@@ -7,7 +7,7 @@ socketIo.connect();
 
 socketIo.on("connect", () => {
   socketIo.emit("adminRegister", localStorage.getItem('user_id'));
-  console.log("connected to socket server", baseUrl);
+  console.log("connected to socket server", process.env.REACT_APP_BASE_URL);
 });
 
 socketIo.on("connect_error", (err) => {

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { EditorState, convertToRaw } from "draft-js";
 import { Editor } from "react-draft-wysiwyg"
+//import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import draftToHtml from 'draftjs-to-html';
 import {
   UPLAODE_IMAGE
@@ -32,16 +33,10 @@ class EditorContainer extends Component {
   render() {
     const { editorState } = this.state;
     return (
-      <div>
+      <div style={{width: "400px"}}>
         <Editor
           editorState={this.props.editorState}
-          wrapperClassName="editorWrapper"
-          // toolbarClassName="toolbarWrapper"
           onEditorStateChange={editorState => this.onEditorStateChange(editorState)}
-          style={{
-            widht: "100%",
-            height: "50vh"
-          }}
           toolbar={{
             options: ['inline', 'blockType', 'image', 'fontSize', 'list', 'textAlign', 'history'],
             image: {
@@ -52,6 +47,7 @@ class EditorContainer extends Component {
               alt: { present: true, mandatory: true }
             }
           }}
+          editorStyle={{height: "200px"}}
         />
       </div>
     )

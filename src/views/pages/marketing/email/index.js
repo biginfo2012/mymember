@@ -19,6 +19,9 @@ import {
 import FolderSideBar from "./components/folderSideBar";
 import ListAllEmails from "./components/listAllEmails";
 import ListAllNurturingEmails from "./components/listAllNurturingEmails";
+
+//for automation graph
+import AutomationGraph from "./components/AutomationGraph";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { Drawer, useMediaQuery } from "@material-ui/core";
 import { Breadcrumb, BreadcrumbItem } from "reactstrap";
@@ -387,21 +390,23 @@ const Compose = (props) => {
                       label={
                         <div>
                           <span>
-                            <b>Nurturing</b>
+                             {/*Nurturing->Automation*/}
+                            <b>Automation</b>
                           </span>
                         </div>
                       }
                     />
-                    <Tab
-                      className={MailIndexType === 2 ? classes.activeTab : ""}
-                      label={
-                        <div>
-                          <span>
-                            <b>SYSTEM</b>
-                          </span>
-                        </div>
-                      }
-                    />
+                    {/*Tab delete to 4 items*/}
+                    {/*<Tab*/}
+                    {/*  className={MailIndexType === 2 ? classes.activeTab : ""}*/}
+                    {/*  label={*/}
+                    {/*    <div>*/}
+                    {/*      <span>*/}
+                    {/*        <b>SYSTEM</b>*/}
+                    {/*      </span>*/}
+                    {/*    </div>*/}
+                    {/*  }*/}
+                    {/*/>*/}
                     <Tab
                       className={MailIndexType === 3 ? classes.activeTab : ""}
                       label={
@@ -591,7 +596,7 @@ const Compose = (props) => {
                           </div>
                         )}
                       </div>
-                      {(MailIndexType === 1 || MailIndexType === 2) &&
+                      {(MailIndexType === 2) &&
                         editOrAddOrListTemplate === "list" &&
                         activeFolder !== null && (
                           <Button
@@ -616,10 +621,10 @@ const Compose = (props) => {
                   {editOrAddOrListTemplate === "list" ? (
                     <Fragment>
                       {viewTemplate === null ? (
-                        <div className={classes.listWrapper}>
+                        <div className={classes.listWrapper} style={(MailIndexType == 1 ? {overflow : "hidden"} : "")}>
                           {mailsTODisplay?.length > 0 ? (
                             <>
-                              {MailIndexType === 1 || MailIndexType === 2 ? (
+                              {MailIndexType === 2 ? (
                                 <ListAllNurturingEmails
                                   handleselecteOne={handleselecteOne}
                                   selectedId={selectedId}
@@ -630,28 +635,32 @@ const Compose = (props) => {
                                   }
                                   elements={mailsTODisplay}
                                 />
+                              ) : (MailIndexType === 1 ? (
+                                <AutomationGraph
+                                  setEditOrAddOrListTemplate={setEditOrAddOrListTemplate}/>
                               ) : (
-                                <ListAllEmails
+                                  <ListAllEmails
                                   handleselecteOne={handleselecteOne}
                                   selectedId={selectedId}
                                   MailIndexType={MailIndexType}
                                   handleView={handleView}
                                   elements={mailsTODisplay}
-                                />
+                                  />
+                                )
                               )}
                             </>
                           ) : MailIndexType === 1 && !activeFolder ? (
                             <div className="p-1 bg-white mt-1">
                               <Grid container spacing={2} className="p-0 m-0">
                                 <Grid item sm={12} md={12} lg={12}>
-                                  <h4>NURTURING TUTORIAL</h4>
+                                  <h4>AUTOMATION TUTORIAL</h4>
                                   <p
                                     className="p-1 pr-5"
                                     style={{
                                       background: "#eaf4fe",
                                     }}
                                   >
-                                    Nurturing is a powerful tool designed to
+                                    Automation is a powerful tool designed to
                                     allow mymember users to automate marketing
                                     campaigns. Campaigns are activated when
                                     system a specific smartlist criteria is met.
@@ -788,7 +797,7 @@ const Compose = (props) => {
           </div>
         </CardContent>
       </Card>
-      
+
       <ConfirmationModal
         primaryColor="#0483fd"
         secondaryColor="#fff"
